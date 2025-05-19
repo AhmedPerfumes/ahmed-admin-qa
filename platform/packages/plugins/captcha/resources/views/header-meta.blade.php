@@ -1,9 +1,0 @@
-<link
-    href="https://www.google.com"
-    rel="preconnect"
->
-<link
-    href="https://www.gstatic.com"
-    rel="preconnect"
-    crossorigin
->

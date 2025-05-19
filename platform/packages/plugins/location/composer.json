@@ -1,5 +1,0 @@
-{
-    "require": {
-        "spatie/simple-excel": "^3.2.0"
-    }
-}
