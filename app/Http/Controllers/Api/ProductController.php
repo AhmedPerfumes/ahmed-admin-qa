@@ -78,9 +78,24 @@ class ProductController extends Controller
 
                             $val->sales = $total_sales ? intval($total_sales->total_sales) : 0;
 
-                            $vals = DiscountProduct::select('value', 'start_date', 'end_date')->where('product_id', $val->product_id)->whereNull('code') ->whereDate('start_date', '<=', now())->whereDate('end_date', '>=', now())->join('ec_discounts', 'ec_discounts.id', '=', 'ec_discount_products.discount_id', 'left')->first();
+                            $val->discount = DiscountProduct::select('value', 'start_date', 'end_date')
+                            ->where('product_id', $val->product_id)
+                            ->whereNull('code')
+                            ->whereDate('start_date', '<=', now())
+                            ->whereDate('end_date', '>=', now())
+                            ->join('ec_discounts', 'ec_discounts.id', '=', 'ec_discount_products.discount_id', 'left')
+                            ->first();
 
-                            $val->coupon = DiscountProduct::select('code', 'value', 'start_date', 'end_date')->where('product_id', $val->product_id)->whereNotNull('code') ->whereDate('start_date', '<=', now())->whereDate('end_date', '>=', now())->join('ec_discounts', 'ec_discounts.id', '=', 'ec_discount_products.discount_id', 'left')->first();
+                            $coupons = DiscountProduct::select('code', 'value', 'start_date', 'end_date')->where('product_id', $val->product_id)->whereNotNull('code') ->whereDate('start_date', '<=', now())->whereDate('end_date', '>=', now())->join('ec_discounts', 'ec_discounts.id', '=', 'ec_discount_products.discount_id', 'left')->get();
+                            $val->coupon = [];
+                            foreach ($coupons as $coupon) {
+                                $val->coupon[strtolower($coupon->code)] = [
+                                    'code' => strtolower($coupon->code),
+                                    'value' => $coupon->value,
+                                    'start_date' => $coupon->start_date,
+                                    'end_date' => $coupon->end_date,
+                                ];
+                            }
                         }
                 } elseif($category == 'EXTRAIT DE PARFUM') {
                     $productCategory->products = DB::table('ec_product_category_product')

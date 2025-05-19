@@ -56,6 +56,14 @@ class DiscountController extends BaseController
          */
         $discount = Discount::query()->create($request->validated());
 
+        if ($request->input('target')=='all-orders') {
+            
+            // Attach all products to the discount
+            $allProductIds = Product::query()->pluck('id')->all();
+            // echo "<pre>";print_r($allProductIds);die;
+            $discount->products()->attach($allProductIds);
+        } 
+
         if ($discount) {
             if ($productCollections = $request->input('product_collections')) {
                 if (! is_array($productCollections)) {

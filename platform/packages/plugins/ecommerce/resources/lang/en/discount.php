@@ -35,7 +35,7 @@ return [
             'promotion' => 'Promotion',
         ],
         'targets' => [
-            'all-orders' => 'All orders',
+            'all-orders' => 'All products',
             'customer' => 'Customer',
             'amount-minimum-order' => 'Minimum order amount',
             'product-variant' => 'Product variant',
@@ -60,7 +60,7 @@ return [
     'free_shipping' => 'Free shipping',
     'same_price' => 'Same price',
     'apply_for' => 'apply for',
-    'all_orders' => 'All orders',
+    'all_orders' => 'All products',
     'order_amount_from' => 'Order amount from',
     'product_collection' => 'Product collection',
     'product_category' => 'Product category',
