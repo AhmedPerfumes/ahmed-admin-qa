@@ -9,10 +9,27 @@
     $previewURL = str_replace('--slug--', (string) $value, env('CUSTOM_URL') . $prefix . '/' . config('packages.slug.general.pattern')) . $endingURL . (Auth::user() && $preview ? '?preview=true' : '');
     $input_group_text = env('CUSTOM_URL'). $prefix;
     $data_view = rtrim(str_replace('--slug--', '', env('CUSTOM_URL'). $prefix . '/' . config('packages.slug.general.pattern')), '/') . '/';
-    if(!empty($category) && !empty($sub_category)) {
-        $previewURL = str_replace('--slug--', (string) $value, env('CUSTOM_URL') . $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $sub_category->name))) .'/'. config('packages.slug.general.pattern')) . $endingURL . (Auth::user() && $preview ? '?preview=true' : '');
-        $input_group_text = env('CUSTOM_URL'). $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $sub_category->name))). '/';
-        $data_view = rtrim(str_replace('--slug--', '', env('CUSTOM_URL'). $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $sub_category->name))) . '/' . config('packages.slug.general.pattern')), '/') . '/';
+    //echo $model;
+    if(!empty($category) && isset($model->slugable) && $model->slugable->prefix != 'blog') {
+        if($category->name == 'Online Exclusive') {
+            //echo ";;;";
+            //echo $category;
+            $previewURL = str_replace('--slug--', (string) $value, env('CUSTOM_URL') . $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. config('packages.slug.general.pattern')) . $endingURL . (Auth::user() && $preview ? '?preview=true' : '');
+            $input_group_text = env('CUSTOM_URL'). $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $category->name))). '/';
+            $data_view = rtrim(str_replace('--slug--', '', env('CUSTOM_URL'). $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $category->name))) . '/' . config('packages.slug.general.pattern')), '/') . '/';
+        } elseif ($category->name == 'Hair Mist') {
+            //echo ";;;";
+            //echo $category;
+            $previewURL = str_replace('--slug--', (string) $value, env('CUSTOM_URL') . $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. config('packages.slug.general.pattern')) . $endingURL . (Auth::user() && $preview ? '?preview=true' : '');
+            $input_group_text = env('CUSTOM_URL'). $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $category->name))). '/';
+            $data_view = rtrim(str_replace('--slug--', '', env('CUSTOM_URL'). $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $category->name))) . '/' . config('packages.slug.general.pattern')), '/') . '/';
+        } else {
+            //echo ";;;";
+            //echo $category;
+            $previewURL = str_replace('--slug--', (string) $value, env('CUSTOM_URL') . $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $sub_category->name))) .'/'. config('packages.slug.general.pattern')) . $endingURL . (Auth::user() && $preview ? '?preview=true' : '');
+            $input_group_text = env('CUSTOM_URL'). $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $sub_category->name))). '/';
+            $data_view = rtrim(str_replace('--slug--', '', env('CUSTOM_URL'). $prefix .'/'. strtolower(implode('-', explode(' ', $category->name))) .'/'. strtolower(implode('-', explode(' ', $sub_category->name))) . '/' . config('packages.slug.general.pattern')), '/') . '/';
+        }
     }
 @endphp
 
