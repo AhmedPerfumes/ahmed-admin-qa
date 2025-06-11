@@ -24,6 +24,10 @@ use Botble\Blog\Http\Requests\PostRequest;
 use Botble\Blog\Models\Category;
 use Botble\Blog\Models\Post;
 use Botble\Blog\Models\Tag;
+use Botble\Base\Forms\FieldOptions\DatePickerFieldOption;
+use Botble\Base\Forms\Fields\DatePickerField;
+use Carbon\Carbon;
+use Botble\Base\Facades\BaseHelper;
 
 class PostForm extends FormAbstract
 {
@@ -33,6 +37,14 @@ class PostForm extends FormAbstract
             ->model(Post::class)
             ->setValidatorClass(PostRequest::class)
             ->hasTabs()
+            ->add(
+                'post_date',
+                DatePickerField::class,
+                DatePickerFieldOption::make()
+                    ->label('Post Date')
+                    ->defaultValue(BaseHelper::formatDate(Carbon::now()))
+                    ->toArray()
+            )
             ->add('name', TextField::class, NameFieldOption::make()->required()->toArray())
             ->add('description', TextareaField::class, DescriptionFieldOption::make()->toArray())
             ->add(

@@ -37,6 +37,7 @@ class Post extends BaseModel
         'status',
         'author_id',
         'author_type',
+        'post_date',
     ];
 
     protected static function booted(): void
