@@ -39,7 +39,7 @@ class PublicController extends BaseController
 
         // return redirect('https://phpstack-1403159-5212295.cloudwaysapps.com/public/admin');
 
-        return redirect('http://localhost/ahmed-admin-KSA/public/admin');
+        return redirect('http://localhost/ahmed-admin-qa/public/admin');
     }
 
     public function getView(?string $key = null, string $prefix = '')
