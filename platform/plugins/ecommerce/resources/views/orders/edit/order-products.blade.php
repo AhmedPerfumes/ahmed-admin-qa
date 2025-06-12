@@ -32,7 +32,7 @@
                             <p class="mb-0">({{ trans('plugins/ecommerce::order.sku') }}: <strong>{{ $sku }}</strong>)</p>
                         @endif
 
-                         @if (!empty($orderProduct->product_category))
+                        @if (!empty($orderProduct->product_category))
                             <p class="mb-0">(Category: <strong>{{ $orderProduct->product_category }}</strong>)</p>
                         @endif
 
