@@ -32,7 +32,13 @@
                             <p class="mb-0">({{ trans('plugins/ecommerce::order.sku') }}: <strong>{{ $sku }}</strong>)</p>
                         @endif
 
-                        <p class="mb-0">(Category: <strong>{{ $orderProduct->product_category }}</strong>)</p>
+                         @if (!empty($orderProduct->product_category))
+                            <p class="mb-0">(Category: <strong>{{ $orderProduct->product_category }}</strong>)</p>
+                        @endif
+
+                        @if ($orderProduct->is_gift == 1)
+                            <p class="mb-0">(<strong>Free Gift</strong>)</p>
+                        @endif
                     </div>
 
                     @if ($attributes = Arr::get($orderProduct->options, 'attributes'))
