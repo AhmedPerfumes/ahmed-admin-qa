@@ -30,7 +30,7 @@
                 <div class="d-flex align-items-center me-3">
                     <x-core::button
                         tag="a"
-                        :href="url('/')"
+                        :href="env('CUSTOM_URL')"
                         icon="ti ti-world"
                         target="_blank"
                     >
