@@ -1043,7 +1043,7 @@ class HookServiceProvider extends ServiceProvider
             if (Auth::user()->hasPermission('orders.edit')) {
                 $orders = Order::query()
                     ->where([
-                        'status' => BaseStatusEnum::PENDING,
+                        'status' => OrderStatusEnum::PROCESSING,
                         'is_finished' => 1,
                     ])
                     ->orderByDesc('created_at')
