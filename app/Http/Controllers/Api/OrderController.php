@@ -389,8 +389,9 @@ class OrderController extends Controller
                 } elseif(!is_null($exisProduct->sale_price)) {
                     $price = $exisProduct->price / (1 + ($request->input('vatTax') / 100));
                     $total_amount = $price * $quantity;
-                    $discount_percent = $exisProduct->sale_price;
-                    $discount_amount = ($total_amount / 100) * $discount_percent;
+                     $sale_price = $exisProduct->sale_price / (1 + ($request->input('vatTax') / 100));
+                    $discount_percent = 0;
+                    $discount_amount = $total_amount - ($sale_price * $quantity);
                     $net_amount = $total_amount - $discount_amount;
                     $tax_amount = ($net_amount / 100) * $request->input('vatTax');
                     $gross_amount = $net_amount + $tax_amount;
@@ -620,8 +621,9 @@ class OrderController extends Controller
                 } elseif(!is_null($exisProduct->sale_price)) {
                     $price = $exisProduct->price / (1 + ($request->input('vatTax') / 100));
                     $total_amount = $price * $quantity;
-                    $discount_percent = $exisProduct->sale_price;
-                    $discount_amount = ($total_amount / 100) * $discount_percent;
+                    $sale_price = $exisProduct->sale_price / (1 + ($request->input('vatTax') / 100));
+                    $discount_percent = 0;
+                    $discount_amount = $total_amount - ($sale_price * $quantity);
                     $net_amount = $total_amount - $discount_amount;
                     $tax_amount = ($net_amount / 100) * $request->input('vatTax');
                     $gross_amount = $net_amount + $tax_amount;
