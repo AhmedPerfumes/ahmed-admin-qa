@@ -94,13 +94,14 @@
                     @endif
                 </x-core::table.body.cell>
                <x-core::table.body.cell>
-                    @if ($orderProduct->discount_percent != 0)
+                    {{-- @if ($orderProduct->discount_percent != 0)
                         {{ format_price(round($orderProduct->price, 2) - round($orderProduct->price / 100 * $orderProduct->discount_percent, 2)) }}
                     @elseif ($orderProduct->product_category == 'Collections')
                         {{ format_price($orderProduct->net_amount / $orderProduct->qty) }}
                     @else
                         {{ format_price($orderProduct->price) }}
-                    @endif
+                    @endif --}}
+                      {{ $orderProduct->discount_percent != 0 ? format_price(round($orderProduct->price, 2) - round($orderProduct->price / 100 * $orderProduct->discount_percent, 2)) : format_price($orderProduct->price) }}
                 </x-core::table.body.cell>
                 <x-core::table.body.cell>
                     x

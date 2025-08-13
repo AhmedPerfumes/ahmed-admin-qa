@@ -97,22 +97,15 @@ class OrderController extends Controller
             if(!$coupon) {
                 return response()->json(['couponMessage' => 'Invalid Coupon Code']);
             }
-            $coupon_code = $request->input('couponCode');
-            if(isset($coupon_code) && !empty($request->input('couponCode'))) {
-                $coupon = DiscountModel::where('code', $request->input('couponCode'))->where('start_date', '<=', now())->where('end_date', '>=', now())->first();
-                if(!$coupon) {
-                    return response()->json(['couponMessage' => 'Invalid Coupon Code']);
-                }
-                $customer = OrderAddress::join('payments', 'payments.order_id', '=', 'ec_order_addresses.order_id')->where('status', 'completed')->where('phone', $request->input('billingAddress.mobile'))->get();
-                // echo $order_address;
-                if(!$customer->isEmpty()) {
-                    // if(strtolower($request->input('couponCode')) == 'welcome10') {
-                    //     return response()->json(['couponMessage' => 'You Have Already Used this Coupon Code']);
-                    // }
-                    $customer_discount = DB::table('ec_customer_used_coupons')->where('customer_id', $customer[0]->customer_id)->where('discount_id', $coupon->id)->first();
-                    if($customer_discount) {
-                        return response()->json(['couponMessage' => 'You Have Already Used this Coupon Code']);
-                    }
+            $customer = OrderAddress::join('payments', 'payments.order_id', '=', 'ec_order_addresses.order_id')->where('status', 'completed')->where('phone', $request->input('billingAddress.mobile'))->get();
+            // echo $order_address;
+            if(!$customer->isEmpty()) {
+                // if(strtolower($request->input('couponCode')) == 'welcome10') {
+                //     return response()->json(['couponMessage' => 'You Have Already Used this Coupon Code']);
+                // }
+                $customer_discount = DB::table('ec_customer_used_coupons')->where('customer_id', $customer[0]->customer_id)->where('discount_id', $coupon->id)->first();
+                if($customer_discount) {
+                    return response()->json(['couponMessage' => 'You Have Already Used this Coupon Code']);
                 }
             }
         }
@@ -634,7 +627,20 @@ class OrderController extends Controller
 
                 $exisProduct->discount = DiscountProduct::select('value', 'start_date', 'end_date')->where('product_id', $product['product_id'])->whereNull('code')->whereDate('start_date', '<=', now())->whereDate('end_date', '>=', now())->join('ec_discounts', 'ec_discounts.id', '=', 'ec_discount_products.discount_id', 'left')->first();
 
-                $exisProduct->coupon = DiscountProduct::select('code', 'value', 'start_date', 'end_date')->where('product_id', $product['product_id'])->whereNotNull('code')->whereDate('start_date', '<=', now())->whereDate('end_date', '>=', now())->join('ec_discounts', 'ec_discounts.id', '=', 'ec_discount_products.discount_id', 'left')->first();
+                $coupons = DiscountProduct::select('code', 'value', 'start_date', 'end_date')->where('product_id', $product['product_id'])->whereNotNull('code')->whereDate('start_date', '<=', now())->whereDate('end_date', '>=', now())->join('ec_discounts', 'ec_discounts.id', '=', 'ec_discount_products.discount_id', 'left')->get();
+
+                // Store in a temporary property or a new array
+                $couponData = [];
+                foreach ($coupons as $coupon) {
+                    $couponData[strtolower($coupon->code)] = [
+                        'code' => strtolower($coupon->code),
+                        'value' => $coupon->value,
+                        'start_date' => $coupon->start_date,
+                        'end_date' => $coupon->end_date,
+                    ];
+                }
+
+                $exisProduct->coupon = $couponData;
 
                 if(!is_null($exisProduct->discount)) {
                     $price = $exisProduct->price / (1 + ($request->input('vatTax') / 100));
