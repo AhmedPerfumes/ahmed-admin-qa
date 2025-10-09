@@ -27,6 +27,8 @@ use Botble\Ecommerce\Models\MobileVerification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
+use App\Services\ExternalConfiguration;
+
 class OrderController extends Controller
 {
     public function storeOrder(Request $request, CreatePaymentForOrderService $createPaymentForOrderService) {
@@ -110,6 +112,27 @@ class OrderController extends Controller
             }
         }
 
+        if($request->input('payment_method') == 'cybersourcee') {
+            $commonElement = new \App\Services\ExternalConfiguration();
+            $config = $commonElement->ConnectionHost();
+            $merchantConfig = $commonElement->merchantConfigObject();
+
+            $apiClient = new \CyberSource\ApiClient($config, $merchantConfig);
+            $apiInstance = new \CyberSource\Api\TransactionDetailsApi($apiClient);
+
+            try {
+                $apiResponse = $apiInstance->getTransaction($request->input('paymentId'));
+                // echo "<pre>";print_r($apiResponse[0]['orderInformation']['shipTo']);die;
+            } catch (\Cybersource\ApiException $e) {
+                // print_r($e->getResponseBody());
+                // print_r($e->getMessage());
+                return response()->json([
+                    'message'          => $e->getMessage(),
+                    'data'            => $e->getResponseBody()
+                ]);
+            }
+        }
+
         $customer_id = $request->input('customer_id');
 
         if (!$customer_id) {
@@ -131,20 +154,20 @@ class OrderController extends Controller
     
             if (!$exisCustomer) {
                 $customer = Customer::create([
-                    'name'      => $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
-                    'email'     => $request->input('billingAddress.email'),
-                    'phone'     => $request->input('billingAddress.mobile'),
+                    'name'      => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['firstName'].' '.$apiResponse[0]['orderInformation']['billTo']['lastName'] : $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
+                    'email'     => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['email'] : $request->input('billingAddress.email'),
+                    'phone'     => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['phoneNumber'] : $request->input('billingAddress.mobile'),
                     'password'  => $request->input('password') ? Hash::make($request->input('password')) : Hash::make('123456')
                 ]);
 
                 Address::create([
-                    'name'      => $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
-                    'email'     => $request->input('billingAddress.email'),
-                    'phone'     => $request->input('billingAddress.mobile'),
+                    'name'      => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['firstName'].' '.$apiResponse[0]['orderInformation']['billTo']['lastName'] : $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
+                    'email'     => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['email'] : $request->input('billingAddress.email'),
+                    'phone'     => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['phoneNumber'] : $request->input('billingAddress.mobile'),
                     'state' => $request->input('billingAddress.city'),
                     'city' => $request->input('billingAddress.city'),
                     'country' => $request->input('billingAddress.country'),
-                    'address' => $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
+                    'address' => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['address1'] : $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
                     'customer_id' => $customer->id,
                 ]);
 
@@ -175,13 +198,13 @@ class OrderController extends Controller
                 $exisAddress = Address::where('customer_id', $exisCustomer->id)->first();
                 if(!$exisAddress) {
                     Address::create([
-                        'name'      => $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
-                        'email'     => $request->input('billingAddress.email'),
-                        'phone'     => $request->input('billingAddress.mobile'),
+                        'name'      => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['firstName'].' '.$apiResponse[0]['orderInformation']['billTo']['lastName'] : $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
+                        'email'     => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['email'] : $request->input('billingAddress.email'),
+                        'phone'     => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['phoneNumber'] : $request->input('billingAddress.mobile'),
                         'state' => $request->input('billingAddress.city'),
                         'city' => $request->input('billingAddress.city'),
                         'country' => $request->input('billingAddress.country'),
-                        'address' => $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
+                        'address' => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['address1'] : $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
                         'customer_id' => $exisCustomer->id,
                     ]);
                 }
@@ -263,70 +286,90 @@ class OrderController extends Controller
                         'state' => $request->input('billingAddress.city'),
                         'city' => $request->input('billingAddress.city'),
                         'country' => $request->input('billingAddress.country'),
-                        'address' => $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
+                        'address' => $request->input('payment_method') == 'cybersourcee' ? $apiResponse[0]['orderInformation']['billTo']['address1'] : $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
                         'customer_id' => $loggedInCustomer->id,
                     ]);
                     $loggedInCustomerAdd = Address::where('customer_id', $loggedInCustomer->id)->first();
                 }
+                if($request->input('payment_method') == 'cybersourcee') {
+                    $name = $apiResponse[0]['orderInformation']['shipTo']['firstName'].' '.$apiResponse[0]['orderInformation']['shipTo']['lastName'];
+                    $address = $apiResponse[0]['orderInformation']['shipTo']['address1'];
+                } elseif($request->input('shippingAddress.first_name')) {
+                    $name = $request->input('shippingAddress.first_name').' '.$request->input('shippingAddress.last_name');
+                    $address = $request->input('shippingAddress.area').' '.$request->input('shippingAddress.building');
+                } else {
+                    $name = $loggedInCustomer->name;
+                    $address = $loggedInCustomerAdd->address;
+                }
                 OrderAddress::query()->create([
-                    'name' => $request->input('shippingAddress.first_name') ? $request->input('shippingAddress.first_name').' '.$request->input('shippingAddress.last_name') : $loggedInCustomer->name,
+                    'name' => $name,
                     'phone' => $request->input('shippingAddress.mobile') ? $request->input('shippingAddress.mobile') : $loggedInCustomer->phone,
                     'email' => $request->input('shippingAddress.email') ? $request->input('shippingAddress.email') : $loggedInCustomer->email,
                     'state' => $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $loggedInCustomerAdd->state,
                     'city' => $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $loggedInCustomerAdd->city,
                     'country' => $request->input('shippingAddress.country') ? $request->input('shippingAddress.country') : $loggedInCustomerAdd->country,
-                    'address' => $request->input('shippingAddress.area') ? $request->input('shippingAddress.area').' '.$request->input('shippingAddress.building') : $loggedInCustomerAdd->address,
+                    'address' => $address,
                     'order_id' => $order->id,
                     'type' => $request->input('shippingAddress.first_name') ? 'shipping_address' : 'billing_address',
                 ]);
 
-                if($request->input('payment_method') == 'cybersource') {            
-                    $data = [
-                        "name"=> $request->input('shippingAddress.first_name') ? $request->input('shippingAddress.first_name').' '.$request->input('shippingAddress.last_name') : $loggedInCustomer->name,
-                        "email"=> $request->input('shippingAddress.email') ? $request->input('shippingAddress.email') : $loggedInCustomer->email,
-                        "phone"=> $request->input('shippingAddress.mobile') ? $request->input('shippingAddress.mobile') : $loggedInCustomer->phone,
-                        "street1"=> $request->input('shippingAddress.area') ? $request->input('shippingAddress.area').' '.$request->input('shippingAddress.building') : $loggedInCustomerAdd->address,
-                        "city"=> $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $loggedInCustomerAdd->city,
-                        "state"=> $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $loggedInCustomerAdd->state,
-                        "country"=> "QA",
-                        // "zip"=> "54321"
-                    ];
-                    // $resp = $this->cyberSourcePayment($request, $data);
-                    // return response()->json([
-                    //     'redirect_url'     => $resp['redirect_url']
-                    // ]);
-                }
+                // if($request->input('payment_method') == 'cybersourcee') {           
+                //     $data = [
+                //         "name"=> $request->input('shippingAddress.first_name') ? $request->input('shippingAddress.first_name').' '.$request->input('shippingAddress.last_name') : $loggedInCustomer->name,
+                //         "email"=> $request->input('shippingAddress.email') ? $request->input('shippingAddress.email') : $loggedInCustomer->email,
+                //         "phone"=> $request->input('shippingAddress.mobile') ? $request->input('shippingAddress.mobile') : $loggedInCustomer->phone,
+                //         "street1"=> $request->input('shippingAddress.area') ? $request->input('shippingAddress.area').' '.$request->input('shippingAddress.building') : $loggedInCustomerAdd->address,
+                //         "city"=> $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $loggedInCustomerAdd->city,
+                //         "state"=> $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $loggedInCustomerAdd->state,
+                //         "country"=> "QA",
+                //         // "zip"=> "54321"
+                //     ];
+                //     // $resp = $this->cyberSourcePayment($request, $data);
+                //     // return response()->json([
+                //     //     'redirect_url'     => $resp['redirect_url']
+                //     // ]);
+                // }
 
             } else {
+                if($request->input('payment_method') == 'cybersourcee') {
+                    $name = $apiResponse[0]['orderInformation']['shipTo']['firstName'].' '.$apiResponse[0]['orderInformation']['shipTo']['lastName'];
+                    $address = $apiResponse[0]['orderInformation']['shipTo']['address1'];
+                } elseif($request->input('shippingAddress.first_name')) {
+                    $name = $request->input('shippingAddress.first_name').' '.$request->input('shippingAddress.last_name');
+                    $address = $request->input('shippingAddress.area').' '.$request->input('shippingAddress.building');
+                } else {
+                    $name = $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name');
+                    $address = $request->input('billingAddress.area').' '.$request->input('billingAddress.building');
+                }
                 OrderAddress::query()->create([
-                    'name' => $request->input('shippingAddress.first_name') ? $request->input('shippingAddress.first_name').' '.$request->input('shippingAddress.last_name') : $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
+                    'name' => $name,
                     'phone' => $request->input('shippingAddress.mobile') ? $request->input('shippingAddress.mobile') : $request->input('billingAddress.mobile'),
                     'email' => $request->input('shippingAddress.email') ? $request->input('shippingAddress.email') : $request->input('billingAddress.email'),
                     'state' => $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $request->input('billingAddress.city'),
                     'city' => $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $request->input('billingAddress.city'),
                     // 'zip_code' => $request->input('shippingAddress.zip_code'),
                     'country' => $request->input('shippingAddress.country') ? $request->input('shippingAddress.country') : $request->input('billingAddress.country'),
-                    'address' => $request->input('shippingAddress.area') ? $request->input('shippingAddress.area').' '.$request->input('shippingAddress.building') : $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
+                    'address' => $address,
                     'order_id' => $order->id,
                     'type' => $request->input('shippingAddress.first_name') ? 'shipping_address' : 'billing_address',
                 ]);
 
-                if($request->input('payment_method') == 'cybersource') {
-                    $data = [
-                        "name"=> $request->input('shippingAddress.first_name') ? $request->input('shippingAddress.first_name').' '.$request->input('shippingAddress.last_name') : $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
-                        "email"=> $request->input('shippingAddress.email') ? $request->input('shippingAddress.email') : $request->input('billingAddress.email'),
-                        "phone"=> $request->input('shippingAddress.mobile') ? $request->input('shippingAddress.mobile') : $request->input('billingAddress.mobile'),
-                        "street1"=> $request->input('shippingAddress.area') ? $request->input('shippingAddress.area').' '.$request->input('shippingAddress.building') : $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
-                        "city"=> $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $request->input('billingAddress.city'),
-                        "state"=> $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $request->input('billingAddress.city'),
-                        "country"=> "QA",
-                        // "zip"=> "54321"
-                    ];
-                    // $resp = $this->cybersourcePayment($request, $data);
-                    // return response()->json([
-                    //     'redirect_url'     => $resp['redirect_url']
-                    // ]);
-                }
+                // if($request->input('payment_method') == 'cybersourcee') {
+                //     $data = [
+                //         "name"=> $request->input('shippingAddress.first_name') ? $request->input('shippingAddress.first_name').' '.$request->input('shippingAddress.last_name') : $request->input('billingAddress.first_name').' '.$request->input('billingAddress.last_name'),
+                //         "email"=> $request->input('shippingAddress.email') ? $request->input('shippingAddress.email') : $request->input('billingAddress.email'),
+                //         "phone"=> $request->input('shippingAddress.mobile') ? $request->input('shippingAddress.mobile') : $request->input('billingAddress.mobile'),
+                //         "street1"=> $request->input('shippingAddress.area') ? $request->input('shippingAddress.area').' '.$request->input('shippingAddress.building') : $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
+                //         "city"=> $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $request->input('billingAddress.city'),
+                //         "state"=> $request->input('shippingAddress.city') ? $request->input('shippingAddress.city') : $request->input('billingAddress.city'),
+                //         "country"=> "QA",
+                //         // "zip"=> "54321"
+                //     ];
+                //     // $resp = $this->cybersourcePayment($request, $data);
+                //     // return response()->json([
+                //     //     'redirect_url'     => $resp['redirect_url']
+                //     // ]);
+                // }
             }
             // die();
             OrderHistory::query()->create([
@@ -790,119 +833,121 @@ class OrderController extends Controller
                 InvoiceItem::query()->create($orderProduct);
             }
 
-            if($request->input('payment_method') == 'cybersource') {
-                // $resp = $this->cyberSourcePayment($request, $data);
-                // if($resp['redirect_url']) {
-                    $uid = uniqid();
-                    $signed_date_time = gmdate("Y-m-d\TH:i:s\Z");
-                    return response()->json([
-                        'message'          => 'Redirecting to Cybersource...',
-                        'order_id'         => $order->code,
-                        'payment_method'   => $request->input('payment_method'),
-                        'total'            => $order->amount,
-                        'sub_total'        => $order->sub_total,
-                        'shipping_amount'  => $order->shipping_amount,
-                        // 'products'         => $prod,
-                        'redirect_url'     => 'https://secureacceptance.cybersource.com/pay',
-                        'transaction_type' => 'sale',
-                        'currency' => 'QAR',
-                        'access_key' => 'a11aaba1a8093442a3588c4b366f92da',
-                        'profile_id' => 'B2AE0C36-2483-4E54-BFC1-BD54754AC559',
-                        'transaction_uuid' => $uid,
-                        'signed_field_names' => 'access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,ship_to_forename,ship_to_surname,ship_to_email,ship_to_phone,ship_to_address_line1,ship_to_address_city,ship_to_address_state,ship_to_address_country',
-                        'unsigned_field_names' => '',
-                        'signed_date_time' => $signed_date_time,
-                        'locale' => 'en',
-                        'bill_to_forename' => '',
-                        'bill_to_surname' => '',
-                        'bill_to_email' => '',
-                        'bill_to_phone' => '',
-                        'bill_to_address_line1'    => '',
-                        'bill_to_address_city'   => '',
-                        'bill_to_address_state'  => '',
-                        'bill_to_address_country' => 'QA',
-                        'ship_to_forename' => '',
-                        'ship_to_surname' => '',
-                        'ship_to_email' => '',
-                        'ship_to_phone' => '',
-                        'ship_to_address_line1'    => '',
-                        'ship_to_address_city'   => '',
-                        'ship_to_address_state'  => '',
-                        'ship_to_address_country' => 'QA',
-                        'signature' => $this->sign([
-                            'access_key' => 'a11aaba1a8093442a3588c4b366f92da',
-                            'profile_id' => 'B2AE0C36-2483-4E54-BFC1-BD54754AC559',
-                            'transaction_uuid' => $uid,
-                            'signed_field_names' => 'access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,ship_to_forename,ship_to_surname,ship_to_email,ship_to_phone,ship_to_address_line1,ship_to_address_city,ship_to_address_state,ship_to_address_country',
-                            'unsigned_field_names' => '',
-                            'signed_date_time' => $signed_date_time,
-                            'locale' => 'en',
-                            'transaction_type' => 'sale',
-                            'reference_number' => $order->code,
-                            'amount' => $order->amount,
-                            'currency' => 'QAR',
-                            'bill_to_forename' => '',
-                            'bill_to_surname' => '',
-                            'bill_to_email' => '',
-                            'bill_to_phone' => '',
-                            'bill_to_address_line1'    => '',
-                            'bill_to_address_city'   => '',
-                            'bill_to_address_state'  => '',
-                            'bill_to_address_country' => 'QA',
-                            'ship_to_forename' => '',
-                            'ship_to_surname' => '',
-                            'ship_to_email' => '',
-                            'ship_to_phone' => '',
-                            'ship_to_address_line1'    => '',
-                            'ship_to_address_city'   => '',
-                            'ship_to_address_state'  => '',
-                            'ship_to_address_country' => 'QA',
-                            'submit' => 'Submit'
-                        ])
-                    ]);
-                // }
-                // $payment_data = [
-                //     'order_id'         => $order->code,
-                //     // 'payment_method'   => $request->input('payment_method'),
-                //     'total'            => $order->amount,
-                //     // 'sub_total'        => $order->sub_total,
-                //     // 'shipping_amount'  => $order->shipping_amount,
-                //     // 'redirect_url'     => 'https://secureacceptance.cybersource.com/pay',
-                //     // 'transaction_type' => 'sale',
-                //     // 'currency' => 'QAR',
-                //     'access_key' => 'a11aaba1a8093442a3588c4b366f92da',
-                //     'profile_id' => 'B2AE0C36-2483-4E54-BFC1-BD54754AC559',
-                //     'transaction_uuid' => uniqid(),
-                //     'signed_field_names' => 'access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,ship_to_forename,ship_to_surname,ship_to_email,ship_to_phone,ship_to_address_line1,ship_to_address_city,ship_to_address_state,ship_to_address_country',
-                //     'unsigned_field_names' => '',
-                //     'signed_date_time' => gmdate("Y-m-d\TH:i:s\Z"),
-                //     'locale' => 'en',
-                //     'bill_to_forename' => $request->input('billingAddress.first_name'),
-                //     'bill_to_surname' => $request->input('billingAddress.last_name'),
-                //     'bill_to_email' => $request->input('billingAddress.email'),
-                //     'bill_to_phone' => $request->input('billingAddress.mobile'),
-                //     'bill_to_address_line1'    => $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
-                //     'bill_to_address_city'   => $request->input('billingAddress.city'),
-                //     'bill_to_address_state'  => $request->input('billingAddress.city'),
-                //     'bill_to_address_country' => 'QA',
-                //     'ship_to_forename' => $data['name'],
-                //     'ship_to_surname' => $data['name'],
-                //     'ship_to_email' => $data['email'],
-                //     'ship_to_phone' => $data['phone'],
-                //     'ship_to_address_line1'    => $data['street1'],
-                //     'ship_to_address_city'   => $data['city'],
-                //     'ship_to_address_state'  => $data['state'],
-                //     'ship_to_address_country' => 'QA',
-                // ];
-                // return view('qa_payment_form', $payment_data);
-            }
+            // if($request->input('payment_method') == 'cybersourcee') {
+            //     // $resp = $this->cyberSourcePayment($request, $data);
+            //     // if($resp['redirect_url']) {
+            //         $uid = uniqid();
+            //         $signed_date_time = gmdate("Y-m-d\TH:i:s\Z");
+            //         return response()->json([
+            //             'message'          => 'Redirecting to Cybersource...',
+            //             'order_id'         => $order->code,
+            //             'payment_method'   => $request->input('payment_method'),
+            //             'total'            => $order->amount,
+            //             'sub_total'        => $order->sub_total,
+            //             'shipping_amount'  => $order->shipping_amount,
+            //             // 'products'         => $prod,
+            //             'redirect_url'     => 'https://secureacceptance.cybersource.com/pay',
+            //             'transaction_type' => 'sale',
+            //             'currency' => 'QAR',
+            //             'access_key' => 'a11aaba1a8093442a3588c4b366f92da',
+            //             'profile_id' => 'B2AE0C36-2483-4E54-BFC1-BD54754AC559',
+            //             'transaction_uuid' => $uid,
+            //             'signed_field_names' => 'access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,ship_to_forename,ship_to_surname,ship_to_email,ship_to_phone,ship_to_address_line1,ship_to_address_city,ship_to_address_state,ship_to_address_country',
+            //             'unsigned_field_names' => '',
+            //             'signed_date_time' => $signed_date_time,
+            //             'locale' => 'en',
+            //             'bill_to_forename' => '',
+            //             'bill_to_surname' => '',
+            //             'bill_to_email' => '',
+            //             'bill_to_phone' => '',
+            //             'bill_to_address_line1'    => '',
+            //             'bill_to_address_city'   => '',
+            //             'bill_to_address_state'  => '',
+            //             'bill_to_address_country' => 'QA',
+            //             'ship_to_forename' => '',
+            //             'ship_to_surname' => '',
+            //             'ship_to_email' => '',
+            //             'ship_to_phone' => '',
+            //             'ship_to_address_line1'    => '',
+            //             'ship_to_address_city'   => '',
+            //             'ship_to_address_state'  => '',
+            //             'ship_to_address_country' => 'QA',
+            //             'signature' => $this->sign([
+            //                 'access_key' => 'a11aaba1a8093442a3588c4b366f92da',
+            //                 'profile_id' => 'B2AE0C36-2483-4E54-BFC1-BD54754AC559',
+            //                 'transaction_uuid' => $uid,
+            //                 'signed_field_names' => 'access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,ship_to_forename,ship_to_surname,ship_to_email,ship_to_phone,ship_to_address_line1,ship_to_address_city,ship_to_address_state,ship_to_address_country',
+            //                 'unsigned_field_names' => '',
+            //                 'signed_date_time' => $signed_date_time,
+            //                 'locale' => 'en',
+            //                 'transaction_type' => 'sale',
+            //                 'reference_number' => $order->code,
+            //                 'amount' => $order->amount,
+            //                 'currency' => 'QAR',
+            //                 'bill_to_forename' => '',
+            //                 'bill_to_surname' => '',
+            //                 'bill_to_email' => '',
+            //                 'bill_to_phone' => '',
+            //                 'bill_to_address_line1'    => '',
+            //                 'bill_to_address_city'   => '',
+            //                 'bill_to_address_state'  => '',
+            //                 'bill_to_address_country' => 'QA',
+            //                 'ship_to_forename' => '',
+            //                 'ship_to_surname' => '',
+            //                 'ship_to_email' => '',
+            //                 'ship_to_phone' => '',
+            //                 'ship_to_address_line1'    => '',
+            //                 'ship_to_address_city'   => '',
+            //                 'ship_to_address_state'  => '',
+            //                 'ship_to_address_country' => 'QA',
+            //                 'submit' => 'Submit'
+            //             ])
+            //         ]);
+            //     // }
+            //     // $payment_data = [
+            //     //     'order_id'         => $order->code,
+            //     //     // 'payment_method'   => $request->input('payment_method'),
+            //     //     'total'            => $order->amount,
+            //     //     // 'sub_total'        => $order->sub_total,
+            //     //     // 'shipping_amount'  => $order->shipping_amount,
+            //     //     // 'redirect_url'     => 'https://secureacceptance.cybersource.com/pay',
+            //     //     // 'transaction_type' => 'sale',
+            //     //     // 'currency' => 'QAR',
+            //     //     'access_key' => 'a11aaba1a8093442a3588c4b366f92da',
+            //     //     'profile_id' => 'B2AE0C36-2483-4E54-BFC1-BD54754AC559',
+            //     //     'transaction_uuid' => uniqid(),
+            //     //     'signed_field_names' => 'access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,ship_to_forename,ship_to_surname,ship_to_email,ship_to_phone,ship_to_address_line1,ship_to_address_city,ship_to_address_state,ship_to_address_country',
+            //     //     'unsigned_field_names' => '',
+            //     //     'signed_date_time' => gmdate("Y-m-d\TH:i:s\Z"),
+            //     //     'locale' => 'en',
+            //     //     'bill_to_forename' => $request->input('billingAddress.first_name'),
+            //     //     'bill_to_surname' => $request->input('billingAddress.last_name'),
+            //     //     'bill_to_email' => $request->input('billingAddress.email'),
+            //     //     'bill_to_phone' => $request->input('billingAddress.mobile'),
+            //     //     'bill_to_address_line1'    => $request->input('billingAddress.area').' '.$request->input('billingAddress.building'),
+            //     //     'bill_to_address_city'   => $request->input('billingAddress.city'),
+            //     //     'bill_to_address_state'  => $request->input('billingAddress.city'),
+            //     //     'bill_to_address_country' => 'QA',
+            //     //     'ship_to_forename' => $data['name'],
+            //     //     'ship_to_surname' => $data['name'],
+            //     //     'ship_to_email' => $data['email'],
+            //     //     'ship_to_phone' => $data['phone'],
+            //     //     'ship_to_address_line1'    => $data['street1'],
+            //     //     'ship_to_address_city'   => $data['city'],
+            //     //     'ship_to_address_state'  => $data['state'],
+            //     //     'ship_to_address_country' => 'QA',
+            //     // ];
+            //     // return view('qa_payment_form', $payment_data);
+            // }
 
             // $request['payment_status'] = 'completed';
             $createPaymentForOrderService->execute(
                 $order,
                 $request->input('payment_method'),
-                'completed',
-                $customer_id
+                $request->input('payment_method') == 'cybersource' ? $request['status'] : 'completed',
+                $customer_id,
+                isset($request['paymentId']) ? $request['paymentId'] : null,
+                isset($request['message']) ? $request['message'] : null
             );
 
             return response()->json([
@@ -917,30 +962,30 @@ class OrderController extends Controller
         }
     }
 
-    public function sign ($params) {
-        // echo $params['profile_id'];
-        return $this->signData($this->buildDataToSign($params), '32bc90216e4148a3b0b78a40c002875e95df9564d4124cb89e45c5818995ebd85a696b6eed15414e9d19fcf144fde755d8f8b7adf0534729aacaaf7b91036e3fafc19321a81144e78b12f02ca8fde018ca2a0025261742ccba9905333169e8be2f8f233f39c54527a55492bc09b72a5d7a754ceb23fa4b2d962b07d6130a3f20');
-    }
+    // public function sign ($params) {
+    //     // echo $params['profile_id'];
+    //     return $this->signData($this->buildDataToSign($params), '32bc90216e4148a3b0b78a40c002875e95df9564d4124cb89e45c5818995ebd85a696b6eed15414e9d19fcf144fde755d8f8b7adf0534729aacaaf7b91036e3fafc19321a81144e78b12f02ca8fde018ca2a0025261742ccba9905333169e8be2f8f233f39c54527a55492bc09b72a5d7a754ceb23fa4b2d962b07d6130a3f20');
+    // }
 
-    public function signData($data, $secretKey) {
-        // echo "<pre>";print_r($data);
-        return base64_encode(hash_hmac('sha256', $data, $secretKey, true));
-    }
+    // public function signData($data, $secretKey) {
+    //     // echo "<pre>";print_r($data);
+    //     return base64_encode(hash_hmac('sha256', $data, $secretKey, true));
+    // }
 
-    public function buildDataToSign($params) {
-        $signedFieldNames = explode(",", $params["signed_field_names"]);
-        foreach ($signedFieldNames as $field) {
-            $dataToSign[] = $field . "=" . $params[$field];
-        }
-        // echo "<pre>";print_r($dataToSign);
-        return $this->commaSeparate($dataToSign);
-    }
+    // public function buildDataToSign($params) {
+    //     $signedFieldNames = explode(",", $params["signed_field_names"]);
+    //     foreach ($signedFieldNames as $field) {
+    //         $dataToSign[] = $field . "=" . $params[$field];
+    //     }
+    //     // echo "<pre>";print_r($dataToSign);
+    //     return $this->commaSeparate($dataToSign);
+    // }
 
 
 
-    public function commaSeparate ($dataToSign) {
-        return implode(",", $dataToSign);
-    }
+    // public function commaSeparate ($dataToSign) {
+    //     return implode(",", $dataToSign);
+    // }
 
     // public function cyberSourcePayment(Request $request, $shippingData) {
     //     $paymentStr = '';
@@ -1013,24 +1058,24 @@ class OrderController extends Controller
     //     return $response;
     // }
 
-    public function cyberSourcePaymentRedirect(Request $request, CreatePaymentForOrderService $createPaymentForOrderService) {
-        // echo "<pre>";print_r($request->all());die;
-        // $customer = Customer::where('code', $request->input('req_reference_number'))->first();
-        $order = Order::where('code', $request->input('req_reference_number'))
-        // ->orderBy('id', 'desc')
-        ->first();
-        // echo "<pre>";print_r($order);
-        $createPaymentForOrderService->execute(
-            $order,
-            'cybersource',
-            $request['decision'],
-            $order->user_id,
-            isset($request['transaction_id']) ? $request['transaction_id'] : $request['req_transaction_uuid'],
-            $request['message'],
-        );
+    // public function cyberSourcePaymentRedirect(Request $request, CreatePaymentForOrderService $createPaymentForOrderService) {
+    //     // echo "<pre>";print_r($request->all());die;
+    //     // $customer = Customer::where('code', $request->input('req_reference_number'))->first();
+    //     $order = Order::where('code', $request->input('req_reference_number'))
+    //     // ->orderBy('id', 'desc')
+    //     ->first();
+    //     // echo "<pre>";print_r($order);
+    //     $createPaymentForOrderService->execute(
+    //         $order,
+    //         'cybersource',
+    //         $request['decision'],
+    //         $order->user_id,
+    //         isset($request['transaction_id']) ? $request['transaction_id'] : $request['req_transaction_uuid'],
+    //         $request['message'],
+    //     );
 
-        header('Location: http://localhost:3000/'.$order->lang.'/shop-order-payment-complete?q='.base64_encode($order->code));exit();
-    }
+    //     header('Location: http://localhost:3000/'.$order->lang.'/shop-order-payment-complete?q='.base64_encode($order->code));exit();
+    // }
 
     public function trackOrder(Request $request)
     {
@@ -1143,5 +1188,121 @@ class OrderController extends Controller
             'message'          => 'Details Fetched successfully',
             'coupon'            => $coupon
         ]);
+    }
+
+    function GenerateUnifiedCheckoutCaptureContext(Request $request)
+    {
+        // echo "<pre>";print_r($request->all());die;
+        $targetOrigins = array();
+        $targetOrigins[0] = "https://658kq4qh-3000.inc1.devtunnels.ms";
+
+        $allowedCardNetworks = array();
+        $allowedCardNetworks[0] = "VISA";
+        $allowedCardNetworks[1] = "MASTERCARD";
+
+        $allowedPaymentTypes = array();
+        $allowedPaymentTypes[0] = "CLICKTOPAY";
+        
+        $captureMandateShipToCountries = array();
+        $captureMandateShipToCountries[0] = "QA";
+        
+        $captureMandateArr = [
+            "billingType" => "FULL",
+            "requestEmail" => true,
+            "requestPhone" => true,
+            "requestShipping" => true,
+            "shipToCountries" => $captureMandateShipToCountries,
+            "showAcceptedNetworkIcons" => true
+        ];
+        $captureMandate = new \CyberSource\Model\Upv1capturecontextsCaptureMandate($captureMandateArr);
+
+        $completeMandate = [
+            "type" => "CAPTURE",
+            "decisionManager" => false,
+            "consumerAuthentication" => true
+        ];
+        $completeMandate = new \CyberSource\Model\Upv1capturecontextsCompleteMandate($completeMandate);
+
+        $orderInformationAmountDetailsArr = [
+            "totalAmount" => $request['amountDetails']['totalAmount'],
+            "currency" => "QAR"
+        ];
+        $orderInformationAmountDetails = new \CyberSource\Model\Upv1capturecontextsOrderInformationAmountDetails($orderInformationAmountDetailsArr);
+
+        $orderInformationBillToArr = [
+            "address1" => $request['billTo']['address1'],
+            "buildingNumber" => $request['billTo']['buildingNumber'],
+            "country" => "QA",
+            "district" => $request['billTo']['district'],
+            "locality" => $request['billTo']['locality'],
+            "postalCode" => "0000",
+            "administrativeArea" => "Ajman",
+            "email" => $request['billTo']['email'],
+            "firstName" => $request['billTo']['firstName'],
+            "lastName" => $request['billTo']['lastName'],
+            "phoneNumber" => $request['billTo']['phoneNumber'],
+            "phoneType" => "mobile",
+        ];
+        $orderInformationBillTo = new \CyberSource\Model\Upv1capturecontextsOrderInformationBillTo($orderInformationBillToArr);
+
+        $orderInformationShipToArr = [
+            "address1" => $request['shipTo']['address1'],
+            "buildingNumber" => $request['shipTo']['buildingNumber'],
+            "country" => "QA",
+            "district" => $request['shipTo']['district'],
+            "locality" => $request['shipTo']['locality'],
+            "postalCode" => "0000",
+            "administrativeArea" => "Ajman",
+            "firstName" => $request['shipTo']['firstName'],
+            "lastName" => $request['shipTo']['lastName'],
+        ];
+        $orderInformationShipTo = new \CyberSource\Model\Upv1capturecontextsOrderInformationShipTo($orderInformationShipToArr);
+
+        $orderInformationArr = [
+            "amountDetails" => $orderInformationAmountDetails,
+            "billTo" => $orderInformationBillTo,
+            "shipTo" => $orderInformationShipTo
+        ];
+        $orderInformation = new \CyberSource\Model\Upv1capturecontextsOrderInformation($orderInformationArr);
+
+        $requestObjArr = [
+            "clientVersion" => "0.26",
+            "targetOrigins" => $targetOrigins,
+            "allowedCardNetworks" => $allowedCardNetworks,
+            "allowedPaymentTypes" => $allowedPaymentTypes,
+            "country" => "QA",
+            "locale" => "en_US",
+            "captureMandate" => $captureMandate,
+            "completeMandate" => $completeMandate,
+            "orderInformation" => $orderInformation
+        ];
+        $requestObj = new \CyberSource\Model\GenerateUnifiedCheckoutCaptureContextRequest($requestObjArr);
+
+
+        $commonElement = new \App\Services\ExternalConfiguration();
+        $config = $commonElement->ConnectionHost();
+        $merchantConfig = $commonElement->merchantConfigObject();
+
+        $apiClient = new \CyberSource\ApiClient($config, $merchantConfig);
+        $apiInstance = new \CyberSource\Api\UnifiedCheckoutCaptureContextApi($apiClient);
+
+        try {
+            $apiResponse = $apiInstance->generateUnifiedCheckoutCaptureContext($requestObj);
+            // print_r(PHP_EOL);
+            // print_r($apiResponse);
+            return response()->json([
+                'message'          => 'Details Fetched successfully',
+                'data'            => $apiResponse
+            ]);
+
+            // return $apiResponse;
+        } catch (\Cybersource\ApiException $e) {
+            // print_r($e->getResponseBody());
+            // print_r($e->getMessage());
+            return response()->json([
+                'message'          => $e->getMessage(),
+                'data'            => $e->getResponseBody()
+            ]);
+        }
     }
 }

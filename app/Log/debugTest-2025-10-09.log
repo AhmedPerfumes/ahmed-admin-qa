@@ -1,0 +1,750 @@
+[2025-10-09T10:02:24] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:02:24] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:02:24] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:02:24] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:02:24] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T10:02:24] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T10:02:24] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"110","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T10:02:24] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T10:02:24] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T10:02:24] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="NxrrofUqGsv9cX9Ldl1ArFBNArxKbTJF96d7EAyal5A="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 10:02:24 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=zhyR45riUHjsFNmBhVdAL3oJRd/qPA51HlphKw1EkRI=
+[2025-10-09T10:02:24] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"110","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T10:02:25] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6IlA0a0xWZHdFOGplZVBkOXZQUGdNZWhBQUVFV2swYlkyTXdxaUNzaStNRDZWeGpEWk52Z1lqTGx2bzI0WS9ITktSRW5JTTBnYnJiRHhKV3hxQW13L0RuTllSMm5RZmNiRmJGZExPcjF5MmhOSWZNTjNsRmhKT295ejgySGY4Y3Y0VnRLTnRHdW5tTVZHU0NhazI0TXFoRC9SQzI2OG4wdG9VZVRvdTlvM1RhelZkdVIwNnNsc1RsUkRya3NwZUhjZmdpc3AiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiI5R1RmZDd0Tkl3d2VqZWRTbXV3Y1FqaFl1TWJrdFZLMXlCaHVUaXZmMjBaNTY5aFo2aVQ5Tm9zRU9fSGl4aGJzU2dPTUpUdjdBMlVwYjRVNWp2REFQTE1PZUZUMU5WRFlhdDl3N3VDS2MyOW4wREJkUHlXMWlsNzR5QUNEN0ZySmpOY3V5emFhZDhLWFVlNnZkc3FjdUxSN1pwUHlRczRNUkZNZHpsQXVDdEgtdzhTZ2Jua2JzcmV0Z2NLMjZVODdfbEpLV09sS0pINlA3ZFhzS2cwa0p2bGM2eWlPTTY0UGdEYzNYUlhLcDJsUVBPTjZxZHdTSjBudzJpSUpJX3RiSHdqSVFCZFMzZGV1VjRXdlFNXzZDQjFpNnJnNHdtYW9kbVlrRjB3NldBdVB4cnMyN3huWUhDWENfajFXV0NTbGxiRHVRdm94TnFyT2F5UFpLOWxvdXciLCJraWQiOiIwOGhHSVZkNDlMTEZWUEh2MU9sUW1neVFzNlY2blRTRSJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiMWE1NmQ4N2UtMzY5MC00YjJiLThmZjgtOWI1ZGU0ZDdlOTUyIiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIxMTAiLCJ0cmFuc2FjdGlvbkN1cnJlbmN5Q29kZSI6IlFBUiJ9LCJwYXltZW50T3B0aW9ucyI6eyJkcGFQYW5SZXF1ZXN0ZWQiOnRydWUsImR5bmFtaWNEYXRhVHlwZSI6Ik5PTkUifX19fX0sImNhcHR1cmVNYW5kYXRlIjp7InNob3dDb25maXJtYXRpb25TdGVwIjp0cnVlLCJiaWxsaW5nVHlwZSI6IkZVTEwiLCJyZXF1ZXN0RW1haWwiOnRydWUsInJlcXVlc3RQaG9uZSI6dHJ1ZSwicmVxdWVzdFNoaXBwaW5nIjp0cnVlLCJzaGlwVG9Db3VudHJpZXMiOlsiUUEiXSwic2hvd0FjY2VwdGVkTmV0d29ya0ljb25zIjp0cnVlfSwib3JkZXJJbmZvcm1hdGlvbiI6eyJhbW91bnREZXRhaWxzIjp7InRvdGFsQW1vdW50IjoiMTEwIiwiY3VycmVuY3kiOiJRQVIifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImVtYWlsIjoieWF6aWxhbnNhcmkwM0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSIsInBob25lTnVtYmVyIjoiNTAzMzIwMzgiLCJwaG9uZVR5cGUiOiJtb2JpbGUifSwic2hpcFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImZpcnN0TmFtZSI6IlRlc3QgWSIsImxhc3ROYW1lIjoiVGVzdCBZIn19LCJ0YXJnZXRPcmlnaW5zIjpbImh0dHBzOi8vNjU4a3E0cWgtMzAwMC5pbmMxLmRldnR1bm5lbHMubXMiXSwiaWZyYW1lcyI6eyJtY2UiOiIvbWNlL21jZS5odG1sIiwiYnV0dG9ucyI6Ii9idXR0b25saXN0L2J1dHRvbmxpc3QuaHRtbCIsInNyYyI6Ii9zZWN1cmUtcmVtb3RlLWNvbW1lcmNlL3NyYy5odG1sIiwiY3RwIjoiL2N0cC9jdHAuaHRtbCIsImdvb2dsZXBheSI6Ii9nb29nbGVwYXkvZ29vZ2xlcGF5Lmh0bWwiLCJhcHBsZXBheSI6Ii9hcHBsZXBheS9hcHBsZXBheS5odG1sIiwicGF6ZSI6Ii9wYXplL3BhemUuaHRtbCIsImNoZWNrIjoiL2NoZWNrL2NoZWNrLmh0bWwiLCJvcmMiOiIvb3JjL29yYy5odG1sIiwidG0iOiIvdG0vdG0uaHRtbCIsImFwbSI6Ii9hcG0vYXBtLmh0bWwifSwiY2xpZW50VmVyc2lvbiI6IjAuMjYiLCJjb3VudHJ5IjoiUUEiLCJsb2NhbGUiOiJlbl9VUyIsImFsbG93ZWRDYXJkTmV0d29ya3MiOlsiVklTQSIsIk1BU1RFUkNBUkQiXSwiY29tcGxldGVNYW5kYXRlIjp7InR5cGUiOiJDQVBUVVJFIiwidHJhbnNhY3Rpb25JZCI6ImQzNnNxcFVzd1l2MUFOODY0bW1Lb3FPSGZ2Zm4iLCJkZWNpc2lvbk1hbmFnZXIiOiJTS0lQIn0sImNyIjoiTXJNWkFJcEMwR3g0ZWptcnBncDkyZWtUaXVxQVpUQnJXaWRNbGxveEpzUmI1MHB2YmFramh2MEVVUEgtY0JqM3VvYlE0dkoxQ0lqMUFpQjNMU2xDOGx3NjVvVjNvVjk4MnM4Yk1GQ3dQMFNleUVKYnViWUluZlBsMENoclhkZDR0QSIsInNlcnZpY2VPcmlnaW4iOiJodHRwczovL3Rlc3R1cC5jeWJlcnNvdXJjZS5jb20iLCJjbGllbnRMaWJyYXJ5IjoiaHR0cHM6Ly90ZXN0dXAuY3liZXJzb3VyY2UuY29tL3VjL3YxL2Fzc2V0cy8wLjI2LjMvU2VjdXJlQWNjZXB0YW5jZS5qcyIsImxvZ2dpbmdQYXRoIjoiL3VjL3YxL2xvZy1ldmVudHMiLCJhc3NldHNQYXRoIjoiL3VjL3YxL2Fzc2V0cy8wLjI2LjMiLCJjbGllbnRMaWJyYXJ5SW50ZWdyaXR5Ijoic2hhMjU2LUZOdGIvZXI2cjNNMXkvTS9xTnJZVDljYVNoOFY3REV0RnUzR1dwcGQ0bDhcdTAwM2QifSwidHlwZSI6ImdkYS0wLjEwLjAifV0sImlzcyI6IkZsZXggQVBJIiwiZXhwIjoxNzU5OTkwNjQ1LCJpYXQiOjE3NTk5ODk3NDUsImp0aSI6IjZXQ3JZc0Z2VkQ3THQ3VTkifQ.GltXX2YFB-J0VYieNaagGO_W0NUkDp6Gmtp6Htwl2sRIkv7bWP6gS8df_ts2dOMAZ3HLVRrywT6Tfa4mgDTOfo5bD89HeMWnhFXO5_dCxtKTksIfZ8SmL2SnyiUaqeAWyHXmmIiwm-QhU0LrydUkxSwXuz_S7-pHuD1miaTWci1HKfPCbmstLhZCmF8Hgh1-UMKrcNnLKdcRLhx50Pv8KcB4RfY5XCK4WuK1K1rVuyzSzLyDYQGvnI-QwGyPGtqIusPWbJ1etqQ08nqzfUNH1HLY__2ZmMiIu1m4v03c06njMUyzfcMlxA8jrEPjoP0NsqAx0j1o99xR_be2jvNxGA
+[2025-10-09T10:02:25] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = 1a56d87e-3690-4b2b-8ff8-9b5de4d7e952
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5861
+x-envoy-upstream-service-time = 27
+date = Thu, 09 Oct 2025 06:02:24 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = bdad9985-67ad-48d7-a444-88140bda0bb0
+X-OPNET-Transaction-Trace = 934de25f-e7ea-4bd1-be1c-02ab3dbc7a6b-1228642-27311636
+[2025-10-09T10:02:25] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED
+[2025-10-09T10:03:23] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:03:23] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:03:23] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:03:23] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:03:23] [INFO] [TransactionDetailsApi] : CALL TO METHOD getTransaction STARTED
+[2025-10-09T10:03:23] [DEBUG] [TransactionDetailsApi] : Resource : GET /tss/v2/transactions/7599898010056401704514
+[2025-10-09T10:03:23] [DEBUG] [TransactionDetailsApi] : Body Parameter :
+
+[2025-10-09T10:03:23] [DEBUG] [TransactionDetailsApi] : Return Type : \CyberSource\Model\TssV2TransactionsGet200Response
+[2025-10-09T10:03:23] [INFO] [ApiClient] : CALLING API "/tss/v2/transactions/7599898010056401704514" STARTED
+[2025-10-09T10:03:23] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/hal+json;charset=utf-8
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target v-c-merchant-id", signature="1TH3rta6d+5v6lp6YNKRJlRRMyMjEHUeWBdg4uMvWxM="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 10:03:23 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+[2025-10-09T10:03:23] [DEBUG] [ApiClient] : HTTP Request Body:
+
+[2025-10-09T10:03:24] [DEBUG] [ApiClient] : HTTP Response Body:
+{"_links":{"self":{"href":"https:\/\/apitest.cybersource.com\/payment\/tss\/v2\/transactions\/7599898010056401704514"}},"invalidFields":null,"message":"The requested resource does not exist","messageKey":null,"missingFields":null}
+[2025-10-09T10:03:24] [ERROR] [ApiClient] : ApiException : [404] Error connecting to the API (https://apitest.cybersource.com/tss/v2/transactions/7599898010056401704514)
+[2025-10-09T10:03:24] [ERROR] [TransactionDetailsApi] : ApiException : CyberSource\ApiException: [404] Error connecting to the API (https://apitest.cybersource.com/tss/v2/transactions/7599898010056401704514) in D:\xampp\htdocs\ahmed-admin-qa\vendor\cybersource\rest-client-php\lib\ApiClient.php:483
+Stack trace:
+#0 D:\xampp\htdocs\ahmed-admin-qa\vendor\cybersource\rest-client-php\lib\Api\TransactionDetailsApi.php(193): CyberSource\ApiClient->callApi('/tss/v2/transac...', 'GET', Array, '', Array, '\\CyberSource\\Mo...', '/tss/v2/transac...')
+#1 D:\xampp\htdocs\ahmed-admin-qa\vendor\cybersource\rest-client-php\lib\Api\TransactionDetailsApi.php(111): CyberSource\Api\TransactionDetailsApi->getTransactionWithHttpInfo('759989801005640...')
+#2 D:\xampp\htdocs\ahmed-admin-qa\app\Http\Controllers\Api\OrderController.php(124): CyberSource\Api\TransactionDetailsApi->getTransaction('759989801005640...')
+#3 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(54): App\Http\Controllers\Api\OrderController->storeOrder(Object(Illuminate\Http\Request), Object(Botble\Ecommerce\Services\CreatePaymentForOrderService))
+#4 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(43): Illuminate\Routing\Controller->callAction('storeOrder', Array)
+#5 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Route.php(259): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Http\Controllers\Api\OrderController), 'storeOrder')
+#6 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Route.php(205): Illuminate\Routing\Route->runController()
+#7 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Router.php(806): Illuminate\Routing\Route->run()
+#8 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(144): Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#9 D:\xampp\htdocs\ahmed-admin-qa\app\Http\Middleware\LogRequestsAndResponses.php(29): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#10 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): App\Http\Middleware\LogRequestsAndResponses->handle(Object(Illuminate\Http\Request), Object(Closure))
+#11 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#12 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#13 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php(159): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php(125): Illuminate\Routing\Middleware\ThrottleRequests->handleRequest(Object(Illuminate\Http\Request), Object(Closure), Array)
+#15 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php(87): Illuminate\Routing\Middleware\ThrottleRequests->handleRequestUsingNamedLimiter(Object(Illuminate\Http\Request), Object(Closure), 'api', Object(Closure))
+#16 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Illuminate\Routing\Middleware\ThrottleRequests->handle(Object(Illuminate\Http\Request), Object(Closure), 'api')
+#17 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(119): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#18 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Router.php(805): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#19 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Router.php(784): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#20 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Router.php(748): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#21 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Routing\Router.php(737): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#22 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#23 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(144): Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#24 D:\xampp\htdocs\ahmed-admin-qa\platform\core\js-validation\src\RemoteValidationMiddleware.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#25 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Botble\JsValidation\RemoteValidationMiddleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#26 D:\xampp\htdocs\ahmed-admin-qa\vendor\barryvdh\laravel-debugbar\src\Middleware\InjectDebugbar.php(66): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#27 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Barryvdh\Debugbar\Middleware\InjectDebugbar->handle(Object(Illuminate\Http\Request), Object(Closure))
+#28 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#29 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#30 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#31 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#32 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(40): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#33 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#34 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#35 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#36 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(99): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#37 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#38 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(62): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#39 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#40 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(39): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#41 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(183): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#42 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(119): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#43 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#44 D:\xampp\htdocs\ahmed-admin-qa\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#45 D:\xampp\htdocs\ahmed-admin-qa\public\index.php(23): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#46 {main}
+[2025-10-09T10:04:03] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:04:03] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:04:03] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:04:03] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:04:03] [INFO] [TransactionDetailsApi] : CALL TO METHOD getTransaction STARTED
+[2025-10-09T10:04:03] [DEBUG] [TransactionDetailsApi] : Resource : GET /tss/v2/transactions/7599898010056401704514
+[2025-10-09T10:04:03] [DEBUG] [TransactionDetailsApi] : Body Parameter :
+
+[2025-10-09T10:04:03] [DEBUG] [TransactionDetailsApi] : Return Type : \CyberSource\Model\TssV2TransactionsGet200Response
+[2025-10-09T10:04:03] [INFO] [ApiClient] : CALLING API "/tss/v2/transactions/7599898010056401704514" STARTED
+[2025-10-09T10:04:03] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/hal+json;charset=utf-8
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target v-c-merchant-id", signature="DzjPSrsFe/6QNJRC9DP166GUU6O7rIIpD/hcjqSw23Y="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 10:04:03 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+[2025-10-09T10:04:03] [DEBUG] [ApiClient] : HTTP Request Body:
+
+[2025-10-09T10:04:05] [DEBUG] [ApiClient] : HTTP Response Body:
+{"id":"7599898010056401704514","rootId":"7599898010056401704514","reconciliationId":"7599898010056401704514","submitTimeUTC":"2025-10-09T06:03:21Z","merchantId":"cbq_510000669_test","applicationInformation":{"status":"PENDING","reasonCode":100,"applications":[{"name":"ics_auth","reasonCode":"100","rCode":"1","rFlag":"SOK","reconciliationId":"7599898010056401704514","rMessage":"Request was processed successfully.","returnCode":1010000},{"name":"ics_bill","status":"PENDING","reasonCode":"100","rCode":"1","rFlag":"SOK","reconciliationId":"7599898010056401704514","rMessage":"Request was processed successfully.","returnCode":1260000}]},"bankAccountValidation":[],"buyerInformation":[],"clientReferenceInformation":{"code":"1759989800992","applicationName":"unifiedCheckout","applicationVersion":"1.0","partner":[]},"consumerAuthenticationInformation":{"eciRaw":"7","strongAuthentication":[]},"deviceInformation":[],"errorInformation":{"message":"Request was processed successfully."},"installmentInformation":[],"fraudMarkingInformation":[],"merchantDefinedInformation":[],"merchantInformation":{"merchantDescriptor":{"name":"cbq_510000669_test"}},"orderInformation":{"billTo":{"firstName":"xxxxx","lastName":"xxxxx","address1":"10, Al Zohra Doha Doha","locality":"Doha","administrativeArea":"N\/A","postalCode":"0000","email":"xxxxx","country":"QA","phoneNumber":"50332038"},"shipTo":{"firstName":"xxxxx","lastName":"xxxxx","address1":"12, Al Rashidiya Dohaa Dohaa","locality":"Dohaa","postalCode":"0000","country":"QA"},"amountDetails":{"totalAmount":"110","currency":"QAR","taxAmount":"0","authorizedAmount":"110"},"shippingDetails":[],"invoiceDetails":[],"lineItems":[{"productCode":"default","taxAmount":0,"quantity":1,"unitPrice":110}]},"paymentInformation":{"customer":[],"paymentInstrument":[],"instrumentIdentifier":[],"shippingAddress":[],"paymentType":{"name":"vdccbq","type":"xxxxx","method":"VI"},"card":{"suffix":"1111","prefix":"411111xxxxx","expirationMonth":"xxxx","expirationYear":"xxxx","type":"xxxxx"},"invoice":[],"accountFeatures":[],"fluidData":[],"issuerInformation":{"country":"PL"},"paymentAccountInformation":{"card":[],"brands":[],"features":[],"network":[]}},"paymentInsightsInformation":{"responseInsights":[],"ruleResults":[]},"payoutInformation":{"pushFunds":[],"pullFunds":[]},"payoutOptions":[],"processingInformation":{"paymentSolution":"Visa","commerceIndicator":"7","commerceIndicatorLabel":"internet","authorizationOptions":{"authType":"O","initiator":{"merchantInitiatedTransaction":[]},"cardVerificationIndicator":false},"bankTransferOptions":[],"japanPaymentOptions":[],"fundingOptions":{"firstRecurringPayment":false},"ecommerceIndicator":"7","reconciliationId":"7599898010056401704514","captureOptions":[]},"processorInformation":{"processor":{"name":"vdccbq"},"networkTransactionId":"016153570198200","approvalCode":"831000","responseCode":"00","avs":{"code":"Y","codeRaw":"Y"},"cardVerification":{"resultCode":"M"},"achVerification":{"resultCodeRaw":"00"},"electronicVerificationResults":[],"systemTraceAuditNumber":"651220","eventStatus":"Pending","retrievalReferenceNumber":"528106651220","issuerInformation":[],"routing":[]},"pointOfSaleInformation":[],"riskInformation":{"rules":[],"passiveRules":[],"score":[]},"recipientInformation":{"address1":""},"senderInformation":{"address1":"","account":[],"paymentInformation":{"customer":[],"paymentType":{"name":"vdccbq","type":"xxxxx","method":"VI"},"card":{"suffix":"1111","expirationMonth":"xxxx","expirationYear":"xxxx","type":"xxxxx"},"invoice":[],"accountFeatures":[],"fluidData":[],"issuerInformation":[],"paymentAccountInformation":[]}},"tokenInformation":[],"_links":{"self":{"href":"https:\/\/apitest.cybersource.com\/tss\/v2\/transactions\/7599898010056401704514","method":"GET"},"relatedTransactions":[]},"recurringPaymentInformation":[],"unscheduledPaymentInformation":[]}
+[2025-10-09T10:04:05] [DEBUG] [TransactionDetailsApi] : Response Headers :
+HTTP/1.1 200
+X-OPNET-Transaction-Trace = a2_f74267a7-3c7a-4662-9d71-711f3b1c3063-2729130-3689467
+ETag = "651705963"
+Last-Modified = Thu, 01 Jan 1970 00:00:00 GMT
+X-XSS-Protection = 1
+X-Content-Type-Options = nosniff
+Content-Security-Policy = default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
+Strict-Transport-Security = max-age=31536000; includeSubDomains
+Pragma = no-cache
+Expires = -1
+Cache-Control = no-cache, no-store, max-age=0
+Vary = Accept-Encoding
+Content-Type = application/hal+json;charset=utf-8
+Content-Length = 3900
+Date = Thu, 09 Oct 2025 06:04:04 GMT
+Connection = keep-alive
+v-c-correlation-id = 902c8f32-e3a1-4a65-9b6c-81eb8c340c18
+[2025-10-09T10:04:07] [INFO] [TransactionDetailsApi] : CALL TO METHOD getTransaction ENDED
+[2025-10-09T10:04:24] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:04:24] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:04:24] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:04:24] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:04:24] [INFO] [TransactionDetailsApi] : CALL TO METHOD getTransaction STARTED
+[2025-10-09T10:04:24] [DEBUG] [TransactionDetailsApi] : Resource : GET /tss/v2/transactions/7599898010056401704514
+[2025-10-09T10:04:24] [DEBUG] [TransactionDetailsApi] : Body Parameter :
+
+[2025-10-09T10:04:24] [DEBUG] [TransactionDetailsApi] : Return Type : \CyberSource\Model\TssV2TransactionsGet200Response
+[2025-10-09T10:04:24] [INFO] [ApiClient] : CALLING API "/tss/v2/transactions/7599898010056401704514" STARTED
+[2025-10-09T10:04:24] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/hal+json;charset=utf-8
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target v-c-merchant-id", signature="LrgK5ltUizkNkE9f5gJO055JuCOW1Jux/OnhcmJdTqg="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 10:04:24 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+[2025-10-09T10:04:24] [DEBUG] [ApiClient] : HTTP Request Body:
+
+[2025-10-09T10:04:26] [DEBUG] [ApiClient] : HTTP Response Body:
+{"id":"7599898010056401704514","rootId":"7599898010056401704514","reconciliationId":"7599898010056401704514","submitTimeUTC":"2025-10-09T06:03:21Z","merchantId":"cbq_510000669_test","applicationInformation":{"status":"PENDING","reasonCode":100,"applications":[{"name":"ics_auth","reasonCode":"100","rCode":"1","rFlag":"SOK","reconciliationId":"7599898010056401704514","rMessage":"Request was processed successfully.","returnCode":1010000},{"name":"ics_bill","status":"PENDING","reasonCode":"100","rCode":"1","rFlag":"SOK","reconciliationId":"7599898010056401704514","rMessage":"Request was processed successfully.","returnCode":1260000}]},"bankAccountValidation":[],"buyerInformation":[],"clientReferenceInformation":{"code":"1759989800992","applicationName":"unifiedCheckout","applicationVersion":"1.0","partner":[]},"consumerAuthenticationInformation":{"eciRaw":"7","strongAuthentication":[]},"deviceInformation":[],"errorInformation":{"message":"Request was processed successfully."},"installmentInformation":[],"fraudMarkingInformation":[],"merchantDefinedInformation":[],"merchantInformation":{"merchantDescriptor":{"name":"cbq_510000669_test"}},"orderInformation":{"billTo":{"firstName":"xxxxx","lastName":"xxxxx","address1":"10, Al Zohra Doha Doha","locality":"Doha","administrativeArea":"N\/A","postalCode":"0000","email":"xxxxx","country":"QA","phoneNumber":"50332038"},"shipTo":{"firstName":"xxxxx","lastName":"xxxxx","address1":"12, Al Rashidiya Dohaa Dohaa","locality":"Dohaa","postalCode":"0000","country":"QA"},"amountDetails":{"totalAmount":"110","currency":"QAR","taxAmount":"0","authorizedAmount":"110"},"shippingDetails":[],"invoiceDetails":[],"lineItems":[{"productCode":"default","taxAmount":0,"quantity":1,"unitPrice":110}]},"paymentInformation":{"customer":[],"paymentInstrument":[],"instrumentIdentifier":[],"shippingAddress":[],"paymentType":{"name":"vdccbq","type":"xxxxx","method":"VI"},"card":{"suffix":"1111","prefix":"411111xxxxx","expirationMonth":"xxxx","expirationYear":"xxxx","type":"xxxxx"},"invoice":[],"accountFeatures":[],"fluidData":[],"issuerInformation":{"country":"PL"},"paymentAccountInformation":{"card":[],"brands":[],"features":[],"network":[]}},"paymentInsightsInformation":{"responseInsights":[],"ruleResults":[]},"payoutInformation":{"pushFunds":[],"pullFunds":[]},"payoutOptions":[],"processingInformation":{"paymentSolution":"Visa","commerceIndicator":"7","commerceIndicatorLabel":"internet","authorizationOptions":{"authType":"O","initiator":{"merchantInitiatedTransaction":[]},"cardVerificationIndicator":false},"bankTransferOptions":[],"japanPaymentOptions":[],"fundingOptions":{"firstRecurringPayment":false},"ecommerceIndicator":"7","reconciliationId":"7599898010056401704514","captureOptions":[]},"processorInformation":{"processor":{"name":"vdccbq"},"networkTransactionId":"016153570198200","approvalCode":"831000","responseCode":"00","avs":{"code":"Y","codeRaw":"Y"},"cardVerification":{"resultCode":"M"},"achVerification":{"resultCodeRaw":"00"},"electronicVerificationResults":[],"systemTraceAuditNumber":"651220","eventStatus":"Pending","retrievalReferenceNumber":"528106651220","issuerInformation":[],"routing":[]},"pointOfSaleInformation":[],"riskInformation":{"rules":[],"passiveRules":[],"score":[]},"recipientInformation":{"address1":""},"senderInformation":{"address1":"","account":[],"paymentInformation":{"customer":[],"paymentType":{"name":"vdccbq","type":"xxxxx","method":"VI"},"card":{"suffix":"1111","expirationMonth":"xxxx","expirationYear":"xxxx","type":"xxxxx"},"invoice":[],"accountFeatures":[],"fluidData":[],"issuerInformation":[],"paymentAccountInformation":[]}},"tokenInformation":[],"_links":{"self":{"href":"https:\/\/apitest.cybersource.com\/tss\/v2\/transactions\/7599898010056401704514","method":"GET"},"relatedTransactions":[]},"recurringPaymentInformation":[],"unscheduledPaymentInformation":[]}
+[2025-10-09T10:04:26] [DEBUG] [TransactionDetailsApi] : Response Headers :
+HTTP/1.1 200
+X-OPNET-Transaction-Trace = a2_f74267a7-3c7a-4662-9d71-711f3b1c3063-2729130-3690281
+ETag = "651705963"
+Last-Modified = Thu, 01 Jan 1970 00:00:00 GMT
+X-XSS-Protection = 1
+X-Content-Type-Options = nosniff
+Content-Security-Policy = default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
+Strict-Transport-Security = max-age=31536000; includeSubDomains
+Pragma = no-cache
+Expires = -1
+Cache-Control = no-cache, no-store, max-age=0
+Vary = Accept-Encoding
+Content-Type = application/hal+json;charset=utf-8
+Content-Length = 3900
+Date = Thu, 09 Oct 2025 06:04:25 GMT
+Connection = keep-alive
+v-c-correlation-id = 6f02a466-db9b-4c2b-8544-7f7b61e50887
+[2025-10-09T10:04:26] [INFO] [TransactionDetailsApi] : CALL TO METHOD getTransaction ENDED
+[2025-10-09T10:04:36] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:04:36] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:04:36] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:04:36] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:04:36] [INFO] [TransactionDetailsApi] : CALL TO METHOD getTransaction STARTED
+[2025-10-09T10:04:36] [DEBUG] [TransactionDetailsApi] : Resource : GET /tss/v2/transactions/7599898010056401704514
+[2025-10-09T10:04:36] [DEBUG] [TransactionDetailsApi] : Body Parameter :
+
+[2025-10-09T10:04:36] [DEBUG] [TransactionDetailsApi] : Return Type : \CyberSource\Model\TssV2TransactionsGet200Response
+[2025-10-09T10:04:36] [INFO] [ApiClient] : CALLING API "/tss/v2/transactions/7599898010056401704514" STARTED
+[2025-10-09T10:04:36] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/hal+json;charset=utf-8
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target v-c-merchant-id", signature="OzhNkG6hnj5TUpHTht5PdmuuCw0+6gVdP+3tmjqHsnk="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 10:04:36 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+[2025-10-09T10:04:36] [DEBUG] [ApiClient] : HTTP Request Body:
+
+[2025-10-09T10:04:38] [DEBUG] [ApiClient] : HTTP Response Body:
+{"id":"7599898010056401704514","rootId":"7599898010056401704514","reconciliationId":"7599898010056401704514","submitTimeUTC":"2025-10-09T06:03:21Z","merchantId":"cbq_510000669_test","applicationInformation":{"status":"PENDING","reasonCode":100,"applications":[{"name":"ics_auth","reasonCode":"100","rCode":"1","rFlag":"SOK","reconciliationId":"7599898010056401704514","rMessage":"Request was processed successfully.","returnCode":1010000},{"name":"ics_bill","status":"PENDING","reasonCode":"100","rCode":"1","rFlag":"SOK","reconciliationId":"7599898010056401704514","rMessage":"Request was processed successfully.","returnCode":1260000}]},"bankAccountValidation":[],"buyerInformation":[],"clientReferenceInformation":{"code":"1759989800992","applicationName":"unifiedCheckout","applicationVersion":"1.0","partner":[]},"consumerAuthenticationInformation":{"eciRaw":"7","strongAuthentication":[]},"deviceInformation":[],"errorInformation":{"message":"Request was processed successfully."},"installmentInformation":[],"fraudMarkingInformation":[],"merchantDefinedInformation":[],"merchantInformation":{"merchantDescriptor":{"name":"cbq_510000669_test"}},"orderInformation":{"billTo":{"firstName":"xxxxx","lastName":"xxxxx","address1":"10, Al Zohra Doha Doha","locality":"Doha","administrativeArea":"N\/A","postalCode":"0000","email":"xxxxx","country":"QA","phoneNumber":"50332038"},"shipTo":{"firstName":"xxxxx","lastName":"xxxxx","address1":"12, Al Rashidiya Dohaa Dohaa","locality":"Dohaa","postalCode":"0000","country":"QA"},"amountDetails":{"totalAmount":"110","currency":"QAR","taxAmount":"0","authorizedAmount":"110"},"shippingDetails":[],"invoiceDetails":[],"lineItems":[{"productCode":"default","taxAmount":0,"quantity":1,"unitPrice":110}]},"paymentInformation":{"customer":[],"paymentInstrument":[],"instrumentIdentifier":[],"shippingAddress":[],"paymentType":{"name":"vdccbq","type":"xxxxx","method":"VI"},"card":{"suffix":"1111","prefix":"411111xxxxx","expirationMonth":"xxxx","expirationYear":"xxxx","type":"xxxxx"},"invoice":[],"accountFeatures":[],"fluidData":[],"issuerInformation":{"country":"PL"},"paymentAccountInformation":{"card":[],"brands":[],"features":[],"network":[]}},"paymentInsightsInformation":{"responseInsights":[],"ruleResults":[]},"payoutInformation":{"pushFunds":[],"pullFunds":[]},"payoutOptions":[],"processingInformation":{"paymentSolution":"Visa","commerceIndicator":"7","commerceIndicatorLabel":"internet","authorizationOptions":{"authType":"O","initiator":{"merchantInitiatedTransaction":[]},"cardVerificationIndicator":false},"bankTransferOptions":[],"japanPaymentOptions":[],"fundingOptions":{"firstRecurringPayment":false},"ecommerceIndicator":"7","reconciliationId":"7599898010056401704514","captureOptions":[]},"processorInformation":{"processor":{"name":"vdccbq"},"networkTransactionId":"016153570198200","approvalCode":"831000","responseCode":"00","avs":{"code":"Y","codeRaw":"Y"},"cardVerification":{"resultCode":"M"},"achVerification":{"resultCodeRaw":"00"},"electronicVerificationResults":[],"systemTraceAuditNumber":"651220","eventStatus":"Pending","retrievalReferenceNumber":"528106651220","issuerInformation":[],"routing":[]},"pointOfSaleInformation":[],"riskInformation":{"rules":[],"passiveRules":[],"score":[]},"recipientInformation":{"address1":""},"senderInformation":{"address1":"","account":[],"paymentInformation":{"customer":[],"paymentType":{"name":"vdccbq","type":"xxxxx","method":"VI"},"card":{"suffix":"1111","expirationMonth":"xxxx","expirationYear":"xxxx","type":"xxxxx"},"invoice":[],"accountFeatures":[],"fluidData":[],"issuerInformation":[],"paymentAccountInformation":[]}},"tokenInformation":[],"_links":{"self":{"href":"https:\/\/apitest.cybersource.com\/tss\/v2\/transactions\/7599898010056401704514","method":"GET"},"relatedTransactions":[]},"recurringPaymentInformation":[],"unscheduledPaymentInformation":[]}
+[2025-10-09T10:04:38] [DEBUG] [TransactionDetailsApi] : Response Headers :
+HTTP/1.1 200
+X-OPNET-Transaction-Trace = a2_0c03822e-5602-4c7d-878f-3ce4c17637de-2773082-3704432
+ETag = "651705963"
+Last-Modified = Thu, 01 Jan 1970 00:00:00 GMT
+X-XSS-Protection = 1
+X-Content-Type-Options = nosniff
+Content-Security-Policy = default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';
+Strict-Transport-Security = max-age=31536000; includeSubDomains
+Pragma = no-cache
+Cache-Control = no-cache, no-store, max-age=0
+Expires = -1
+Vary = Accept-Encoding
+Content-Type = application/hal+json;charset=utf-8
+Content-Length = 3900
+Date = Thu, 09 Oct 2025 06:04:37 GMT
+Connection = keep-alive
+v-c-correlation-id = 4134265d-1d94-449f-ab92-9fe5d78593e9
+[2025-10-09T10:04:38] [INFO] [TransactionDetailsApi] : CALL TO METHOD getTransaction ENDED
+[2025-10-09T10:11:56] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:11:56] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:11:56] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:11:56] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:12:17] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:12:17] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:12:17] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:12:17] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:12:50] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:12:50] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:12:50] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:12:50] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:19:50] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:19:50] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:19:50] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:19:50] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:19:50] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T10:19:50] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T10:19:50] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"110","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T10:19:50] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T10:19:50] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T10:19:50] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="wWSgI4BW24bkga4ErabeRtfsF29CDmWmOKPMxJTj3Dk="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 10:19:50 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=Skz5tlgHLfLVeLesu9Di6dIYYo6hlkEFv65whg2lDEA=
+[2025-10-09T10:19:50] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"110","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T10:19:51] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6ImhtaDErS04vTElYeGtKZjZvcG1GY3hBQUVEMC95Q0JFeFlEOXdLWTVjYUszdE5mOHV6RGp3V0YyTGZNNnhReEtsanNpbDQzcDRpbll0dGNrTXZVVWRkMlExU3FNTmYvbTZSTERzU0dXaXozMVFzdnJxOUprTDRiYVdsamYyNzJJckZpR0NidGY2M1hIZHVQdS9QeG1FalV2aDExZjFRLzZpVFhjM1NmdVZmMTJxdHlkSU82c0ttckQwV2N6amxrV3FXVVciLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJ0alBXbmhoNzBOVEhFMlRSSTN4bk9mUXRoS1FFSWZqb0I1V0w1UEVHUXowMENnY0ZYSFcyTzZFOFdMNjIxbGh4cHYyUHUtTDR6eWVxMXYxcnhSZUJsYWVCT0hwQzdTM2haeThHeWFpN3pHSkRiYXQyd21HNGo3XzhFN0ZiLUxzUzVSYXFKaGxNXzZZLWYtTG5lN1ptaUhRWUx3YjA0b3JSbGhkV0lscHdLQlY0Mkk3Z1hkQk52UmdOXzIxTG5uODdQZXpnODl6RWNLNjlHU2trNVo2NXFNSjZzT21TT2xiRkdhZDh5V1d4aWJaVXRtRndhREVYOGVfVWVwLUJfVUM5amZrYnZvNXd2ZmJZNDc2UThQT05fRlhmcmlkbU16SzN1RHoyNVpIaEdjNWNoUlBDc3UtemtlU2xiSzFrWld2UDZlUkc3RXBoRjZyWU9za3dkUWVTeFEiLCJraWQiOiIwOHNVVnRRZG1zRTJhcm9UUVZ2bzBxUlFDOTB3RkEzcSJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiNGMwZjY3YmItYzg5Ny00ZGJhLTkwZTMtMDA1ZTg4NTlkODM4IiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIxMTAiLCJ0cmFuc2FjdGlvbkN1cnJlbmN5Q29kZSI6IlFBUiJ9LCJwYXltZW50T3B0aW9ucyI6eyJkcGFQYW5SZXF1ZXN0ZWQiOnRydWUsImR5bmFtaWNEYXRhVHlwZSI6Ik5PTkUifX19fX0sImNhcHR1cmVNYW5kYXRlIjp7InNob3dDb25maXJtYXRpb25TdGVwIjp0cnVlLCJiaWxsaW5nVHlwZSI6IkZVTEwiLCJyZXF1ZXN0RW1haWwiOnRydWUsInJlcXVlc3RQaG9uZSI6dHJ1ZSwicmVxdWVzdFNoaXBwaW5nIjp0cnVlLCJzaGlwVG9Db3VudHJpZXMiOlsiUUEiXSwic2hvd0FjY2VwdGVkTmV0d29ya0ljb25zIjp0cnVlfSwib3JkZXJJbmZvcm1hdGlvbiI6eyJhbW91bnREZXRhaWxzIjp7InRvdGFsQW1vdW50IjoiMTEwIiwiY3VycmVuY3kiOiJRQVIifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImVtYWlsIjoieWF6aWxhbnNhcmkwM0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSIsInBob25lTnVtYmVyIjoiNTAzMzIwMzgiLCJwaG9uZVR5cGUiOiJtb2JpbGUifSwic2hpcFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImZpcnN0TmFtZSI6IlRlc3QgWSIsImxhc3ROYW1lIjoiVGVzdCBZIn19LCJ0YXJnZXRPcmlnaW5zIjpbImh0dHBzOi8vNjU4a3E0cWgtMzAwMC5pbmMxLmRldnR1bm5lbHMubXMiXSwiaWZyYW1lcyI6eyJtY2UiOiIvbWNlL21jZS5odG1sIiwiYnV0dG9ucyI6Ii9idXR0b25saXN0L2J1dHRvbmxpc3QuaHRtbCIsInNyYyI6Ii9zZWN1cmUtcmVtb3RlLWNvbW1lcmNlL3NyYy5odG1sIiwiY3RwIjoiL2N0cC9jdHAuaHRtbCIsImdvb2dsZXBheSI6Ii9nb29nbGVwYXkvZ29vZ2xlcGF5Lmh0bWwiLCJhcHBsZXBheSI6Ii9hcHBsZXBheS9hcHBsZXBheS5odG1sIiwicGF6ZSI6Ii9wYXplL3BhemUuaHRtbCIsImNoZWNrIjoiL2NoZWNrL2NoZWNrLmh0bWwiLCJvcmMiOiIvb3JjL29yYy5odG1sIiwidG0iOiIvdG0vdG0uaHRtbCIsImFwbSI6Ii9hcG0vYXBtLmh0bWwifSwiY2xpZW50VmVyc2lvbiI6IjAuMjYiLCJjb3VudHJ5IjoiUUEiLCJsb2NhbGUiOiJlbl9VUyIsImFsbG93ZWRDYXJkTmV0d29ya3MiOlsiVklTQSIsIk1BU1RFUkNBUkQiXSwiY29tcGxldGVNYW5kYXRlIjp7InR5cGUiOiJDQVBUVVJFIiwidHJhbnNhY3Rpb25JZCI6ImRBTVVjeFVFdGVoUkZMc1MwNFlrWFB0RTFybnoiLCJkZWNpc2lvbk1hbmFnZXIiOiJTS0lQIn0sImNyIjoiSFRYT0FJOFNhWDBrRVNjZkdpYTBZYUxyRTRRRlFlVzNQSXo2ZjA4TTViaXZyVDFXUm1WMU1RUDdINDVSR2dvMG5fNmFqQ3psVW84aWRsQmcwU19rS0ZrOEF4SW5kNEJtM2ZKZWNmemJGTWx1VXlNLXVERzU0RXFpbHF3clJUak5rQSIsInNlcnZpY2VPcmlnaW4iOiJodHRwczovL3Rlc3R1cC5jeWJlcnNvdXJjZS5jb20iLCJjbGllbnRMaWJyYXJ5IjoiaHR0cHM6Ly90ZXN0dXAuY3liZXJzb3VyY2UuY29tL3VjL3YxL2Fzc2V0cy8wLjI2LjMvU2VjdXJlQWNjZXB0YW5jZS5qcyIsImxvZ2dpbmdQYXRoIjoiL3VjL3YxL2xvZy1ldmVudHMiLCJhc3NldHNQYXRoIjoiL3VjL3YxL2Fzc2V0cy8wLjI2LjMiLCJjbGllbnRMaWJyYXJ5SW50ZWdyaXR5Ijoic2hhMjU2LUZOdGIvZXI2cjNNMXkvTS9xTnJZVDljYVNoOFY3REV0RnUzR1dwcGQ0bDhcdTAwM2QifSwidHlwZSI6ImdkYS0wLjEwLjAifV0sImlzcyI6IkZsZXggQVBJIiwiZXhwIjoxNzU5OTkxNjkxLCJpYXQiOjE3NTk5OTA3OTEsImp0aSI6IlR5azFtcmlDUUdsd3BSYXQifQ.Gldzi14sHAm6EPNGXDbgeACKA4kuqnOIV3A78cmtJk-UePTiof4gu2EJZ5y-1Nf31c02G-tnmwEFOff4Qvr3PhOg_ZAWvWXgGG5RopfgVddsqNDsOYj8xHu4EkfsH4b1_fw4mF1fSZYS02qlVXJnzaqG6t-hTIeB_572eG39fNX764l1m7HroDs9Xo-lNih76LLrHDEuXJXjcq4Z8tmSzpy0CPX2KlPZv66c4UkdxvxjxJ386LySLvyFOSy650cdCf17OQLleLR_ccGbCI5-387mMMGZ6P92p3KCQFVl1eg-L0W6YJOxS7wOJsH--VnhprBKIZD3F2bkXXJcqEo1ow
+[2025-10-09T10:19:51] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = 4c0f67bb-c897-4dba-90e3-005e8859d838
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5861
+x-envoy-upstream-service-time = 42
+date = Thu, 09 Oct 2025 06:19:50 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = 8de3143b-652b-4b5d-a9e1-fc4a626e4ac3
+X-OPNET-Transaction-Trace = 5f3257e4-1d41-4a51-848f-80f132d6b33e-1180516-27268389
+[2025-10-09T10:19:51] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED
+[2025-10-09T10:21:27] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:21:27] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:21:27] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:21:27] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:21:27] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T10:21:27] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T10:21:27] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"110","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"}}}
+[2025-10-09T10:21:27] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T10:21:27] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T10:21:27] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="AC9108zDlsGzby2kMgACXp5KfTVw1/sw+bJNl9dmm9A="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 10:21:27 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=OtGsBSsPTx0CMb7v/+BnfigDllkT1UtkOXXn700dGCU=
+[2025-10-09T10:21:27] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"110","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"}}}
+[2025-10-09T10:21:29] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6Ink4cGlnc3VYQzE2QVdKeTQ4TU50UUJBQUVKOU03UWQrR1poRzRZV014K2xoQjY4RjhaMnBwN1lVeFc5eDE2WGlmM2x3dFd4Z3pwYkVlSEhhUTBCcUx3UmxFUktpVGs2V1pEbStLdXhmQ3NSQ0p1RCs3anJmVTNMSHdod0VzUzd0OFA0RFMyaGpDdmRmUkZRUlRVQnNDcGFqUThqa1Q2L29EV1d0dDRZSHcrNkdQSTRsWXJyRWN4RGhIZzhKVlN0Z3VwaTgiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJ1ZnlxQ3prM0pQNXh1V2RnVWRFZ3dKWFlzejFvVzZVRlA5a21yMEtUaUlSU3BVZXZxSElTdU5lMGZJVkVvelFtanQ5TXRiT25GYmRhcmJkY2ItTDFOT3FzZFNpbXo5YzBPT2FmOGlVR2Z2ejFrTzZqR2ZYN1FjeWhiSFJhaUJ1V2E5ZmgxU3dLVmxydlc0bF9KcVBuOE4tQXZmX1dUWGtRVXBib2NSMkV6anpKUlFsTnBLZnZTN25ncm5kUXV6VUJQQlJSck03MEhzaHlkaDUwZ0FnVzRjQzhrcUItSWpUY3B5bXJzX2R3aF94aG0wY29RaU1BVzRrZld0eXhfaEdPWXhmbEItSjM5QW0xSWtqYk9BQW1FRWtnMzI1cjQ1cmI4ekxEMThXWV9NU1lmVW9BVDdOQ1BzZEVydDA5c1AzcF9oQ2RucjJMZUkzN29nSzdBZlFsX3ciLCJraWQiOiIwOGN0REo1TUU5RU1tNlpxc3k0R1NhSnZIdVJLVm1nUyJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiMWQzNWU2MjYtYjBkZS00ZWZlLWJkY2QtY2E0ZmIzMTJhOGZlIiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIxMTAiLCJ0cmFuc2FjdGlvbkN1cnJlbmN5Q29kZSI6IlFBUiJ9LCJwYXltZW50T3B0aW9ucyI6eyJkcGFQYW5SZXF1ZXN0ZWQiOnRydWUsImR5bmFtaWNEYXRhVHlwZSI6Ik5PTkUifX19fX0sImNhcHR1cmVNYW5kYXRlIjp7InNob3dDb25maXJtYXRpb25TdGVwIjp0cnVlLCJiaWxsaW5nVHlwZSI6IkZVTEwiLCJyZXF1ZXN0RW1haWwiOnRydWUsInJlcXVlc3RQaG9uZSI6dHJ1ZSwicmVxdWVzdFNoaXBwaW5nIjp0cnVlLCJzaGlwVG9Db3VudHJpZXMiOlsiUUEiXSwic2hvd0FjY2VwdGVkTmV0d29ya0ljb25zIjp0cnVlfSwib3JkZXJJbmZvcm1hdGlvbiI6eyJhbW91bnREZXRhaWxzIjp7InRvdGFsQW1vdW50IjoiMTEwIiwiY3VycmVuY3kiOiJRQVIifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImVtYWlsIjoieWF6aWxhbnNhcmkwM0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSIsInBob25lTnVtYmVyIjoiNTAzMzIwMzgiLCJwaG9uZVR5cGUiOiJtb2JpbGUifX0sInRhcmdldE9yaWdpbnMiOlsiaHR0cHM6Ly82NThrcTRxaC0zMDAwLmluYzEuZGV2dHVubmVscy5tcyJdLCJpZnJhbWVzIjp7Im1jZSI6Ii9tY2UvbWNlLmh0bWwiLCJidXR0b25zIjoiL2J1dHRvbmxpc3QvYnV0dG9ubGlzdC5odG1sIiwic3JjIjoiL3NlY3VyZS1yZW1vdGUtY29tbWVyY2Uvc3JjLmh0bWwiLCJjdHAiOiIvY3RwL2N0cC5odG1sIiwiZ29vZ2xlcGF5IjoiL2dvb2dsZXBheS9nb29nbGVwYXkuaHRtbCIsImFwcGxlcGF5IjoiL2FwcGxlcGF5L2FwcGxlcGF5Lmh0bWwiLCJwYXplIjoiL3BhemUvcGF6ZS5odG1sIiwiY2hlY2siOiIvY2hlY2svY2hlY2suaHRtbCIsIm9yYyI6Ii9vcmMvb3JjLmh0bWwiLCJ0bSI6Ii90bS90bS5odG1sIiwiYXBtIjoiL2FwbS9hcG0uaHRtbCJ9LCJjbGllbnRWZXJzaW9uIjoiMC4yNiIsImNvdW50cnkiOiJRQSIsImxvY2FsZSI6ImVuX1VTIiwiYWxsb3dlZENhcmROZXR3b3JrcyI6WyJWSVNBIiwiTUFTVEVSQ0FSRCJdLCJjb21wbGV0ZU1hbmRhdGUiOnsidHlwZSI6IkNBUFRVUkUiLCJ0cmFuc2FjdGlvbklkIjoibDE3VFA3Um45T0luRlZ1VmJ3REZTOVJ2WE53diIsImRlY2lzaW9uTWFuYWdlciI6IlNLSVAifSwiY3IiOiJQZnoyaHh0Y1RJYkJadUdTUnh6TmhYVDI2Z2d4Q0xJY0U5VjBheTdMZTZobV9MdHBLV0FkTVBRZ01PWVRMaHRpNzR1OUxPUy1vaktpM2k4MlltS0pWdG5QRUJ1OU1ycV8ta013QURUb1F5STYtdzBYVmtaczFYeWM4TkpFMmFORjZ3Iiwic2VydmljZU9yaWdpbiI6Imh0dHBzOi8vdGVzdHVwLmN5YmVyc291cmNlLmNvbSIsImNsaWVudExpYnJhcnkiOiJodHRwczovL3Rlc3R1cC5jeWJlcnNvdXJjZS5jb20vdWMvdjEvYXNzZXRzLzAuMjYuMy9TZWN1cmVBY2NlcHRhbmNlLmpzIiwibG9nZ2luZ1BhdGgiOiIvdWMvdjEvbG9nLWV2ZW50cyIsImFzc2V0c1BhdGgiOiIvdWMvdjEvYXNzZXRzLzAuMjYuMyIsImNsaWVudExpYnJhcnlJbnRlZ3JpdHkiOiJzaGEyNTYtRk50Yi9lcjZyM00xeS9NL3FOcllUOWNhU2g4VjdERXRGdTNHV3BwZDRsOFx1MDAzZCJ9LCJ0eXBlIjoiZ2RhLTAuMTAuMCJ9XSwiaXNzIjoiRmxleCBBUEkiLCJleHAiOjE3NTk5OTE3ODgsImlhdCI6MTc1OTk5MDg4OCwianRpIjoiNkhvVmVYeVF1ZjVxRnRzWSJ9.kSr9KLGvMM5gtb7LZ8TCngRG5IZeEaKF1nDTZ9rinAcGgyW07f2bmWI2WHiTa-X7WplMiSidKT02sPKF2NHAwpcZZWc6zvcSI4tkOA1lNLq5x3WlPveFaDAvP2dSaGnvJpal0Sz0n536fUuqN7SEdnya1eMWN0p-c-uxVwG85WiiiQ1AoiSyAwnz_0LwiQaOly0ceWQJGu5YSnNxmSmjmD2A_Dl2tocY-xJezRnVZ54wvbnlUTnoqt2BUPxihr_N44fvbf70X3eeGxSo1fumngD3WY9q-lzC5DvnVUPLrMOWZ1PzsiNiJ7Vbd8TDzv_92pksHAePivyiq7IaA-9oog
+[2025-10-09T10:21:29] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = 1d35e626-b0de-4efe-bdcd-ca4fb312a8fe
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5567
+x-envoy-upstream-service-time = 20
+date = Thu, 09 Oct 2025 06:21:28 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = 2e368b75-a97e-43cc-ab0e-7919fb687609
+X-OPNET-Transaction-Trace = 255df1e0-83d6-4275-89d7-91f2b2cc0c4e-1210023-27287741
+[2025-10-09T10:21:29] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED
+[2025-10-09T10:23:36] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:23:36] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:23:36] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T10:23:36] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T10:23:36] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T10:23:36] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T10:23:36] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"110","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"}}}
+[2025-10-09T10:23:36] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T10:23:36] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T10:23:36] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="9mOO1lrgb62mYuERehQsZnyejcwghnivam/tfuBCBhg="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 10:23:36 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=OtGsBSsPTx0CMb7v/+BnfigDllkT1UtkOXXn700dGCU=
+[2025-10-09T10:23:36] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"110","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"}}}
+[2025-10-09T10:23:38] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6Imtha2lJanB3b21ocHVxWVNGMzlBUXhBQUVCZEkweXFhcDZMSk1URU5NdmtKUzY0MHRqUnJsRUsxUVhjQmJuT1lMOFdTM2ZBVWVnNVRRcTdNWGtrbWZpYzN0eWZsVmwyNlF6ZnJpU05kUERkbFlickhBTHdSRVdtRVV0NWU5bzkyaXpUeDRvam9QR3l4K0FQOHBUeGNXS2RPWXB1K2NmY1lUdFQ0Zkk5NE05anhFemwwU2xxc3RGMDl3Vng0eW9vRmlva1UiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJ5a2ZRYTdNcVZRWlRpNWZiclgweHUwZUhKdVhuOFBiczA4ZGZuUC1fSDFVMy1RRi1ocElObkRwS2FRaERoTDVDempybzBleXRhdTVpMEl4WWtGa2F6ZlpsWnpCZ1BPS3ZNM1NnOVl1bU5IMEJ6SElSUGdxT2hlbkxRR0l3dTU1cUpfRTI2WHBjQV9abHVxUmJZbUJHLV9hT1plWnRDMjNaZHdRbHcwdVNWUExaZEI3YWhsTVhCUEJaYlpmTmtOVllEdmhmWjNpdDlvZWJIbm1TZ1FVZGFqLTFHN1BnWW1UWTlfUXAwLUJLX0VTd0tzQk1YQlVraFhyaXVsb1lnZ2pERVhIWEUyV2dJWWFXRU02ZFhNcEtrQUdsMVJZOWp3eVJIN3ZoRHBNYWZjejNPR1BrWGFkZUZibVZETkdNWnNhME9tdGZVMnY3TDRZZUpIS2doUGlLN3ciLCJraWQiOiIwOEJab3M1ZUlOUGhadzRPRk9PVVRNYmJXanFWMTBSbyJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiZWQ4NDA5ZWItMzdhYS00ZDg0LTlmY2EtMzgxMjNjNjhkODExIiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIxMTAiLCJ0cmFuc2FjdGlvbkN1cnJlbmN5Q29kZSI6IlFBUiJ9LCJwYXltZW50T3B0aW9ucyI6eyJkcGFQYW5SZXF1ZXN0ZWQiOnRydWUsImR5bmFtaWNEYXRhVHlwZSI6Ik5PTkUifX19fX0sImNhcHR1cmVNYW5kYXRlIjp7InNob3dDb25maXJtYXRpb25TdGVwIjp0cnVlLCJiaWxsaW5nVHlwZSI6IkZVTEwiLCJyZXF1ZXN0RW1haWwiOnRydWUsInJlcXVlc3RQaG9uZSI6dHJ1ZSwicmVxdWVzdFNoaXBwaW5nIjp0cnVlLCJzaGlwVG9Db3VudHJpZXMiOlsiUUEiXSwic2hvd0FjY2VwdGVkTmV0d29ya0ljb25zIjp0cnVlfSwib3JkZXJJbmZvcm1hdGlvbiI6eyJhbW91bnREZXRhaWxzIjp7InRvdGFsQW1vdW50IjoiMTEwIiwiY3VycmVuY3kiOiJRQVIifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImVtYWlsIjoieWF6aWxhbnNhcmkwM0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSIsInBob25lTnVtYmVyIjoiNTAzMzIwMzgiLCJwaG9uZVR5cGUiOiJtb2JpbGUifX0sInRhcmdldE9yaWdpbnMiOlsiaHR0cHM6Ly82NThrcTRxaC0zMDAwLmluYzEuZGV2dHVubmVscy5tcyJdLCJpZnJhbWVzIjp7Im1jZSI6Ii9tY2UvbWNlLmh0bWwiLCJidXR0b25zIjoiL2J1dHRvbmxpc3QvYnV0dG9ubGlzdC5odG1sIiwic3JjIjoiL3NlY3VyZS1yZW1vdGUtY29tbWVyY2Uvc3JjLmh0bWwiLCJjdHAiOiIvY3RwL2N0cC5odG1sIiwiZ29vZ2xlcGF5IjoiL2dvb2dsZXBheS9nb29nbGVwYXkuaHRtbCIsImFwcGxlcGF5IjoiL2FwcGxlcGF5L2FwcGxlcGF5Lmh0bWwiLCJwYXplIjoiL3BhemUvcGF6ZS5odG1sIiwiY2hlY2siOiIvY2hlY2svY2hlY2suaHRtbCIsIm9yYyI6Ii9vcmMvb3JjLmh0bWwiLCJ0bSI6Ii90bS90bS5odG1sIiwiYXBtIjoiL2FwbS9hcG0uaHRtbCJ9LCJjbGllbnRWZXJzaW9uIjoiMC4yNiIsImNvdW50cnkiOiJRQSIsImxvY2FsZSI6ImVuX1VTIiwiYWxsb3dlZENhcmROZXR3b3JrcyI6WyJWSVNBIiwiTUFTVEVSQ0FSRCJdLCJjb21wbGV0ZU1hbmRhdGUiOnsidHlwZSI6IkNBUFRVUkUiLCJ0cmFuc2FjdGlvbklkIjoiZGY2U1VJdWpLblhOTTQ3bmNaN25mUzhUbzFjaSIsImRlY2lzaW9uTWFuYWdlciI6IlNLSVAifSwiY3IiOiIyNldTNGNFdzZOZE02TlZKV3dXdFA2MHpSbGhKLXFac3J5VVJvSjRHejVBRWhvb0Q3bzAxNFIzTFJMLXVEZ1JGbWdBcWIwRkcxQ0lNSmQ0Q2w5Ul9taTVEMGRFZ2JQWmx3RFpPQVhaa214bms4cUN0SlVtVE1rbTJiYUExcU9WVjJ3Iiwic2VydmljZU9yaWdpbiI6Imh0dHBzOi8vdGVzdHVwLmN5YmVyc291cmNlLmNvbSIsImNsaWVudExpYnJhcnkiOiJodHRwczovL3Rlc3R1cC5jeWJlcnNvdXJjZS5jb20vdWMvdjEvYXNzZXRzLzAuMjYuMy9TZWN1cmVBY2NlcHRhbmNlLmpzIiwibG9nZ2luZ1BhdGgiOiIvdWMvdjEvbG9nLWV2ZW50cyIsImFzc2V0c1BhdGgiOiIvdWMvdjEvYXNzZXRzLzAuMjYuMyIsImNsaWVudExpYnJhcnlJbnRlZ3JpdHkiOiJzaGEyNTYtRk50Yi9lcjZyM00xeS9NL3FOcllUOWNhU2g4VjdERXRGdTNHV3BwZDRsOFx1MDAzZCJ9LCJ0eXBlIjoiZ2RhLTAuMTAuMCJ9XSwiaXNzIjoiRmxleCBBUEkiLCJleHAiOjE3NTk5OTE5MTcsImlhdCI6MTc1OTk5MTAxNywianRpIjoiVnhUTnppZU1BSlU5UGlsUiJ9.Y0ed_HvswWWE-fD8sWYmBpcFxnfbX0a9kq27fVVbJ0ddXXS-LkkaLGXQXHeIlOhjWVYHhVWBUKgw5LzLdNbZvLupknLTq5nkHi1XT6JRin4mTti2DMDEPysLsr12hoUYGBcFFfjAIamfZhDPlupa1_WO1fdacPl05ol0XJldY9HkaKDBvLUn55e8lu4sj50kwaQKJxXunHiCmIczW2hgTI2Di-baDENzlDJ7eMuPviCZlSC4RMTEEl-3Z1j-dgndADrmZ_pLqLyeDCZO9ZEqoHh3g_46E1zlvulSB3qg1zsYvzfVOvUN9AUvSXc7KVMxaFPWFrFvgfRlY_JUbuXoXQ
+[2025-10-09T10:23:38] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = ed8409eb-37aa-4d84-9fca-38123c68d811
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5567
+x-envoy-upstream-service-time = 35
+date = Thu, 09 Oct 2025 06:23:37 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = 796c1116-1bba-4b9c-8dea-d7d408086d6a
+X-OPNET-Transaction-Trace = 255df1e0-83d6-4275-89d7-91f2b2cc0c4e-1210023-27290155
+[2025-10-09T10:23:38] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED
+[2025-10-09T11:47:25] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T11:47:25] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T11:47:25] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T11:47:25] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T11:47:25] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T11:47:25] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T11:47:25] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"235","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T11:47:25] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T11:47:25] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T11:47:25] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="xbnyyTsAw2GHt0nVx8K7w0tXiY7ApdSN9Q4as8E7rlA="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 11:47:25 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=8E8WRzf/+9GJQW3uf7BQFcScVifSlHo74820mxJFj1c=
+[2025-10-09T11:47:25] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"235","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T11:47:27] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6Ik51bVJjL0gxNmlQTFFFZE50S1NYbkJBQUVQUkpra0lPZS9tR1NqSDc3aGxyRHY0Qk5ncmlkY1oxQzcvT3FQT1Q4OXJMNXhjUGFXSlBaR0U4V2hjcFZGU25Xd0ptTm1DTHBIeUZLOXI1bDRZc1RUbTJpSHhDQktCR1IxUVFIc1lEZlBUSHJiR2VybmZZTlNGNmpCUGRGZCszK2FIRXB1V1haaEFvZ05rcnE1RXRxZFc2ek9Bb3RkM3QrM1FyZFBsN3lEa3YiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJ4bWhUVjdSeDk4cS0tcFZWb0t4OFUyMGxzcWoxcEVWYk1lckdEWjFuY3Q3b2hjdG5CMkRUZXhFY1Z5N1ZPRkE1YWlvNXV5U24tMVZ0WDlReGNFV3FhckxYM241STJOMUxTaDloRExYcU9YSG5NZnd4eHBMelpXTUpvSXA3Z2NJQUp1WkZaOW5nVkZOcG5EX0Jjbno3SWVGVkY2LS00Ykh1VkctdXJkT1pMYUt2WThQZDlsNjVjU3c4eXZtYmFnVEk2d1JWS0FGTldlTXJsb3RsbjZleFhqandBVUwybXpUSWJfM2FQbllCZkhqUmdWTHpuMkxLM2dDYnRwaC14VmtPQ2lCOXRpWkpoQ29MUlE4WmtiVWZjbGZTSGZzQnVqT0F2WXhrVndVanlWVHJXblptY3FNbzkydkd6Tmt0Q3FPWU1Wa2RXQlpfMW5wTnFMb3ZEUk1QUnciLCJraWQiOiIwOFhseUdmVTM1enNUTjBiVnoyZGlka3VPMzlUMGUyOCJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiYWRmNzkzZDMtM2VjYy00NDNjLWE0MmYtN2NkYTEyYWVhNDRkIiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIyMzUiLCJ0cmFuc2FjdGlvbkN1cnJlbmN5Q29kZSI6IlFBUiJ9LCJwYXltZW50T3B0aW9ucyI6eyJkcGFQYW5SZXF1ZXN0ZWQiOnRydWUsImR5bmFtaWNEYXRhVHlwZSI6Ik5PTkUifX19fX0sImNhcHR1cmVNYW5kYXRlIjp7InNob3dDb25maXJtYXRpb25TdGVwIjp0cnVlLCJiaWxsaW5nVHlwZSI6IkZVTEwiLCJyZXF1ZXN0RW1haWwiOnRydWUsInJlcXVlc3RQaG9uZSI6dHJ1ZSwicmVxdWVzdFNoaXBwaW5nIjp0cnVlLCJzaGlwVG9Db3VudHJpZXMiOlsiUUEiXSwic2hvd0FjY2VwdGVkTmV0d29ya0ljb25zIjp0cnVlfSwib3JkZXJJbmZvcm1hdGlvbiI6eyJhbW91bnREZXRhaWxzIjp7InRvdGFsQW1vdW50IjoiMjM1IiwiY3VycmVuY3kiOiJRQVIifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImVtYWlsIjoieWF6aWxhbnNhcmkwM0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSIsInBob25lTnVtYmVyIjoiNTAzMzIwMzgiLCJwaG9uZVR5cGUiOiJtb2JpbGUifSwic2hpcFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImZpcnN0TmFtZSI6IlRlc3QgWSIsImxhc3ROYW1lIjoiVGVzdCBZIn19LCJ0YXJnZXRPcmlnaW5zIjpbImh0dHBzOi8vNjU4a3E0cWgtMzAwMC5pbmMxLmRldnR1bm5lbHMubXMiXSwiaWZyYW1lcyI6eyJtY2UiOiIvbWNlL21jZS5odG1sIiwiYnV0dG9ucyI6Ii9idXR0b25saXN0L2J1dHRvbmxpc3QuaHRtbCIsInNyYyI6Ii9zZWN1cmUtcmVtb3RlLWNvbW1lcmNlL3NyYy5odG1sIiwiY3RwIjoiL2N0cC9jdHAuaHRtbCIsImdvb2dsZXBheSI6Ii9nb29nbGVwYXkvZ29vZ2xlcGF5Lmh0bWwiLCJhcHBsZXBheSI6Ii9hcHBsZXBheS9hcHBsZXBheS5odG1sIiwicGF6ZSI6Ii9wYXplL3BhemUuaHRtbCIsImNoZWNrIjoiL2NoZWNrL2NoZWNrLmh0bWwiLCJvcmMiOiIvb3JjL29yYy5odG1sIiwidG0iOiIvdG0vdG0uaHRtbCIsImFwbSI6Ii9hcG0vYXBtLmh0bWwifSwiY2xpZW50VmVyc2lvbiI6IjAuMjYiLCJjb3VudHJ5IjoiUUEiLCJsb2NhbGUiOiJlbl9VUyIsImFsbG93ZWRDYXJkTmV0d29ya3MiOlsiVklTQSIsIk1BU1RFUkNBUkQiXSwiY29tcGxldGVNYW5kYXRlIjp7InR5cGUiOiJDQVBUVVJFIiwidHJhbnNhY3Rpb25JZCI6IkFsaE9ZUGZ1SHhkTkZlYlZKck9SQkx1eXF4M1MiLCJkZWNpc2lvbk1hbmFnZXIiOiJTS0lQIn0sImNyIjoieGRjMkF3QzN6bmJPMU9vTl9FYWtSdVhGUUVnaHQ2Sl9TanBWdWZXbzhzd1R1WW4tcGxsVnFUMHZXQkVjUXJwUnIzWGZRQmtlN25VeVc1dXlSdDlnbzc1M0RVR1hORm5hTVRoNERhR1FDLVpOZVdEa1lreWZwRFZPQTBad2dSYTNrUSIsInNlcnZpY2VPcmlnaW4iOiJodHRwczovL3Rlc3R1cC5jeWJlcnNvdXJjZS5jb20iLCJjbGllbnRMaWJyYXJ5IjoiaHR0cHM6Ly90ZXN0dXAuY3liZXJzb3VyY2UuY29tL3VjL3YxL2Fzc2V0cy8wLjI2LjMvU2VjdXJlQWNjZXB0YW5jZS5qcyIsImxvZ2dpbmdQYXRoIjoiL3VjL3YxL2xvZy1ldmVudHMiLCJhc3NldHNQYXRoIjoiL3VjL3YxL2Fzc2V0cy8wLjI2LjMiLCJjbGllbnRMaWJyYXJ5SW50ZWdyaXR5Ijoic2hhMjU2LUZOdGIvZXI2cjNNMXkvTS9xTnJZVDljYVNoOFY3REV0RnUzR1dwcGQ0bDhcdTAwM2QifSwidHlwZSI6ImdkYS0wLjEwLjAifV0sImlzcyI6IkZsZXggQVBJIiwiZXhwIjoxNzU5OTk2OTQ2LCJpYXQiOjE3NTk5OTYwNDYsImp0aSI6IlNNaUNsRUdZZ2s3VTY5MEQifQ.Uwk7DiI7KqTA3tUpB9WgDO57ZP-aGzfXioat5Zma-1WGcarQZY7_L9MYwEv5_n3iAKF09BZaW9uMlY1BicapZ8WEXZnb3lNTRtXgPs9CPCYnzrmZv7QxEPq0uHB-LFkZS0Jizymh3g1gu2o4f7clLsrDsWPxVNiC_dXF52bav8MAr6JoH9VHVLies4D_bsLTsBMwx0M_LvMg5N5UBxwkzgVa03GaYhJhlWsGjo2YPEIEDUgYvLyntT7od8QFKPu_ujl3uiFcoIKx1tUcS7Vr952br6xsEYrzJrW1yi5ePSrnQ3l8U6LGNbJxbdM95892oCo1Ah2m3ySfcdJr_80OtQ
+[2025-10-09T11:47:27] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = adf793d3-3ecc-443c-a42f-7cda12aea44d
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5861
+x-envoy-upstream-service-time = 56
+date = Thu, 09 Oct 2025 07:47:26 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = fd4d8b6d-02b4-4dd9-9b6e-5c7f411689cc
+X-OPNET-Transaction-Trace = 5f3257e4-1d41-4a51-848f-80f132d6b33e-1180516-27351985
+[2025-10-09T11:47:27] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED
+[2025-10-09T11:50:52] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T11:50:52] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T11:50:52] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T11:50:52] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T11:50:52] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T11:50:52] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T11:50:52] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"310","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T11:50:52] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T11:50:52] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T11:50:52] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="/Ol7dGcL5W0HX3GXMWlpT6VT6MPXhOg9/rGsOvvrhcE="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 11:50:52 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=19h4/weJiLixmOS+G513eY7VJjklJpeJk1HUgFCmk2o=
+[2025-10-09T11:50:52] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"310","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T11:50:54] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6ImsxSHZyc3pJMDcxbklqVm1GNUhkUHhBQUVPYkd5amIvbU5pR1o5VmJDVFkwRnB4ZHEzVm1BdmdrZTkxNlcwdWRTVjZoT053bjZOcHdvenNJUFpteHpsb1VMck1VZUthS0NpZEhaNUR6QTBFR2lIZ2hONkN1NHQwZzhQekFlcFFzWUVGSGhITFpsSUtvZkErcm1odjB0VGVBaGV2dVVRVVZXV212dnBqYWZOd3p2VWJkK3dVZUhLbnRIQVFZWmlEZ0VoSnIiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJxNnZMdTlUR0k2XzJEZEQ1SzZXTFltYTBKYWpkVldXc0N1SlBITDluN2ZZeFdWVm5BdFFNUVZDcVdzeVgyVzN2S1pjWUdnV0dpRS0xVnlYbzZId0pYZjRUaUdTdzVGQUxJdF9FQ013T3ZUYmRyc3JrcnQyWGU3QlpiSk14ampRajluRVBjVDE2ZVhZU1g1TzFreTRmTXpIb0dkLVVaZUVtVjJqck90QmhEc2pfdENxc2tBU2kzeWFuUzJfNVVIOEx0Sm5KZ0pHbUFUcDNvbndRVVNuSUdqYXNKdmZXOGRTYl9YMnhnd3pma0RXQzlFeVFmUzV6TnlYWW1seUxvV2UwblJGRFV6UXNScjd3UzQ0TG9FOXo1T05naWdwYWUzMHAxbW14NmJfR1BDN3dJajVtd0lIdGFDUDN0OVNpUnZydjFmY2JsbGwzVXNwS0ZESWdRampjd3ciLCJraWQiOiIwODJnTms2SGNwRDhWM3YyT0k4Y0JqTnJGQTM1TmVCRCJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiYTY1NWMwMTQtYjJkMS00NzIxLWEzZjktYTJiYTVhYmFkMTJkIiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIzMTAiLCJ0cmFuc2FjdGlvbkN1cnJlbmN5Q29kZSI6IlFBUiJ9LCJwYXltZW50T3B0aW9ucyI6eyJkcGFQYW5SZXF1ZXN0ZWQiOnRydWUsImR5bmFtaWNEYXRhVHlwZSI6Ik5PTkUifX19fX0sImNhcHR1cmVNYW5kYXRlIjp7InNob3dDb25maXJtYXRpb25TdGVwIjp0cnVlLCJiaWxsaW5nVHlwZSI6IkZVTEwiLCJyZXF1ZXN0RW1haWwiOnRydWUsInJlcXVlc3RQaG9uZSI6dHJ1ZSwicmVxdWVzdFNoaXBwaW5nIjp0cnVlLCJzaGlwVG9Db3VudHJpZXMiOlsiUUEiXSwic2hvd0FjY2VwdGVkTmV0d29ya0ljb25zIjp0cnVlfSwib3JkZXJJbmZvcm1hdGlvbiI6eyJhbW91bnREZXRhaWxzIjp7InRvdGFsQW1vdW50IjoiMzEwIiwiY3VycmVuY3kiOiJRQVIifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImVtYWlsIjoieWF6aWxhbnNhcmkwM0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSIsInBob25lTnVtYmVyIjoiNTAzMzIwMzgiLCJwaG9uZVR5cGUiOiJtb2JpbGUifSwic2hpcFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImZpcnN0TmFtZSI6IlRlc3QgWSIsImxhc3ROYW1lIjoiVGVzdCBZIn19LCJ0YXJnZXRPcmlnaW5zIjpbImh0dHBzOi8vNjU4a3E0cWgtMzAwMC5pbmMxLmRldnR1bm5lbHMubXMiXSwiaWZyYW1lcyI6eyJtY2UiOiIvbWNlL21jZS5odG1sIiwiYnV0dG9ucyI6Ii9idXR0b25saXN0L2J1dHRvbmxpc3QuaHRtbCIsInNyYyI6Ii9zZWN1cmUtcmVtb3RlLWNvbW1lcmNlL3NyYy5odG1sIiwiY3RwIjoiL2N0cC9jdHAuaHRtbCIsImdvb2dsZXBheSI6Ii9nb29nbGVwYXkvZ29vZ2xlcGF5Lmh0bWwiLCJhcHBsZXBheSI6Ii9hcHBsZXBheS9hcHBsZXBheS5odG1sIiwicGF6ZSI6Ii9wYXplL3BhemUuaHRtbCIsImNoZWNrIjoiL2NoZWNrL2NoZWNrLmh0bWwiLCJvcmMiOiIvb3JjL29yYy5odG1sIiwidG0iOiIvdG0vdG0uaHRtbCIsImFwbSI6Ii9hcG0vYXBtLmh0bWwifSwiY2xpZW50VmVyc2lvbiI6IjAuMjYiLCJjb3VudHJ5IjoiUUEiLCJsb2NhbGUiOiJlbl9VUyIsImFsbG93ZWRDYXJkTmV0d29ya3MiOlsiVklTQSIsIk1BU1RFUkNBUkQiXSwiY29tcGxldGVNYW5kYXRlIjp7InR5cGUiOiJDQVBUVVJFIiwidHJhbnNhY3Rpb25JZCI6Ino2RHVueVBiMmtscXZ3T2R3S2ZHbTU5ekdwU3IiLCJkZWNpc2lvbk1hbmFnZXIiOiJTS0lQIn0sImNyIjoiVVpJSnBCMlhjTGFyMUdqNDgzUk1qRllQZGlQYWdORnhIWmg5R05rWVVua3YzYVVvYnZXNG9pcVJSMFdZUWpRS1RxMWd4RldXOW04YmdHMVVZUjF6UlltM0lKcE5tTTUwd3gzallITGtSb2NCTEVCa0JmR25WaG10OFFNQXUtckZtdyIsInNlcnZpY2VPcmlnaW4iOiJodHRwczovL3Rlc3R1cC5jeWJlcnNvdXJjZS5jb20iLCJjbGllbnRMaWJyYXJ5IjoiaHR0cHM6Ly90ZXN0dXAuY3liZXJzb3VyY2UuY29tL3VjL3YxL2Fzc2V0cy8wLjI2LjMvU2VjdXJlQWNjZXB0YW5jZS5qcyIsImxvZ2dpbmdQYXRoIjoiL3VjL3YxL2xvZy1ldmVudHMiLCJhc3NldHNQYXRoIjoiL3VjL3YxL2Fzc2V0cy8wLjI2LjMiLCJjbGllbnRMaWJyYXJ5SW50ZWdyaXR5Ijoic2hhMjU2LUZOdGIvZXI2cjNNMXkvTS9xTnJZVDljYVNoOFY3REV0RnUzR1dwcGQ0bDhcdTAwM2QifSwidHlwZSI6ImdkYS0wLjEwLjAifV0sImlzcyI6IkZsZXggQVBJIiwiZXhwIjoxNzU5OTk3MTUzLCJpYXQiOjE3NTk5OTYyNTMsImp0aSI6IjdqYjg1RUhwQlY2b3BjNm4ifQ.Zlsee0HHxvoJ1N0n23LH7XpZuva125pqWWjBYVITEyObtfXI9lHI529NM2rFw9qljURW9Anux7y-slrRprklENCAnwJ-_s_Yvg2oeYyuqiCzGO8rkYvGezgc_eqS8mLkkm7EbfF1T0ciXcfwwzLHttgwvsDjhVKDn3hfJmVozpA1QfrLyCc8izE1CMe3zqr6hMkDF0lNAg7cLNYt-dv4g81c3LoKAKxBbQAMdkDgp_ThuBI68dQNUHdaUha7Oc5XxiimBsMYpvRDHLFRxi_EJ8cxcSzEn3gFEfd6HGUe0VZp2yn_B5WwA93M4llORUc823-FEmK7DNAe_cbzodxxyg
+[2025-10-09T11:50:54] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = a655c014-b2d1-4721-a3f9-a2ba5abad12d
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5861
+x-envoy-upstream-service-time = 16
+date = Thu, 09 Oct 2025 07:50:53 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = 28954bca-2c0a-43ab-b1e9-73fc3fca1c10
+X-OPNET-Transaction-Trace = 5f3257e4-1d41-4a51-848f-80f132d6b33e-1180516-27355591
+[2025-10-09T11:50:54] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED
+[2025-10-09T11:51:33] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T11:51:33] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T11:51:33] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T11:51:33] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T11:51:33] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T11:51:33] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T11:51:33] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"310","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T11:51:33] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T11:51:33] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T11:51:33] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="ythzeZTFJscb7UbP1KTDSL2H0LBKY6sncWLZKwP6H64="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 11:51:33 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=19h4/weJiLixmOS+G513eY7VJjklJpeJk1HUgFCmk2o=
+[2025-10-09T11:51:33] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"310","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T11:51:35] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6IlU3SE40YmZWMzhOYjI5U3YwNjV2WkJBQUVLcUNSbDE2b0YwdEp1bGFpOWtBRmRrb2duYTBLMEJuN0d3UmxmKzJCV0JWVFY3NTJlanFZWnZybWlOOTdLaUh3ZWRlbXM5NDNFeGhkaTQrZTRMNHFyeHhKdStUM3hxeC9VVGh6SG5jM0E2alpOTzZreko1RkY1dFFlRlVKQWYrY3lPeGpjZGdjZEdKaW44TzN0QnM3RnQrS0tIa2JSanhMKzRvZWVMeTdNQzMiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJrX004NE0yM0VGeUhiRmZoNlhaYjY1V0dOSlZsMUlNd1NmSHBkQ1oxd0xhbEpscV95cWh6ZDByU2dpTjJCS2ZGUU5XUXBzRzVLSzVyZEpURHZaR3RuelNWYjVJUzZhaUx3TnAxYnFPNUt6M2lWcm9taTVDX3ZHNVNIUFpqRldpR0xMTFpMVnQxbW5CMUxtOEJKNXJoc29XT1c3OERCZ09BRk16eDQzLW05d1IzeFBNeWlZbTloSlQ3WnJJSkhXSlVqX0ktZzdhOGFTb0pJdTJ5TXhNV3Z2VmI0c1J2cjI0Uk9EcE4zUV9aMlRsbnBzVl9EUVYzbV9ZMVVzR0IwdUJoNmRmQ0RxZVo3T0p5ZkRFanRNMzVIRWtkb2Q2VmpQbm9BRjBoUk8yWWpwX182TkFCZTh6STd1eV9pc3JVcEFvWi1BaUNxLUJtZVpRTHBQeUM0SG5XOVEiLCJraWQiOiIwOEFKZkxsT3dMRzIxTlR3QTRlOHFoZVY5a01Ec3NJNiJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiYjUzMDFmZTEtZmIxMy00ZDE1LWJlZmUtMDZhNDFjZjZkZGQxIiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIzMTAiLCJ0cmFuc2FjdGlvbkN1cnJlbmN5Q29kZSI6IlFBUiJ9LCJwYXltZW50T3B0aW9ucyI6eyJkcGFQYW5SZXF1ZXN0ZWQiOnRydWUsImR5bmFtaWNEYXRhVHlwZSI6Ik5PTkUifX19fX0sImNhcHR1cmVNYW5kYXRlIjp7InNob3dDb25maXJtYXRpb25TdGVwIjp0cnVlLCJiaWxsaW5nVHlwZSI6IkZVTEwiLCJyZXF1ZXN0RW1haWwiOnRydWUsInJlcXVlc3RQaG9uZSI6dHJ1ZSwicmVxdWVzdFNoaXBwaW5nIjp0cnVlLCJzaGlwVG9Db3VudHJpZXMiOlsiUUEiXSwic2hvd0FjY2VwdGVkTmV0d29ya0ljb25zIjp0cnVlfSwib3JkZXJJbmZvcm1hdGlvbiI6eyJhbW91bnREZXRhaWxzIjp7InRvdGFsQW1vdW50IjoiMzEwIiwiY3VycmVuY3kiOiJRQVIifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImVtYWlsIjoieWF6aWxhbnNhcmkwM0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSIsInBob25lTnVtYmVyIjoiNTAzMzIwMzgiLCJwaG9uZVR5cGUiOiJtb2JpbGUifSwic2hpcFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImZpcnN0TmFtZSI6IlRlc3QgWSIsImxhc3ROYW1lIjoiVGVzdCBZIn19LCJ0YXJnZXRPcmlnaW5zIjpbImh0dHBzOi8vNjU4a3E0cWgtMzAwMC5pbmMxLmRldnR1bm5lbHMubXMiXSwiaWZyYW1lcyI6eyJtY2UiOiIvbWNlL21jZS5odG1sIiwiYnV0dG9ucyI6Ii9idXR0b25saXN0L2J1dHRvbmxpc3QuaHRtbCIsInNyYyI6Ii9zZWN1cmUtcmVtb3RlLWNvbW1lcmNlL3NyYy5odG1sIiwiY3RwIjoiL2N0cC9jdHAuaHRtbCIsImdvb2dsZXBheSI6Ii9nb29nbGVwYXkvZ29vZ2xlcGF5Lmh0bWwiLCJhcHBsZXBheSI6Ii9hcHBsZXBheS9hcHBsZXBheS5odG1sIiwicGF6ZSI6Ii9wYXplL3BhemUuaHRtbCIsImNoZWNrIjoiL2NoZWNrL2NoZWNrLmh0bWwiLCJvcmMiOiIvb3JjL29yYy5odG1sIiwidG0iOiIvdG0vdG0uaHRtbCIsImFwbSI6Ii9hcG0vYXBtLmh0bWwifSwiY2xpZW50VmVyc2lvbiI6IjAuMjYiLCJjb3VudHJ5IjoiUUEiLCJsb2NhbGUiOiJlbl9VUyIsImFsbG93ZWRDYXJkTmV0d29ya3MiOlsiVklTQSIsIk1BU1RFUkNBUkQiXSwiY29tcGxldGVNYW5kYXRlIjp7InR5cGUiOiJDQVBUVVJFIiwidHJhbnNhY3Rpb25JZCI6IkJLU0U0dkhkeFJETnJHTjdVcjRWV3JMbGFKUzgiLCJkZWNpc2lvbk1hbmFnZXIiOiJTS0lQIn0sImNyIjoiUnlIZzlFdGVJczR6dDl0UGhqTzFRYjl1cGlpcE9Xai1vMWU2MklrWk9mUTEzSnpFV0U4aldLQ0lDSVA5X3pmY2x0YVBZUmxhWXVSdC04dlZla0d2SnhsSW5iMFZYQmxNUGZRUXgxN3l6WHk0NUljeGlNWERhT1NfMFVzaGF2SE9qQSIsInNlcnZpY2VPcmlnaW4iOiJodHRwczovL3Rlc3R1cC5jeWJlcnNvdXJjZS5jb20iLCJjbGllbnRMaWJyYXJ5IjoiaHR0cHM6Ly90ZXN0dXAuY3liZXJzb3VyY2UuY29tL3VjL3YxL2Fzc2V0cy8wLjI2LjMvU2VjdXJlQWNjZXB0YW5jZS5qcyIsImxvZ2dpbmdQYXRoIjoiL3VjL3YxL2xvZy1ldmVudHMiLCJhc3NldHNQYXRoIjoiL3VjL3YxL2Fzc2V0cy8wLjI2LjMiLCJjbGllbnRMaWJyYXJ5SW50ZWdyaXR5Ijoic2hhMjU2LUZOdGIvZXI2cjNNMXkvTS9xTnJZVDljYVNoOFY3REV0RnUzR1dwcGQ0bDhcdTAwM2QifSwidHlwZSI6ImdkYS0wLjEwLjAifV0sImlzcyI6IkZsZXggQVBJIiwiZXhwIjoxNzU5OTk3MTk0LCJpYXQiOjE3NTk5OTYyOTQsImp0aSI6IlJPT2JxMktJcnloSVpYUHgifQ.caAVvdc_ZclvXjtKrShVfqERQH4RCOIk8-pCXkHTgfTVOK_PiVdQwTyQ2tp1_z0P5IqlfnPoT9QnzUyYU7Gteo-vmXKTPUByS52KCEAF3dLP1akXd-Q-KEUSog-lPbVR04TIWgZ299nNFszaAsHTijcql7L39xiWiXHLZdGMs6GtBJm2UG7S9E8oBeES-1A1aArn0860og4vsOhOJrzuZTI0IH8VAvF9P6RE_3Y5tFempDgi1Gzg80TSzL85B8MzZRLekYDB_h-TkdVPHHbGrdMtCFJHExa21h7pWeCX6UCrcgR7Gkhuu2mGHv3CSq_SLOGIZVUWfA2AD7fJ9mQwPg
+[2025-10-09T11:51:35] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = b5301fe1-fb13-4d15-befe-06a41cf6ddd1
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5861
+x-envoy-upstream-service-time = 21
+date = Thu, 09 Oct 2025 07:51:34 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = 9cac802d-98fb-479c-957a-efd5165463d3
+X-OPNET-Transaction-Trace = 255df1e0-83d6-4275-89d7-91f2b2cc0c4e-1210023-27373546
+[2025-10-09T11:51:35] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED
+[2025-10-09T11:51:47] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T11:51:47] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T11:51:47] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T11:51:47] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T11:51:47] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T11:51:47] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T11:51:47] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"279","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T11:51:47] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T11:51:47] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T11:51:47] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="KPs/QkjXMaKmAemrWgvE7PCcTuz/iIoEfN6e6QQnLsU="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 11:51:47 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=j/ev47LxfOWFwLK6V/6SJI727NA5hcYMX9SuGAWySbc=
+[2025-10-09T11:51:47] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"279","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T11:51:48] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6ImhCZ3FLQ2x2QUhkYm9pN3hzeThva3hBQUVJU0x4MUljaXdkMkwzR3V1ZWI1UmFpSHorYUl2VUJseGRkUHVKbVo3ajZiUFlkeXMreVkzYi83Z2pMZWxreGtia3k0QWU3V3R4TlBoL0xLR202U2Robk9FNUdyTU12cjZPQ0Q2U3RjaVJaUEV4Z2JQRmx0RmdOUzRyOWpnQzhlWGRrNFlqdXRZeGo0cEs5MjRFM2pHcXAxWm9xSE5FYzlNSUxwKzdoWE5CWUUiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJxc3hhUkFxYUtyRUZvUVRtU1pDaEtCcHpYNld5OGxHSDdqd3otNlk5ZXVUcVduaU5ocXJQZUV3cERtVWp0NHV5RXJBekNZRWZrQ1lFWHRneklCSFZPZXpBOFpzR1R5cUJ1TDJOZWFOaXo0dHAzX1AtMXV6dmc3SGZ5dHRJWXEtT2JuYjYtbU1nREpWTGRfcFl3SEc5N1VrVnhYS0dlUVpIemxtV1dJT2EyN1pXanI3TnN2QmdxYVJWM2pPUkx2dEF3MWZLM0pxdlhUdjFxZTFXZjRwT1BXN0R2d0FySjV3Z3dUTFk5Zi1ER1NueHRKNXpwbGZUSy04ZGd4d21YZlI0Vm51d2NoMjBvV3Q3U2luV1htSTYyWm9XdW1BRW0zYVBJVkJCMURJVXN5ODBwY2hKWVc1dWhJcWJTX0NXdG00eUN0S0duc25rT2JuTDAzTHJwOXlFcFEiLCJraWQiOiIwOElnOWRvNlRaTFpxTXBSblRGVkxGWXRNaDZqa3hMVSJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiNjlkZWJmMmYtODc0ZS00MDVlLTgxYmQtZDNlM2JkMDJkZTVlIiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIyNzkiLCJ0cmFuc2FjdGlvbkN1cnJlbmN5Q29kZSI6IlFBUiJ9LCJwYXltZW50T3B0aW9ucyI6eyJkcGFQYW5SZXF1ZXN0ZWQiOnRydWUsImR5bmFtaWNEYXRhVHlwZSI6Ik5PTkUifX19fX0sImNhcHR1cmVNYW5kYXRlIjp7InNob3dDb25maXJtYXRpb25TdGVwIjp0cnVlLCJiaWxsaW5nVHlwZSI6IkZVTEwiLCJyZXF1ZXN0RW1haWwiOnRydWUsInJlcXVlc3RQaG9uZSI6dHJ1ZSwicmVxdWVzdFNoaXBwaW5nIjp0cnVlLCJzaGlwVG9Db3VudHJpZXMiOlsiUUEiXSwic2hvd0FjY2VwdGVkTmV0d29ya0ljb25zIjp0cnVlfSwib3JkZXJJbmZvcm1hdGlvbiI6eyJhbW91bnREZXRhaWxzIjp7InRvdGFsQW1vdW50IjoiMjc5IiwiY3VycmVuY3kiOiJRQVIifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImVtYWlsIjoieWF6aWxhbnNhcmkwM0BnbWFpbC5jb20iLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSIsInBob25lTnVtYmVyIjoiNTAzMzIwMzgiLCJwaG9uZVR5cGUiOiJtb2JpbGUifSwic2hpcFRvIjp7ImFkZHJlc3MxIjoiMTAsIEFsIFpvaHJhIERvaGEgRG9oYSIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkFqbWFuIiwiYnVpbGRpbmdOdW1iZXIiOiIxMCwgQWwgWm9ocmEiLCJjb3VudHJ5IjoiUUEiLCJkaXN0cmljdCI6IkRvaGEiLCJsb2NhbGl0eSI6IkRvaGEiLCJwb3N0YWxDb2RlIjoiMDAwMCIsImZpcnN0TmFtZSI6IlRlc3QgWSIsImxhc3ROYW1lIjoiVGVzdCBZIn19LCJ0YXJnZXRPcmlnaW5zIjpbImh0dHBzOi8vNjU4a3E0cWgtMzAwMC5pbmMxLmRldnR1bm5lbHMubXMiXSwiaWZyYW1lcyI6eyJtY2UiOiIvbWNlL21jZS5odG1sIiwiYnV0dG9ucyI6Ii9idXR0b25saXN0L2J1dHRvbmxpc3QuaHRtbCIsInNyYyI6Ii9zZWN1cmUtcmVtb3RlLWNvbW1lcmNlL3NyYy5odG1sIiwiY3RwIjoiL2N0cC9jdHAuaHRtbCIsImdvb2dsZXBheSI6Ii9nb29nbGVwYXkvZ29vZ2xlcGF5Lmh0bWwiLCJhcHBsZXBheSI6Ii9hcHBsZXBheS9hcHBsZXBheS5odG1sIiwicGF6ZSI6Ii9wYXplL3BhemUuaHRtbCIsImNoZWNrIjoiL2NoZWNrL2NoZWNrLmh0bWwiLCJvcmMiOiIvb3JjL29yYy5odG1sIiwidG0iOiIvdG0vdG0uaHRtbCIsImFwbSI6Ii9hcG0vYXBtLmh0bWwifSwiY2xpZW50VmVyc2lvbiI6IjAuMjYiLCJjb3VudHJ5IjoiUUEiLCJsb2NhbGUiOiJlbl9VUyIsImFsbG93ZWRDYXJkTmV0d29ya3MiOlsiVklTQSIsIk1BU1RFUkNBUkQiXSwiY29tcGxldGVNYW5kYXRlIjp7InR5cGUiOiJDQVBUVVJFIiwidHJhbnNhY3Rpb25JZCI6InA3SFdTemllZGRpbmU2S0tLVGtWZklObG1YZVIiLCJkZWNpc2lvbk1hbmFnZXIiOiJTS0lQIn0sImNyIjoibUtveENmeDJkOEVJbVhJSW4yRWZfQUhaVC1YblBHWVg1WWdXU0x2UUpjZUgtRTJJd2RUX19OQkwwLWs1d1Zabk5JbFhicTg0UDRxQUNzT2dyZkxsOHBhZjVRR1Z0Q0NSRXdtZUZ3OWhqOFZ5cXJ4VHlzYXRsZW14T2hxTXdsREliZyIsInNlcnZpY2VPcmlnaW4iOiJodHRwczovL3Rlc3R1cC5jeWJlcnNvdXJjZS5jb20iLCJjbGllbnRMaWJyYXJ5IjoiaHR0cHM6Ly90ZXN0dXAuY3liZXJzb3VyY2UuY29tL3VjL3YxL2Fzc2V0cy8wLjI2LjMvU2VjdXJlQWNjZXB0YW5jZS5qcyIsImxvZ2dpbmdQYXRoIjoiL3VjL3YxL2xvZy1ldmVudHMiLCJhc3NldHNQYXRoIjoiL3VjL3YxL2Fzc2V0cy8wLjI2LjMiLCJjbGllbnRMaWJyYXJ5SW50ZWdyaXR5Ijoic2hhMjU2LUZOdGIvZXI2cjNNMXkvTS9xTnJZVDljYVNoOFY3REV0RnUzR1dwcGQ0bDhcdTAwM2QifSwidHlwZSI6ImdkYS0wLjEwLjAifV0sImlzcyI6IkZsZXggQVBJIiwiZXhwIjoxNzU5OTk3MjA4LCJpYXQiOjE3NTk5OTYzMDgsImp0aSI6IjdRMnpTYllJZkpZeGVTWk8ifQ.ejWZuDoeTqqfKPog05I7i7UNhV9p1tQNiII2c29At_iDFHnzpAQSsJUBCXG-U-oV69hnn-AELlSDMZ21-72QVMFAMM-52bXH1j0aA6AwLlTknWpq_kyoWpB5XsiptZ5_FleUi1881nFaQ0XYYSDo-0dtS4fXjWH38JVa79uzdZu2Bdpl-y-uupJtClZE9V49mwJTLnVT9xvD34rz--tNsewktY5nQRbxYb2Jp-WoE0Ssnp6vfomAkH4hOJW8zjr69WaQB62TqacqqbNB_-OD3E2LcIbh03qeW8VafCKqYJFFzz1HJE9t5yKAtMd8_TcGtE0qHb1KIRVEDDONUbv1BQ
+[2025-10-09T11:51:48] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = 69debf2f-874e-405e-81bd-d3e3bd02de5e
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5861
+x-envoy-upstream-service-time = 25
+date = Thu, 09 Oct 2025 07:51:48 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = eb8c2826-39a9-4f1e-9a0b-a47140cf2a9f
+X-OPNET-Transaction-Trace = 934de25f-e7ea-4bd1-be1c-02ab3dbc7a6b-1228642-27418317
+[2025-10-09T11:51:48] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED
+[2025-10-09T14:37:37] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T14:37:37] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T14:37:37] [INFO] [MerchantConfiguration] : APPLICATION LOGGING START:
+
+[2025-10-09T14:37:37] [INFO] [MerchantConfiguration] : CONFIGURATION INFORMATION :
+authenticationType  = HTTP_SIGNATURE
+enableLogging  = 1
+debugLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\debugTest.log
+errorLogFile  = D:\xampp\htdocs\ahmed-admin-qa\app\Services\..\Log\errorTest.log
+RunEnvironment  = apitest.cybersource.com
+[2025-10-09T14:37:37] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext STARTED
+[2025-10-09T14:37:37] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Resource : POST /up/v1/capture-contexts
+[2025-10-09T14:37:37] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Body Parameter :
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"85","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T14:37:37] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Return Type : string
+[2025-10-09T14:37:37] [INFO] [ApiClient] : CALLING API "/up/v1/capture-contexts" STARTED
+[2025-10-09T14:37:37] [DEBUG] [ApiClient] : Request Headers :
+Accept:  application/jwt
+Content-Type:  application/json
+v-c-merchant-id: cbq_510000669_test
+Signature: keyid="XXXXX", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="wV3PFHL8shgQxAuDgw2KRbKBrh6uQzSkApZS/bgtE2o="
+Host: apitest.cybersource.com
+Date: Thu, 09 Oct 2025 14:37:37 GMT
+v-c-client-id: cybs-rest-sdk-php-0.0.65
+Digest:  SHA-256=r7N0+W4ZspKAyFzFBrAYgTA8TGVIbkuwa9nyUlEtUFw=
+[2025-10-09T14:37:37] [DEBUG] [ApiClient] : HTTP Request Body:
+{"clientVersion":"0.26","targetOrigins":["https:\/\/658kq4qh-3000.inc1.devtunnels.ms"],"allowedCardNetworks":["VISA","MASTERCARD"],"allowedPaymentTypes":["CLICKTOPAY"],"country":"QA","locale":"en_US","captureMandate":{"billingType":"FULL","requestEmail":true,"requestPhone":true,"requestShipping":true,"shipToCountries":["QA"],"showAcceptedNetworkIcons":true},"completeMandate":{"type":"xxxxx","decisionManager":false,"consumerAuthentication":true},"orderInformation":{"amountDetails":{"totalAmount":"85","currency":"QAR"},"billTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","email":"xxxxx","firstName":"xxxxx","lastName":"xxxxx","phoneNumber":"50332038","phoneType":"mobile"},"shipTo":{"address1":"10, Al Zohra Doha Doha","administrativeArea":"Ajman","buildingNumber":"10, Al Zohra","country":"QA","district":"Doha","locality":"Doha","postalCode":"0000","firstName":"xxxxx","lastName":"xxxxx"}}}
+[2025-10-09T14:37:39] [DEBUG] [ApiClient] : HTTP Response Body:
+eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImNvbXBsZXRlUGF0aCI6Ii9mbGV4L3YyL2NvbXBsZXRlIiwiZGF0YSI6IlZPL1EydjMxbTliUzhjTkdPenNFNlJBQUVFeFl3TkR2M2tndWpHdVk0NEZmSDBRbmJKZ09rZ21XcHJBaWJ2TzZVd1NTdzRIZnFTc0FYYlZmUFpkemV2VlVvK04rdGdXT1ZTUkE3TWxlUVZ4ZDF5M2pWR1V5cVY0QnNYY2liNmdCS1NGb0tmdUtVdWYzaDhUQ2xKbVFuSnFCTEpuaEJadFlzS2c2TVBrU0lGN0NwQmdtVDBBQWZuOE5mNlFZTXhIVCtrV24iLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJ6R2VPRW5aSFdqWTBrMmpvd0tXNnhLQWZjbDhBOTBJcm5lU3kxMTdQR2xGQV9XSi1JeWpCVEdjb093UjZkQ3ZZS0h3Y28yQi1qX0VGRU45ckJCcFFUUU41SU5OM3h6Q1dDWHM5Q3BaVGw2SmhyTXFadmtBVGN2TmdmZUFkR1pXc2RjMi1pM2ZTRVpfYmltb0xzdHMwWXlMQUNLTVZ1WFdabTViSkZBT1BNai16VXFkckFVek5rRy02bkNqbUZZcldqbWMyUTBXQUJGS3pkUDlhb1luT2RiM2JMRnJBY0VFcDFSYWZtVW4ya1RId3JMR2pLRmlRVlFvWXFQRnRNUXhZYXFfdjZZVmw4NFAyalFIb1FrdjVKTnNJdlBGeUM1X2JQeXA4eGNKNGVkVXVHVlVGZS1rbW1tZlpMZE1XaWtzYXNsNFJxSzRwaWxhazhvblZ1MVVibVEiLCJraWQiOiIwODg3dGxneWVtWnRzb0hGZGY4ZDVPbzYzcmZhU2V5QiJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlsiQ0xJQ0tUT1BBWSIsIlBBTkVOVFJZIl0sInBheW1lbnRDb25maWd1cmF0aW9ucyI6eyJTUkNWSVNBIjp7Im9yaWdpbiI6Imh0dHBzOi8vc2FuZGJveC1hc3NldHMuc2VjdXJlLmNoZWNrb3V0LnZpc2EuY29tIiwicGF0aCI6Ii9jaGVja291dC13aWRnZXQvcmVzb3VyY2VzL2pzL3NyYy1pLWFkYXB0ZXIvdmlzYVNkay5qcz92MiIsInBhbkVuY3J5cHRpb25LZXkiOnsia3R5IjoiUlNBIiwiZSI6IkFRQUIiLCJ1c2UiOiJlbmMiLCJraWQiOiJXMFBaOFZYVVZFQlU5NUpPNlpEWTEzc3E1Si1keFRuNTZmSWJEWDZObWMzWmo5V3FjIiwibiI6InNaUEl1c0RmN3lRbm5oQmtVOW11MTRWT08zQ3J1aTNiN3JBZjJLWWVvYlVSbVhBMTdiMUpYOWpnMENkLXZncG11eVRyeEJVU2MtNGIwLVVQZ1N3R0ZxUFdVcHgwOEV4cXJ3UERPdkZvakJvdTJ3bHlxOGJjeTBVcy1CZmVDelNFNWxNVmRTWFRYWFhjTnF1LXFiMjJqQ0NDSkFMcHhzQXJzYm9NT1hzTGVkaDNNNFhOUTVYR0F0UmY3Yi0tdVRZNURyOUtMWXlVdlpLQW5ZMDRNS0pQRU81NFlpSUZNNURUQWhOT21zMDg5amRNZHgtVVJJS0pqUFUyLVJwSEcxdThMQ0cwMjhSVElwUHNOYlJhbnVTNVRBWV96bHhEZ2IxaEtKMzZZYlpFTkhMZzlQWFRCaGRPTWxVOTBEVExsZmNiTFRhLUQ3RGdsakFhV0N1dnpMUGFHdyJ9LCJwYXJhbWV0ZXJzIjp7InNyY0luaXRpYXRvcklkIjoiSkZDWjhRVk9KQTc2TlhaNjhGWkQyMVJZSXhqM3lQWmRpVXhrZE51aWJCbHhnd2FQNCIsInNyY2lEcGFJZCI6IjgxZDZhOTEyLTg1YzYtNDNmZC1iYTNmLWM1YTNlYTU1OWU2NSIsInNyY2lUcmFuc2FjdGlvbklkIjoiMTczMTgyNTAtZjRhNC00NGVmLWI1ZTItMTE4YTFlYTA0NDk5IiwiZHBhVHJhbnNhY3Rpb25PcHRpb25zIjp7ImRwYUxvY2FsZSI6ImVuX1VTIiwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIiwicmV2aWV3QWN0aW9uIjoiY29udGludWUiLCJkcGFBY2NlcHRlZEJpbGxpbmdDb3VudHJpZXMiOltdLCJkcGFBY2NlcHRlZFNoaXBwaW5nQ291bnRyaWVzIjpbIlFBIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwibWVyY2hhbnRDb3VudHJ5Q29kZSI6IlFBIiwiY3VzdG9tSW5wdXREYXRhIjp7ImNoZWNrb3V0T3JjaGVzdHJhdG9yIjoibWVyY2hhbnQifSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiI4NSIsInRyYW5zYWN0aW9uQ3VycmVuY3lDb2RlIjoiUUFSIn0sInBheW1lbnRPcHRpb25zIjp7ImRwYVBhblJlcXVlc3RlZCI6dHJ1ZSwiZHluYW1pY0RhdGFUeXBlIjoiTk9ORSJ9fX19fSwiY2FwdHVyZU1hbmRhdGUiOnsic2hvd0NvbmZpcm1hdGlvblN0ZXAiOnRydWUsImJpbGxpbmdUeXBlIjoiRlVMTCIsInJlcXVlc3RFbWFpbCI6dHJ1ZSwicmVxdWVzdFBob25lIjp0cnVlLCJyZXF1ZXN0U2hpcHBpbmciOnRydWUsInNoaXBUb0NvdW50cmllcyI6WyJRQSJdLCJzaG93QWNjZXB0ZWROZXR3b3JrSWNvbnMiOnRydWV9LCJvcmRlckluZm9ybWF0aW9uIjp7ImFtb3VudERldGFpbHMiOnsidG90YWxBbW91bnQiOiI4NSIsImN1cnJlbmN5IjoiUUFSIn0sImJpbGxUbyI6eyJhZGRyZXNzMSI6IjEwLCBBbCBab2hyYSBEb2hhIERvaGEiLCJhZG1pbmlzdHJhdGl2ZUFyZWEiOiJBam1hbiIsImJ1aWxkaW5nTnVtYmVyIjoiMTAsIEFsIFpvaHJhIiwiY291bnRyeSI6IlFBIiwiZGlzdHJpY3QiOiJEb2hhIiwibG9jYWxpdHkiOiJEb2hhIiwicG9zdGFsQ29kZSI6IjAwMDAiLCJlbWFpbCI6InlhemlsYW5zYXJpMDNAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiVGVzdCBZIiwibGFzdE5hbWUiOiJUZXN0IFkiLCJwaG9uZU51bWJlciI6IjUwMzMyMDM4IiwicGhvbmVUeXBlIjoibW9iaWxlIn0sInNoaXBUbyI6eyJhZGRyZXNzMSI6IjEwLCBBbCBab2hyYSBEb2hhIERvaGEiLCJhZG1pbmlzdHJhdGl2ZUFyZWEiOiJBam1hbiIsImJ1aWxkaW5nTnVtYmVyIjoiMTAsIEFsIFpvaHJhIiwiY291bnRyeSI6IlFBIiwiZGlzdHJpY3QiOiJEb2hhIiwibG9jYWxpdHkiOiJEb2hhIiwicG9zdGFsQ29kZSI6IjAwMDAiLCJmaXJzdE5hbWUiOiJUZXN0IFkiLCJsYXN0TmFtZSI6IlRlc3QgWSJ9fSwidGFyZ2V0T3JpZ2lucyI6WyJodHRwczovLzY1OGtxNHFoLTMwMDAuaW5jMS5kZXZ0dW5uZWxzLm1zIl0sImlmcmFtZXMiOnsibWNlIjoiL21jZS9tY2UuaHRtbCIsImJ1dHRvbnMiOiIvYnV0dG9ubGlzdC9idXR0b25saXN0Lmh0bWwiLCJzcmMiOiIvc2VjdXJlLXJlbW90ZS1jb21tZXJjZS9zcmMuaHRtbCIsImN0cCI6Ii9jdHAvY3RwLmh0bWwiLCJnb29nbGVwYXkiOiIvZ29vZ2xlcGF5L2dvb2dsZXBheS5odG1sIiwiYXBwbGVwYXkiOiIvYXBwbGVwYXkvYXBwbGVwYXkuaHRtbCIsInBhemUiOiIvcGF6ZS9wYXplLmh0bWwiLCJjaGVjayI6Ii9jaGVjay9jaGVjay5odG1sIiwib3JjIjoiL29yYy9vcmMuaHRtbCIsInRtIjoiL3RtL3RtLmh0bWwiLCJhcG0iOiIvYXBtL2FwbS5odG1sIn0sImNsaWVudFZlcnNpb24iOiIwLjI2IiwiY291bnRyeSI6IlFBIiwibG9jYWxlIjoiZW5fVVMiLCJhbGxvd2VkQ2FyZE5ldHdvcmtzIjpbIlZJU0EiLCJNQVNURVJDQVJEIl0sImNvbXBsZXRlTWFuZGF0ZSI6eyJ0eXBlIjoiQ0FQVFVSRSIsInRyYW5zYWN0aW9uSWQiOiJrWGloVTFJWkI5VGVxMVJHWVg3M0lyQVRuc293IiwiZGVjaXNpb25NYW5hZ2VyIjoiU0tJUCJ9LCJjciI6InRkVXAtU0o5czFtdUw2RGlvMGlXdTA5dWNGY2dQcXByTE9ZZWRUNkwwRE1qU2JzR0FkT1UwdGRURzl4MVFxWGVaa3FrWW5GTTJWLVF4MHhHOFBRaE9BY2t3SnRycDFIUkV1MGZGNjA5MWI0RGhwbUZrNmFiUFNuV0o0UklBd1dfSkEiLCJzZXJ2aWNlT3JpZ2luIjoiaHR0cHM6Ly90ZXN0dXAuY3liZXJzb3VyY2UuY29tIiwiY2xpZW50TGlicmFyeSI6Imh0dHBzOi8vdGVzdHVwLmN5YmVyc291cmNlLmNvbS91Yy92MS9hc3NldHMvMC4yNi4zL1NlY3VyZUFjY2VwdGFuY2UuanMiLCJsb2dnaW5nUGF0aCI6Ii91Yy92MS9sb2ctZXZlbnRzIiwiYXNzZXRzUGF0aCI6Ii91Yy92MS9hc3NldHMvMC4yNi4zIiwiY2xpZW50TGlicmFyeUludGVncml0eSI6InNoYTI1Ni1GTnRiL2VyNnIzTTF5L00vcU5yWVQ5Y2FTaDhWN0RFdEZ1M0dXcHBkNGw4XHUwMDNkIn0sInR5cGUiOiJnZGEtMC4xMC4wIn1dLCJpc3MiOiJGbGV4IEFQSSIsImV4cCI6MTc2MDAwNzE1OCwiaWF0IjoxNzYwMDA2MjU4LCJqdGkiOiJkMU1ySWVTSVgwcENROFpRIn0.kXNpguwFOyo6Sb7cVfv9vBK8iYE2xQ_OKlAJjn6UHgO0rQmzpcUDC07xjabMHsHM4OTJoyPFHtDCSgFamNYAIOZB9D8oX5akLyL0ryaxyQAjBaby8qrZ6k0knV-BVtEojTTZpfNRY8rpmURjOkak1KXckFDwpEvsGkN0Dve-Gzd-QT2Be9e75HNkWjYgkm_gLIm-D7bY38nlhQRGE98GbOBKS0Ls_4IX_m7KRY3LmlGLRnBn1ds_nbBAPAQalPrCT7EGGVGYZpA4kFZrDvrcxfXPLblQITS3jFZFQFJ0z_zBZY58gsyLJrxmggCcZurF5TyYQT85ukViLZ9l43uFng
+[2025-10-09T14:37:39] [DEBUG] [UnifiedCheckoutCaptureContextApi] : Response Headers :
+HTTP/1.1 201 Created
+v-c-merchant-id = cbq_510000669_test
+v-c-session-id = 17318250-f4a4-44ef-b5e2-118a1ea04499
+content-type = application/jwt
+cache-control = no-store
+pragma = no-cache
+content-length = 5858
+x-envoy-upstream-service-time = 24
+date = Thu, 09 Oct 2025 10:37:38 GMT
+server = istio-envoy
+Connection = keep-alive
+Strict-Transport-Security = max-age=31536000
+v-c-correlation-id = 6d4a6a00-ee0e-4713-be53-efc8dbd3f6bd
+X-OPNET-Transaction-Trace = 934de25f-e7ea-4bd1-be1c-02ab3dbc7a6b-1228642-27562854
+[2025-10-09T14:37:39] [INFO] [UnifiedCheckoutCaptureContextApi] : CALL TO METHOD generateUnifiedCheckoutCaptureContext ENDED

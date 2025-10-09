@@ -39,7 +39,7 @@
                     <span class="small d-block">{{ number_format(ecommerce_convert_weight($weight)) }} {{ ecommerce_weight_unit(true) }}</span>
                 </x-core::table.body.cell>
                 <x-core::table.body.cell>
-                    {{ format_price($order->shipping_amount * 1.15) }}
+                    {{ format_price($order->shipping_amount * 1) }}
                 </x-core::table.body.cell>
             </x-core::table.body.row>
         @endif
@@ -49,7 +49,7 @@
                     {{ trans('plugins/ecommerce::order.service_tax') }}
                 </x-core::table.body.cell>
                 <x-core::table.body.cell>
-                    {{ format_price($order->service_amount * 1.15) }}
+                    {{ format_price($order->service_amount * 1) }}
                 </x-core::table.body.cell>
             </x-core::table.body.row>
         @endif

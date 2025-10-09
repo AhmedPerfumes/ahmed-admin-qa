@@ -58,4 +58,6 @@ Route::middleware('customLogs')->group(function () {
     // Contact Route
     Route::post('/contact', [ContactController::class, 'contact']);
     Route::post('/campaign', [ContactController::class, 'campaign']);
+
+    Route::post('/cyberSource', [OrderController::class, 'GenerateUnifiedCheckoutCaptureContext']);
 });
