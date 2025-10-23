@@ -954,6 +954,7 @@ class OrderController extends Controller
                 'message'          => 'Order created successfully',
                 'order_id'         => $order->code,
                 'payment_method'   => $request->input('payment_method'),
+                'payment_status'   => $request['status'],
                 'total'            => $order->amount,
                 'sub_total'        => $order->sub_total,
                 'shipping_amount'  => $order->shipping_amount,
@@ -1218,7 +1219,7 @@ class OrderController extends Controller
 
         $completeMandate = [
             "type" => "CAPTURE",
-            "decisionManager" => false,
+            "decisionManager" => true,
             "consumerAuthentication" => true
         ];
         $completeMandate = new \CyberSource\Model\Upv1capturecontextsCompleteMandate($completeMandate);
@@ -1266,7 +1267,7 @@ class OrderController extends Controller
         $orderInformation = new \CyberSource\Model\Upv1capturecontextsOrderInformation($orderInformationArr);
 
         $requestObjArr = [
-            "clientVersion" => "0.26",
+            "clientVersion" => "0.30",
             "targetOrigins" => $targetOrigins,
             "allowedCardNetworks" => $allowedCardNetworks,
             "allowedPaymentTypes" => $allowedPaymentTypes,
