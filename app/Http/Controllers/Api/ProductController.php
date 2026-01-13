@@ -587,4 +587,58 @@ class ProductController extends Controller
             // print_r($prod);die();
         return response()->json($prod);
     }
+
+    public function getProductsLiveStatus(Request $request) {
+        $productIds = $request->input('product_ids');
+
+        if (empty($productIds)) {
+            $content = $request->getContent(); // Get the raw string body
+            $json = json_decode($content, true); // Turn JSON string into Array
+            $productIds = $json['product_ids'] ?? null;
+        }
+
+        if (empty($productIds) || !is_array($productIds)) {
+            return response()->json([], 200);
+        }
+
+        // $currency = Currency::select('decimals')->where('is_default', 1)->first();
+        // $decimals = $currency->decimals ?? 3;
+
+        $products = DB::table('ec_products')
+        ->select('id as product_id', 'quantity as product_qty', DB::raw('CAST(price AS DECIMAL(8,2)) as price'), 'sale_price', 'maximum_order_quantity')
+        ->whereIn('id', $productIds)
+        ->where('status', 'published')
+        ->get();
+
+        foreach ($products as $val) {
+            
+            // Replicating your controller's logic, but adding 'type_option' 
+            // so the frontend knows if it is 'percentage' or 'amount'.
+            $val->discount = DiscountProduct::select(
+                    'ec_discounts.value', 
+                    'ec_discounts.start_date', 
+                    'ec_discounts.end_date',
+                    'ec_discounts.type_option as discount_type' // Critical for frontend calculation
+                )
+                ->where('product_id', $val->product_id)
+                ->whereNull('code') // Auto-discounts only (no coupons)
+                ->whereDate('start_date', '<=', now())
+                ->whereDate('end_date', '>=', now())
+                ->join('ec_discounts', 'ec_discounts.id', '=', 'ec_discount_products.discount_id', 'left')
+                ->first();
+
+            // Normalizing the discount type for the frontend
+            // Botble usually stores 'percentage' or 'amount' in type_option
+            if ($val->discount) {
+                if ($val->discount->discount_type === 'percentage') {
+                    $val->discount->discount_type = 'percent';
+                }
+                
+                // Ensure value is an integer/float as expected
+                $val->discount->value = (float)$val->discount->value;
+            }
+        }
+
+        return response()->json($products);
+    }
 }

@@ -37,6 +37,7 @@ Route::middleware('customLogs')->group(function () {
 
     // Product Routes
     Route::withoutMiddleware('customLogs')->post('/products', [ProductController::class, 'getProducts']);
+    Route::post('/products/live-status', [ProductController::class, 'getProductsLiveStatus']);
 
     // All Product Routes
     Route::withoutMiddleware('customLogs')->post('/allProducts', [ProductController::class, 'getAllProducts']);
