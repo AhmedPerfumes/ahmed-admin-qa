@@ -23,7 +23,7 @@ use Theme\Farmart\Supports\Wishlist;
 register_page_template([
     'default' => __('Default'),
     'homepage' => __('Homepage'),
-    'full-width' => __('Full Width'),
+    'full-width' => __('Pop-Up'),
     'coming-soon' => __('Coming Soon'),
 ]);
 
