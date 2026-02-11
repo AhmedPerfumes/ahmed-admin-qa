@@ -46,7 +46,9 @@ class ProductRequest extends Request
     {
         $rules = [
             'name' => ['required', 'string', 'max:250'],
+             'name_ar' => ['required', 'string', 'max:250'],
             'description' => ['nullable', 'string', 'max:300000'],
+            'description_ar' => ['required', 'string', 'max:300000'],
             'content' => ['nullable', 'string', 'max:300000'],
             'fragrance_notes' => ['nullable', 'string', 'max:300000'],
             'price' => [
@@ -103,6 +105,28 @@ class ProductRequest extends Request
             'minimum_order_quantity' => ['nullable', 'numeric', 'min:0'],
             'maximum_order_quantity' => ['nullable', 'numeric', 'min:0'],
         ];
+        $customRules = [
+            'itemCategory_1' => ['nullable', 'string', 'max:255'],
+            'itemCategory_2' => ['nullable', 'string', 'max:255'],
+            'itemCategory_3' => ['nullable', 'string', 'max:255'],
+            'itemCategory_4' => ['nullable', 'string', 'max:255'],
+            'itemCategory_5' => ['nullable', 'string', 'max:255'],
+            'product_family' => ['nullable', 'string', 'max:255'],
+
+            'fragrance_type' => ['required', 'string', Rule::in(['parfum', 'edp', 'edt', 'edc', 'concentrated_oil', 'dehn_al_oud', 'hair_mist', 'body_gel', 'bakhoor', 'oud_maattar', 'air_freshener', 'other'])],
+            'dispenser_type' => ['required', 'string', Rule::in(['spray', 'serum', 'dabber_stick', 'solid_incense', 'jar', 'tube', 'reed_diffuser', 'dropper', 'other'])],
+            'fragrance_category' => ['nullable', 'string', 'max:255'],
+            'item_profile' => ['nullable', 'string', 'max:255'],
+            'item_classification' => ['nullable', 'string', 'max:255'],
+            'longevity' => ['nullable', 'string', 'max:255'],
+            'occasion' => ['nullable', 'string', 'max:255'],
+            'additional_details' => ['nullable', 'string', 'max:1000'],
+            'how_to_use' => ['nullable', 'string'],
+            'ingredients' => ['nullable', 'string'],
+            'story' => ['nullable', 'string'],
+        ];
+
+        $rules = array_merge($rules, $customRules);
 
         if (EcommerceHelper::isEnabledProductOptions()) {
             $options = $this->input('options');
@@ -125,6 +149,7 @@ class ProductRequest extends Request
             'end_date.after' => trans('plugins/ecommerce::products.product_create_validate_end_date_after'),
             'start_date.required_if' => trans('plugins/ecommerce::products.product_create_validate_start_date_required_if'),
             'sale_price' => trans('plugins/ecommerce::products.product_create_validate_sale_price'),
+            'price.min' => 'The price cannot be zero',
         ];
     }
 

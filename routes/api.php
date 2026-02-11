@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\ProductReviewController as ApiProductReviewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -61,4 +62,7 @@ Route::middleware('customLogs')->group(function () {
     Route::post('/campaign', [ContactController::class, 'campaign']);
 
     Route::post('/cyberSource', [OrderController::class, 'GenerateUnifiedCheckoutCaptureContext']);
+
+    Route::withoutMiddleware('customLogs')->get('/products/{product}/reviews', [ApiProductReviewController::class, 'index']);
+    Route::withoutMiddleware('customLogs')->post('/reviews', [ApiProductReviewController::class, 'store']);
 });

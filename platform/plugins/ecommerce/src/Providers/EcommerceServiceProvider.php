@@ -733,8 +733,17 @@ class EcommerceServiceProvider extends ServiceProvider
                     'permissions' => ['ecommerce.invoice.index'],
                 ])
                 ->registerItem([
-                    'id' => 'cms-plugins-ecommerce-product',
+                    'id' => 'cms-plugins-ecommerce-product-fragrance-notes',
                     'priority' => 60,
+                    'parent_id' => 'cms-plugins-ecommerce',
+                    'name' => 'Fragrance Profiles',
+                    'icon' => 'fa fa-vial',
+                    'url' => route('product-fragrance-notes.index'),
+                    'permissions' => ['products.index'],
+                ])
+                ->registerItem([
+                    'id' => 'cms-plugins-ecommerce-product',
+                    'priority' => 70,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::products.name',
                     'icon' => 'ti ti-package',
@@ -743,7 +752,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-ecommerce-product-price',
-                    'priority' => 70,
+                    'priority' => 80,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::product-prices.name',
                     'icon' => 'ti ti-currency-dollar',
@@ -752,7 +761,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-ecommerce-product-inventory',
-                    'priority' => 80,
+                    'priority' => 90,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::product-inventory.name',
                     'icon' => 'ti ti-home-check',
@@ -761,7 +770,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-product-categories',
-                    'priority' => 90,
+                    'priority' => 100,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::product-categories.name',
                     'icon' => 'ti ti-archive',
@@ -770,7 +779,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-product-tag',
-                    'priority' => 100,
+                    'priority' => 110,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::product-tag.name',
                     'icon' => 'ti ti-tag',
@@ -779,7 +788,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-product-attribute',
-                    'priority' => 110,
+                    'priority' => 120,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::product-attributes.name',
                     'icon' => 'ti ti-album',
@@ -788,7 +797,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-ecommerce-global-options',
-                    'priority' => 120,
+                    'priority' => 130,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::product-option.name',
                     'icon' => 'ti ti-database',
@@ -797,7 +806,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-product-collections',
-                    'priority' => 130,
+                    'priority' => 140,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::product-collections.name',
                     'icon' => 'ti ti-album',
@@ -806,7 +815,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-product-label',
-                    'priority' => 140,
+                    'priority' => 150,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::product-label.name',
                     'icon' => 'ti ti-tags',
@@ -815,7 +824,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-plugins-brands',
-                    'priority' => 150,
+                    'priority' => 160,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::brands.name',
                     'icon' => 'ti ti-registered',
@@ -824,7 +833,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id' => 'cms-ecommerce-review',
-                    'priority' => 160,
+                    'priority' => 170,
                     'parent_id' => 'cms-plugins-ecommerce',
                     'name' => 'plugins/ecommerce::review.name',
                     'icon' => 'ti ti-star',

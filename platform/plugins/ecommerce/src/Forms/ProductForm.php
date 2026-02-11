@@ -38,6 +38,8 @@ use Botble\Ecommerce\Models\ProductLabel;
 use Botble\Ecommerce\Models\ProductVariation;
 use Botble\Ecommerce\Models\Tax;
 use Botble\Ecommerce\Tables\ProductVariationTable;
+use Botble\Ecommerce\Models\ProductFragranceNote;
+use Botble\Base\Enums\BaseStatusEnum;
 
 class ProductForm extends FormAbstract
 {
@@ -52,6 +54,19 @@ class ProductForm extends FormAbstract
         $productLabels = ProductLabel::query()->pluck('name', 'id')->all();
 
         $productId = null;
+        $selectedFragranceNoteId = null;
+        if ($this->getModel() && $this->getModel()->id) {
+            $product = $this->getModel();
+            $fragranceNote = $product->fragranceNote()->first();
+            if ($fragranceNote) {
+                $selectedFragranceNoteId = $fragranceNote->id;
+            }
+        }
+        $fragranceProfiles = ProductFragranceNote::query()
+            ->where('status', BaseStatusEnum::PUBLISHED)
+            ->pluck('itemFamily', 'id')
+            ->all();
+
         $selectedCategories = [];
         $tags = null;
         $totalProductVariations = 0;
@@ -66,59 +81,220 @@ class ProductForm extends FormAbstract
             $tags = $this->getModel()->tags()->pluck('name')->implode(',');
         }
 
+        $collectionItemValues = '';
+        if ($this->getModel() && $this->getModel()->is_collection) {
+            $items = $this->getModel()->collectionItems()->with('childProduct')->get();
+            $values = [];
+            foreach ($items as $item) {
+                if ($item->childProduct) {
+                    // This is a real product
+                    $values[] = 'product--' . $item->childProduct->id . ':' . $item->childProduct->name;
+                } else {
+                    // This is a custom text item
+                    $values[] = $item->custom_item_name;
+                }
+            }
+            $collectionItemValues = implode(',', $values);
+        }
+
         $this
             ->setupModel(new Product())
             ->setValidatorClass(ProductRequest::class)
-            ->setFormOption('files', true)
-            ->add('name', TextField::class, NameFieldOption::make()->required()->toArray())
-            ->add(
-                'description',
-                EditorField::class,
-                EditorFieldOption::make()
-                    ->label(trans('core/base::forms.description'))
-                    ->placeholder(trans('core/base::forms.description_placeholder'))->toArray()
-            )
-            ->add('content', EditorField::class, ContentFieldOption::make()->allowedShortcodes()->toArray())
-            ->add('fragrance_notes', EditorField::class, ContentFieldOption::make()->label('Fragrance Notes')->allowedShortcodes()->toArray())
-            ->add('images[]', MediaImagesField::class, [
-                'label' => trans('plugins/ecommerce::products.form.image'),
-                'values' => $productId ? $this->getModel()->images : [],
+            ->setFormOption('files', true);
+
+            $this->add('tabs_nav', 'html', [
+                'html' => '
+                <ul class="nav nav-tabs" id="product-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#tab_general" type="button" role="tab" aria-controls="tab_general" aria-selected="true">General Information</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="collection-tab" data-bs-toggle="tab" data-bs-target="#tab_collection" type="button" role="tab" aria-controls="tab_collection" aria-selected="true">Collection Information</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="categorization-tab" data-bs-toggle="tab" data-bs-target="#tab_categorization" type="button" role="tab" aria-controls="tab_categorization" aria-selected="false">Categorization</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#tab_notes" type="button" role="tab" aria-controls="tab_notes" aria-selected="false">Fragrance Notes</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#tab_specifications" type="button" role="tab" aria-controls="tab_specifications" aria-selected="false">Item Specifications</button>
+                    </li>
+                </ul>',
+            ]);
+            $this->add('tabs_content_start', 'html', ['html' => '<div class="tab-content" id="product-tabs-content">']);
+
+            // --- TAB 1: GENERAL INFORMATION ---
+            $this->add('general_tab_start', 'html', ['html' => '<div class="tab-pane fade show active" id="tab_general" role="tabpanel" aria-labelledby="general-tab">']);
+
+            $this->add('general_header', 'html', ['html' => '<h4 class="mt-4 h2">General</h4><hr>'])
+            ->add('name_row_open', 'html', ['html' => '<div class="row">',])
+            ->add('name_ar', TextField::class, NameFieldOption::make()->label(trans('core/base::forms.name_ar'))->placeholder(trans('core/base::forms.name_ar_placeholder'))->required()->wrapperAttributes(['class' => 'form-group col-12 col-md-6'])->toArray())
+            ->add('name', TextField::class, NameFieldOption::make()->required()->wrapperAttributes(['class' => 'form-group col-12 col-md-6'])->toArray())
+            ->add('name_row_close', 'html', ['html' => '</div>',])
+
+            ->add('description_row_start', 'html', ['html' => '<div class="row">'])
+            ->add('description', EditorField::class, EditorFieldOption::make()->label(trans('core/base::forms.description'))->placeholder(trans('core/base::forms.description_placeholder'))->required()->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('description_ar', EditorField::class, EditorFieldOption::make()->label(trans('core/base::forms.description_ar'))->placeholder(trans('core/base::forms.description_ar_placeholder'))->required()->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('description_row_end', 'html', ['html' => '</div>'])
+
+            // ->add('content_row_start', 'html', ['html' => '<div class="row">'])
+            // ->add('content', EditorField::class, ContentFieldOption::make()->allowedShortcodes()->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            // ->add('content_ar', EditorField::class, ContentFieldOption::make()->label('Content (Arabic)')->allowedShortcodes()->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            // ->add('content_row_end', 'html', ['html' => '</div>'])
+
+            // ->add('fragrance_row_start', 'html', ['html' => '<div class="row">'])
+            // ->add('fragrance_notes', EditorField::class, ContentFieldOption::make()->label('Fragrance Notes')->allowedShortcodes()->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            // ->add('fragrance_notes_ar', EditorField::class, ContentFieldOption::make()->label('Fragrance Notes (Arabic)')->allowedShortcodes()->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            // ->add('fragrance_row_end', 'html', ['html' => '</div>'])
+            ->add('images[]', MediaImagesField::class, ['label' => trans('plugins/ecommerce::products.form.image'), 'values' => $productId ? $this->getModel()->images : [],]);
+        $this->add('general_tab_end', 'html', ['html' => '</div>']);
+
+        // --- TAB: COLLECTION DETAILS ---
+        $this->add('collection_tab_start', 'html', ['html' => '<div class="tab-pane fade" id="tab_collection" role="tabpanel" aria-labelledby="collection-tab">'])
+            ->add('collection_header', 'html', ['html' => '<h4 class="mt-4 h2">Collection Details</h4><hr>'])
+            ->add('collection_row_open', 'html', ['html' => '<div class="row">'])
+            ->add('is_collection', OnOffField::class, [
+                'label' => 'Is this a collection?',
+                'label_attr' => ['class' => 'control-label'],
+                'default_value' => false,
+                'wrapper' => [ 'class' => 'form-group col-12 mb-3', ],
             ])
-            ->addMetaBoxes([
-                'with_related' => [
-                    'title' => null,
-                    'content' => Html::tag('div', '', [
-                        'class' => 'wrap-relation-product',
-                        'data-target' => route('products.get-relations-boxes', $productId ?: 0),
-                    ]),
-                    'wrap' => false,
-                    'priority' => 9999,
+            ->add('collection_items_wrapper', 'html', [
+                'html' => '<div id="collection_items_wrapper" class="col-12" style="display: none;">',
+            ])
+            ->add('collection_items', TagField::class, [
+                'label' => 'Items in Collection',
+                'label_attr' => ['class' => 'control-label'],
+                'value' => $collectionItemValues,
+                'wrapper' => [ 'class' => 'form-group', ],
+                'attr' => [
+                    'placeholder' => 'Search for products or type a custom item',
+                    'data-url' => route('products.get-for-tag-input'),
                 ],
             ])
+            ->add('collection_items_wrapper_end', 'html', [ 'html' => '</div>', ])
+            ->add('collection_row_close', 'html', ['html' => '</div>'])
+            ->add('collection_tab_end', 'html', ['html' => '</div>']);
+
+        // --- TAB 2: CATEGORIZATION ---
+        $this->add('categorization_tab_start', 'html', ['html' => '<div class="tab-pane fade" id="tab_categorization" role="tabpanel" aria-labelledby="categorization-tab">']);
+        // --- Section 1: Categorization (3-column layout) ---
+        $this->add('categories_header', 'html', ['html' => '<h4 class="mt-4 h2">Categorization</h4><hr>'])
+            ->add('categories_row_start', 'html', ['html' => '<div class="row">'])
+            // ->add('itemCategory_1', TextField::class, TextFieldOption::make()->label('Item Category 1')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            // ->add('itemCategory_2', TextField::class, TextFieldOption::make()->label('Item Category 2')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            // ->add('itemCategory_3', TextField::class, TextFieldOption::make()->label('Item Category 3')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            // ->add('itemCategory_4', TextField::class, TextFieldOption::make()->label('Item Category 4')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            // ->add('itemCategory_5', TextField::class, TextFieldOption::make()->label('Item Category 5')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('product_family', TextField::class, TextFieldOption::make()->label('Product Family')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('categories_row_end', 'html', ['html' => '</div>']);
+        $this->add('categorization_tab_end', 'html', ['html' => '</div>']);
+
+        // --- Section 2: Fragrance Notes (with Dropdown and Create Button) ---
+        $this->add('notes_tab_start', 'html', ['html' => '<div class="tab-pane fade" id="tab_notes" role="tabpanel" aria-labelledby="notes-tab">']);
+        $this->add('notes_header', 'html', ['html' => '<h4 class="mt-4 h2">Fragrance Profile</h4><hr>']);
+
+        $this->add('fragrance_note_id_wrapper_start', 'html', [
+            'html' => '<div class="form-group mb-3">
+                            <label for="fragrance_note_id" class="control-label">Select Profile</label>
+                            <div >',
+        ]);
+
+        $this->add('fragrance_note_id', SelectField::class, [
+            'label' => false, // Label is provided by the wrapper now
+            'choices' => [0 => '-- None --'] + $fragranceProfiles,
+            'selected' => $selectedFragranceNoteId,
+            'attr' => [
+                'class' => 'form-control select-search-full',
+            ],
+        ]);
+
+        $this->add('fragrance_note_id_wrapper_end', 'html', [
+            'html' => '    <a href="' . route('product-fragrance-notes.create') . '" class="btn btn-primary" target="_blank" title="Create New Profile">
+                                <i class="fa fa-plus"></i> Create
+                            </a>
+                        </div>
+                    </div>',
+        ]);
+
+        $this->add('notes_tab_end', 'html', ['html' => '</div>']);
+
+        // --- Section 3: Item Specifications ---
+        $this->add('specs_tab_start', 'html', ['html' => '<div class="tab-pane fade" id="tab_specifications" role="tabpanel" aria-labelledby="specifications-tab">']);
+        $this->add('specs_header', 'html', ['html' => '<h4 class="mt-4 h2">Item Specifications</h4><hr>'])
+            ->add('specs_row_start', 'html', ['html' => '<div class="row">'])
+            // ->add('size', TextField::class, TextFieldOption::make()->label('Size')->wrapperAttributes(['class' => 'form-group col-md-3'])->toArray())
+            ->add('tag', TagField::class, [
+                'label' => trans('plugins/ecommerce::products.form.quantity'),
+                'value' => $tags,
+                'attr' => [
+                    'placeholder' => trans('plugins/ecommerce::products.form.write_some_tags'),
+                    'data-url' => route('product-tag.all'),
+                ],
+            ])
+            ->add('fragrance_type', SelectField::class, SelectFieldOption::make()->label('Fragrance Type')
+                ->choices([
+                    'Personal Fragrance (By Concentration)' => [
+                        'parfum' => 'Extrait de Parfum / Parfum',
+                        'edp' => 'Eau de Parfum (EDP)',
+                        'edt' => 'Eau de Toilette (EDT)',
+                        'edc' => 'Eau de Cologne (EDC)',
+                    ],
+                    'Personal Fragrance (By Form)' => [
+                        'concentrated_oil' => 'Concentrated Oil',
+                        'dehn_al_oud' => 'Dehn al Oud',
+                        'hair_mist' => 'Hair Mist',
+                        'body_gel' => 'Body Gel',
+                    ],
+                    'Home & Traditional Fragrance' => [
+                        'bakhoor' => 'Bakhoor',
+                        'oud_maattar' => 'Oud Maattar',
+                        'air_freshener' => 'Air Freshener',
+                    ],
+                    'other' => 'Other',
+                ])->emptyValue('Select Fragrence Type...')->required()->wrapperAttributes(['class' => 'form-group col-md-3'])->toArray())
+            // ->add('badge', SelectField::class, [ 'label' => 'Badges', 'choices' => [ 'bestseller' => 'Best Seller', 'newlaunch' => 'New Launch', 'onlineexclusive' => 'Online Exclusive', 'buyonegetone' => 'Buy One Get One', ], 'values' => $productId ? $this->getModel()->badge : [], 'attr' => [ 'class' => 'form-control select-multiple', 'multiple' => true, ], 'wrapper' => ['class' => 'form-group col-md-3'], ])
+            ->add('dispenser_type', SelectField::class, SelectFieldOption::make()->label('Dispenser Type')
+                ->choices([
+                    'spray' => 'Spray / Atomizer (for Perfumes, Mists)',
+                    'serum' => 'Serum Press (for Gels, Lotions)',
+                    'dabber_stick' => 'Dabber / Stick Applicator (for Oils)',
+                    'solid_incense' => 'Solid / Incense (for Bakhoor, Maattar)',
+                    'jar' => 'Jar / Pot (for Gels, Bakhoor)',
+                    'tube' => 'Tube (for Gels)',
+                    'reed_diffuser' => 'Reed Diffuser (for Air Fresheners)',
+                    'dropper' => 'Dropper',
+                    'other' => 'Other',
+                ])->emptyValue('Select Dispenser Type...')->required()->wrapperAttributes(['class' => 'form-group col-md-3'])->toArray())
+            ->add('fragrance_category', TextField::class, TextFieldOption::make()->label('Fragrance Category')->placeholder('e.g., Occidental, Unisex')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+
+            ->add('item_profile', TextField::class, TextFieldOption::make()->label('Item Profile')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('item_classification', TextField::class, TextFieldOption::make()->label('Item Classification')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+
+            ->add('longevity', TextField::class, TextFieldOption::make()->label('Longevity')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('occasion', TextField::class, TextFieldOption::make()->label('Occasion')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('additional_details', TextField::class, TextFieldOption::make()->label('Additional Details')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+
+            ->add('how_to_use', TextField::class, TextFieldOption::make()->label('How to Use')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('ingredients', TextField::class, TextFieldOption::make()->label('Ingredients')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+            ->add('story', TextField::class, TextFieldOption::make()->label('Story')->wrapperAttributes(['class' => 'form-group col-md-6'])->toArray())
+
+            ->add('specs_row_end', 'html', ['html' => '</div>']);
+        $this->add('specs_tab_end', 'html', ['html' => '</div>']);
+        $this->add('tabs_content_end', 'html', ['html' => '</div>']);
+
+
+        $this->addMetaBoxes([ 'with_related' => [ 'title' => null, 'content' => Html::tag('div', '', [ 'class' => 'wrap-relation-product', 'data-target' => route('products.get-relations-boxes', $productId ?: 0),]), 'wrap' => false, 'priority' => 9999, ], ])
             ->when(! EcommerceHelper::isDisabledPhysicalProduct(), function () {
                 $this->add('product_type', 'hidden', [
                     'value' => request()->input('product_type') ?: ProductTypeEnum::PHYSICAL,
                 ]);
-            })
-            ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
-            ->add(
-                'is_featured',
-                OnOffField::class,
-                OnOffFieldOption::make()
-                    ->label(trans('core/base::forms.is_featured'))
-                    ->defaultValue(false)
-                    ->toArray()
-            )
-            ->add(
-                'categories[]',
-                TreeCategoryField::class,
-                SelectFieldOption::make()
-                    ->label(trans('plugins/ecommerce::products.form.categories'))
-                    ->choices(ProductCategoryHelper::getActiveTreeCategories())
-                    ->selected(old('categories', $selectedCategories))
-                    ->addAttribute('card-body-class', 'p-0')
-                    ->toArray()
-            )
+            });
+
+        $this->add('status', SelectField::class, StatusFieldOption::make()->toArray())
+            ->add('is_featured', OnOffField::class, OnOffFieldOption::make()->label(trans('core/base::forms.is_featured'))->defaultValue(false)->toArray())
+            ->add('categories[]', TreeCategoryField::class, SelectFieldOption::make()->label(trans('plugins/ecommerce::products.form.categories'))->choices(ProductCategoryHelper::getActiveTreeCategories())->selected(old('categories', $selectedCategories))->addAttribute('card-body-class', 'p-0')->toArray())
             ->when($brands, function () use ($brands) {
                 $this
                     ->add(
@@ -210,14 +386,14 @@ class ProductForm extends FormAbstract
                             ->toArray()
                     );
             })
-            ->add('tag', TagField::class, [
-                'label' => trans('plugins/ecommerce::products.form.tags'),
-                'value' => $tags,
-                'attr' => [
-                    'placeholder' => trans('plugins/ecommerce::products.form.write_some_tags'),
-                    'data-url' => route('product-tag.all'),
-                ],
-            ])
+            // ->add('tag', TagField::class, [
+            //     'label' => trans('plugins/ecommerce::products.form.tags'),
+            //     'value' => $tags,
+            //     'attr' => [
+            //         'placeholder' => trans('plugins/ecommerce::products.form.write_some_tags'),
+            //         'data-url' => route('product-tag.all'),
+            //     ],
+            // ])
             ->setBreakFieldPoint('status');
 
         if (EcommerceHelper::isEnabledProductOptions()) {
@@ -321,6 +497,31 @@ class ProductForm extends FormAbstract
                 return view('plugins/ecommerce::forms.duplicate-action', ['product' => $this->getModel()])->render();
             });
         }
+
+        $this->add('collection_script', 'html', [
+            'html' => '
+            <script>
+                $(document).ready(function () {
+                    function toggleCollectionItems(isCollection) {
+                        if (isCollection) {
+                            $("#collection_items_wrapper").show();
+                        } else {
+                            $("#collection_items_wrapper").hide();
+                        }
+                    }
+
+                    // Initial check on page load
+                    var isCollectionChecked = $("#is_collection").is(":checked");
+                    toggleCollectionItems(isCollectionChecked);
+
+                    // Listen for changes
+                    $(document).on("change", "#is_collection", function () {
+                        toggleCollectionItems($(this).is(":checked"));
+                    });
+                });
+            </script>
+            '
+        ]);
     }
 
     public function addAssets(): void

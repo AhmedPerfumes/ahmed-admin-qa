@@ -41,6 +41,27 @@ return [
         'parent_flag' => 'products.index',
     ],
 
+    [
+    'name' => 'Fragrance Profiles',
+    'flag' => 'product-fragrance-notes.index',
+    'parent_flag' => 'plugins.ecommerce',
+    ],
+    [
+        'name' => 'Create',
+        'flag' => 'product-fragrance-notes.create',
+        'parent_flag' => 'product-fragrance-notes.index',
+    ],
+    [
+        'name' => 'Edit',
+        'flag' => 'product-fragrance-notes.edit',
+        'parent_flag' => 'product-fragrance-notes.index',
+    ],
+    [
+        'name' => 'Delete',
+        'flag' => 'product-fragrance-notes.destroy',
+        'parent_flag' => 'product-fragrance-notes.index',
+    ],
+
     /**
      * Product Prices
      */

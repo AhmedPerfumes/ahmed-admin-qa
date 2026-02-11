@@ -11,6 +11,8 @@ use Botble\Ecommerce\Models\Product;
 use Botble\Slug\Models\Slug;
 use Botble\Ecommerce\Models\OrderProduct;
 use Botble\Ecommerce\Models\DiscountProduct;
+use Botble\Ecommerce\Models\ProductFragranceNote;
+use Botble\Ecommerce\Models\ProductFragranceMap;
 
 class ProductController extends Controller
 {
@@ -54,7 +56,7 @@ class ProductController extends Controller
             if (!isset($subCategory)) {
                 if($category == 'HAIR MIST') {
                     $productCategory->products = DB::table('ec_product_category_product')
-                        ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
+                       ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.name_ar as product_name_ar', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
                         ->join ('ec_product_categories', 'ec_product_category_product.category_id', '=', 'ec_product_categories.id', 'left')
                         ->join ('ec_products', 'ec_product_category_product.product_id', '=', 'ec_products.id', 'left')
                         ->join('ec_product_collection_products', 'ec_product_collection_products.product_id', '=', 'ec_products.id', 'left')
@@ -99,7 +101,7 @@ class ProductController extends Controller
                         }
                 } elseif($category == 'EXTRAIT DE PARFUM') {
                     $productCategory->products = DB::table('ec_product_category_product')
-                        ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
+                       ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.name_ar as product_name_ar', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
                         ->join ('ec_product_categories', 'ec_product_category_product.category_id', '=', 'ec_product_categories.id', 'left')
                         ->join ('ec_products', 'ec_product_category_product.product_id', '=', 'ec_products.id', 'left')
                         ->join('ec_product_collection_products', 'ec_product_collection_products.product_id', '=', 'ec_products.id', 'left')
@@ -138,7 +140,7 @@ class ProductController extends Controller
                         }
                 } elseif($category == 'GIFT SETS') {
                     $productCategory->products = DB::table('ec_product_category_product')
-                        ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
+                       ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.name_ar as product_name_ar', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
                         ->join ('ec_product_categories', 'ec_product_category_product.category_id', '=', 'ec_product_categories.id', 'left')
                         ->join ('ec_products', 'ec_product_category_product.product_id', '=', 'ec_products.id', 'left')
                         ->join('ec_product_collection_products', 'ec_product_collection_products.product_id', '=', 'ec_products.id', 'left')
@@ -178,7 +180,7 @@ class ProductController extends Controller
                 }
                 elseif($category == 'ONLINE EXCLUSIVE') {
                     $productCategory->products = DB::table('ec_product_category_product')
-                        ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
+                        ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.name_ar as product_name_ar', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
                         ->join ('ec_product_categories', 'ec_product_category_product.category_id', '=', 'ec_product_categories.id', 'left')
                         ->join ('ec_products', 'ec_product_category_product.product_id', '=', 'ec_products.id', 'left')
                         ->join('ec_product_collection_products', 'ec_product_collection_products.product_id', '=', 'ec_products.id', 'left')
@@ -220,7 +222,7 @@ class ProductController extends Controller
                     $productCategory->productSubCategories = ProductCategory::select('id', 'name', 'image', 'mobile_image', 'video')->where('parent_id', $productCategory->id)->where('status', 'published')->get();
                     foreach ($productCategory->productSubCategories as $key => $val) {
                         $val->products = DB::table('ec_product_category_product')
-                        ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
+                       ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.name_ar as product_name_ar', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
                         ->join ('ec_product_categories', 'ec_product_category_product.category_id', '=', 'ec_product_categories.id', 'left')
                         ->join ('ec_products', 'ec_product_category_product.product_id', '=', 'ec_products.id', 'left')
                         ->join('ec_product_collection_products', 'ec_product_collection_products.product_id', '=', 'ec_products.id', 'left')
@@ -261,7 +263,7 @@ class ProductController extends Controller
                 }
             } else {
                 $productCategory->products = DB::table('ec_product_category_product')
-                ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
+               ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.name_ar as product_name_ar', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price')
                 ->join ('ec_product_categories', 'ec_product_category_product.category_id', '=', 'ec_product_categories.id', 'left')
                 ->join ('ec_products', 'ec_product_category_product.product_id', '=', 'ec_products.id', 'left')
                 ->join('ec_product_collection_products', 'ec_product_collection_products.product_id', '=', 'ec_products.id', 'left')
@@ -331,13 +333,40 @@ class ProductController extends Controller
                 ->join('ec_product_label_products', 'ec_product_label_products.product_id', '=', 'ec_products.id', 'left')
                 ->join('ec_product_labels', 'ec_product_label_products.product_label_id', '=', 'ec_product_labels.id', 'left')
                 ->join ('ec_product_categories', 'ec_product_categories.id', '=', 'ec_product_category_product.category_id', 'left')
+                ->join('product_fragrance_map', 'ec_products.id', '=', 'product_fragrance_map.product_id', 'left')
+                ->join('product_fragrance_notes', 'product_fragrance_map.fragrance_note_id', '=', 'product_fragrance_notes.id', 'left')
                 // ->select(DB::raw("REGEXP_REPLACE(REPLACE(REPLACE(ec_products.name, ' &amp; ', '&'), '&', ' '),'[^a-zA-Z0-9-]', '')"))
-                ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.quantity as product_qty', 'ec_products.video_media as video', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price', 'ec_products.sku')
+                 ->select(DB::raw('CAST(ec_products.price AS DECIMAL(8,2)) as price'), 'ec_product_category_product.product_id', 'ec_products.name as product_name', 'ec_products.name_ar as product_name_ar', 'ec_products.image', 'ec_products.images', 'ec_product_collections.name as collection_name', 'ec_products.description', 'ec_products.description_ar', 'ec_products.content_ar', 'ec_products.quantity as product_qty', 'ec_products.video_media as video', 'ec_product_labels.name as label_name', 'ec_product_labels.color as label_color', 'ec_products.sale_price', 'ec_products.sku', 'ec_products.sillage', 'ec_products.longevity', 'ec_products.how_to_use', 'ec_products.occasion', 'ec_products.size', 'ec_products.item_profile', 'ec_products.item_classification', 'ec_products.ingredients', 'ec_products.olfactory_family', 'ec_products.fragrance_type', 'ec_products.fragrance_category', 'ec_products.dispenser_type', 'ec_products.additional_details', 'ec_products.story', 'ec_products.badge', 'ec_products.itemCategory_1', 'ec_products.itemCategory_2', 'ec_products.itemCategory_3', 'ec_products.itemCategory_4', 'ec_products.itemCategory_5', 'ec_products.is_collection', 'ec_products.product_family', 'product_fragrance_notes.itemFamily', 'product_fragrance_notes.top_note', 'product_fragrance_notes.top_note_ar', 'product_fragrance_notes.top_note_image', 'product_fragrance_notes.top_note_description', 'product_fragrance_notes.top_note_description_ar', 'product_fragrance_notes.heart_note', 'product_fragrance_notes.heart_note_ar', 'product_fragrance_notes.heart_note_image', 'product_fragrance_notes.heart_note_description', 'product_fragrance_notes.heart_note_description_ar', 'product_fragrance_notes.base_note', 'product_fragrance_notes.base_note_ar', 'product_fragrance_notes.base_note_image', 'product_fragrance_notes.base_note_description', 'product_fragrance_notes.base_note_description_ar')
                 ->where('ec_products.status', 'published')
                 ->where(DB::raw("REGEXP_REPLACE(REPLACE(REPLACE(ec_products.name, '&amp;', '&'), '&', ' '),'[^a-zA-Z0-9]', '')"), '=', implode('', explode(' ', $product)))
                 ->where('ec_product_categories.name', $category)
                 ->orderBy('ec_products.id', 'desc')
                 ->first();
+                if ($prod && $prod->is_collection) {
+                    $collectionItems = DB::table('ec_collection_items')->where('collection_product_id', $prod->product_id)->orderBy('sort_order', 'asc')->get();
+                    
+                    $childProductIds = $collectionItems->pluck('child_product_id')->filter()->unique()->all();
+
+                    $childProductsData = [];
+                    if (!empty($childProductIds)) {
+                        $childProductsData = DB::table('ec_products')->whereIn('id', $childProductIds)->select('id', 'name', 'name_ar', 'price', 'image', 'images' )->get()->keyBy('id');
+                    }
+
+                    // Step 4: Combine and Format the data.
+                    $prod->collection_items = $collectionItems->map(function ($item) use ($childProductsData) {
+                        if ($item->child_product_id && isset($childProductsData[$item->child_product_id])) {
+                            $fullProductData = $childProductsData[$item->child_product_id];
+                            
+                            // Merge the collection pivot data (sort_order, etc) with the actual product data
+                            return (object) array_merge((array)$item, (array)$fullProductData);
+                        }
+
+                        return $item;
+                    });
+
+                } elseif ($prod) {
+                    $prod->collection_items = [];
+                }
                 // print_r($prod);die();
                 $dynamicDescriptionKey = preg_replace('/[^a-zA-Z0-9\s]/', '', $prod->product_name).' Description';
                 $wordsToRemove = ['&', ' &', '& ', ' & ', 'amp', ' amp', 'amp ', ' amp ', ';', ' ;', '; ', ' ; '];
@@ -401,6 +430,60 @@ class ProductController extends Controller
                             'end_date' => $coupon->end_date,
                         ];
                     }
+                }
+                if (isset($prod->product_family) && !empty($prod->product_family)) {
+                    $currentProductFamily = $prod->product_family;
+                    $productId = $prod->product_id;
+
+                    $results = DB::table('ec_products')
+                        ->select(
+                            'ec_products.id as product_id',
+                            DB::raw('MAX(ec_products.name) as product_name'),
+                            DB::raw('MAX(ec_products.image) as image'),
+                            DB::raw('MAX(ec_products.images) as images'),
+                            DB::raw('MAX(ec_products.description) as description'),
+                            DB::raw('MAX(ec_products.quantity) as product_qty'),
+                            DB::raw('CAST(MAX(ec_products.price) AS DECIMAL(10,2)) as price'),
+                            DB::raw('CAST(MAX(ec_products.sale_price) AS DECIMAL(10,2)) as sale_price'),
+                            DB::raw('GROUP_CONCAT(DISTINCT ec_product_collections.name) as collection_name'),
+                            DB::raw('GROUP_CONCAT(DISTINCT main_cat.name) as category_name'),
+                            DB::raw('GROUP_CONCAT(DISTINCT sub_cat.name) as subcategory_name'),
+                            DB::raw("CONCAT('[', GROUP_CONCAT(DISTINCT JSON_OBJECT('name', ec_product_labels.name, 'color', ec_product_labels.color)), ']') as labels")
+                        )
+                        ->leftJoin('ec_product_category_product as pivot_main', 'pivot_main.product_id', '=', 'ec_products.id')
+                        ->leftJoin('ec_product_categories as main_cat', function ($join) {
+                            $join->on('pivot_main.category_id', '=', 'main_cat.id')
+                                ->where('main_cat.parent_id', 0);
+                        })
+                        ->leftJoin('ec_product_category_product as pivot_sub', 'pivot_sub.product_id', '=', 'ec_products.id')
+                        ->leftJoin('ec_product_categories as sub_cat', function ($join) {
+                            $join->on('pivot_sub.category_id', '=', 'sub_cat.id')
+                                ->where('sub_cat.parent_id', '!=', 0);
+                        })
+                        ->leftJoin('ec_product_collection_products', 'ec_product_collection_products.product_id', '=', 'ec_products.id')
+                        ->leftJoin('ec_product_collections', 'ec_product_collection_products.product_collection_id', '=', 'ec_product_collections.id')
+                        ->leftJoin('ec_product_label_products', 'ec_product_label_products.product_id', '=', 'ec_products.id')
+                        ->leftJoin('ec_product_labels', 'ec_product_label_products.product_label_id', '=', 'ec_product_labels.id')
+                        
+                        ->where('ec_products.product_family', $currentProductFamily)
+
+                        ->where('ec_products.id', '!=', $productId)
+                        ->groupBy('ec_products.id')
+                        ->get();
+
+                    $prod->item_family = $results->map(function ($item) {
+                        $item->subcategory = $item->subcategory_name ? [
+                            'subcategory_name' => $item->subcategory_name,
+                        ] : null;
+                        unset($item->subcategory_name);
+                        $item->labels = json_decode($item->labels);
+                        $item->images = json_decode($item->images, true) ?? [];
+                        return $item;
+                    });
+
+                } else {
+                    // If the main product has no family, return an empty array for consistency.
+                    $prod->item_family = [];
                 }
             return response()->json($prod);
         }

@@ -22,6 +22,8 @@ use Botble\Ecommerce\Tables\ProductTable;
 use Botble\Ecommerce\Tables\ProductVariationTable;
 use Botble\Ecommerce\Traits\ProductActionsTrait;
 use Illuminate\Http\Request;
+use Botble\Ecommerce\Models\CollectionItem;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends BaseController
 {
@@ -140,6 +142,61 @@ class ProductController extends BaseController
                 }, array_filter(explode(',', $request->input('grouped_products', ''))))
             );
         }
+        $fragranceNoteId = $request->input('fragrance_note_id');
+        $product->fragranceNote()->sync($fragranceNoteId ?: []);
+
+        if ($request->input('is_collection')) {
+            // The input is a JSON string like: [{"value":"product--123:Some Name"},{"value":"Custom Item"}]
+            $collectionItemsInput = $request->input('collection_items', '[]'); // Default to an empty JSON array string
+
+            DB::transaction(function () use ($product, $collectionItemsInput) {
+                // First, delete all old items to handle updates correctly
+                $product->collectionItems()->delete();
+
+                // Decode the JSON string into a PHP array
+                $itemsArray = json_decode($collectionItemsInput, true);
+
+                // Make sure the decoding was successful and we have an array
+                if (is_array($itemsArray)) {
+                    $sortOrder = 0;
+                    foreach ($itemsArray as $item) {
+                        // The actual value is inside the 'value' key of each object in the array
+                        if (!isset($item['value']))
+                            continue;
+
+                        $itemValue = $item['value'];
+                        $childProductId = null;
+                        $customItemName = null;
+
+                        // Check if the item is a product (it has our "product--" prefix)
+                        if (str_starts_with($itemValue, 'product--')) {
+                            // Extract the numeric ID from the string "product--123:Some Name"
+                            preg_match('/product--(\d+)/', $itemValue, $matches);
+                            if (isset($matches[1])) {
+                                $childProductId = $matches[1];
+                            }
+                        } else {
+                            // Otherwise, it's a custom text item
+                            $customItemName = trim($itemValue);
+                        }
+
+                        // If we have either a valid product ID or a custom name, save it to the database
+                        if ($childProductId || $customItemName) {
+                            CollectionItem::create([
+                                'collection_product_id' => $product->id,
+                                'child_product_id' => $childProductId,
+                                'custom_item_name' => $customItemName,
+                                'quantity' => 1,
+                                'sort_order' => $sortOrder++,
+                            ]);
+                        }
+                    }
+                }
+            });
+        } else {
+            // If "Is this a collection?" is switched to No, delete any existing items.
+            $product->collectionItems()->delete();
+        }
 
         return $this
             ->httpResponse()
@@ -218,6 +275,62 @@ class ProductController extends BaseController
 
         Product::query()->whereIn('id', $relatedProductIds)->update(['status' => $product->status]);
 
+        $fragranceNoteId = $request->input('fragrance_note_id');
+        $product->fragranceNote()->sync($fragranceNoteId ?: []);
+
+        if ($request->input('is_collection')) {
+            // The input is a JSON string like: [{"value":"product--123:Some Name"},{"value":"Custom Item"}]
+            $collectionItemsInput = $request->input('collection_items', '[]'); // Default to an empty JSON array string
+
+            DB::transaction(function () use ($product, $collectionItemsInput) {
+                // First, delete all old items to handle updates correctly
+                $product->collectionItems()->delete();
+
+                // Decode the JSON string into a PHP array
+                $itemsArray = json_decode($collectionItemsInput, true);
+
+                // Make sure the decoding was successful and we have an array
+                if (is_array($itemsArray)) {
+                    $sortOrder = 0;
+                    foreach ($itemsArray as $item) {
+                        // The actual value is inside the 'value' key of each object in the array
+                        if (!isset($item['value']))
+                            continue;
+
+                        $itemValue = $item['value'];
+                        $childProductId = null;
+                        $customItemName = null;
+
+                        // Check if the item is a product (it has our "product--" prefix)
+                        if (str_starts_with($itemValue, 'product--')) {
+                            // Extract the numeric ID from the string "product--123:Some Name"
+                            preg_match('/product--(\d+)/', $itemValue, $matches);
+                            if (isset($matches[1])) {
+                                $childProductId = $matches[1];
+                            }
+                        } else {
+                            // Otherwise, it's a custom text item
+                            $customItemName = trim($itemValue);
+                        }
+
+                        // If we have either a valid product ID or a custom name, save it to the database
+                        if ($childProductId || $customItemName) {
+                            CollectionItem::create([
+                                'collection_product_id' => $product->id,
+                                'child_product_id' => $childProductId,
+                                'custom_item_name' => $customItemName,
+                                'quantity' => 1,
+                                'sort_order' => $sortOrder++,
+                            ]);
+                        }
+                    }
+                }
+            });
+        } else {
+            // If "Is this a collection?" is switched to No, delete any existing items.
+            $product->collectionItems()->delete();
+        }
+
         return $this
             ->httpResponse()
             ->setPreviousUrl(route('products.index'))
@@ -259,5 +372,26 @@ class ProductController extends BaseController
         return $this
             ->httpResponse()
             ->withUpdatedSuccessMessage();
+    }
+     public function getForTagInput(Request $request)
+    {
+        $searchTerm = $request->input('q') ?? $request->input('term') ?? $request->input('value', '');
+
+        $products = Product::query()
+            ->where('name', 'LIKE', '%' . $searchTerm . '%') // Use the correctly found search term
+            ->where('is_variation', 0)
+            ->where('is_collection', 0)
+            ->select(['id', 'name'])
+            ->get();
+
+        $results = [];
+        foreach ($products as $product) {
+            $results[] = [
+                'value' => 'product--' . $product->id . ':' . $product->name,
+                'label' => $product->name,
+            ];
+        }
+
+        return response()->json($results);
     }
 }
