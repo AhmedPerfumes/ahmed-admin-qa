@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmsaController;
+use App\Http\Controllers\ProductReviewController;
 
 // Define a route group with a prefix
 Route::prefix('admin/ecommerce/smsa')->group(function () {
