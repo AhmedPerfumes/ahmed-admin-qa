@@ -65,4 +65,7 @@ Route::middleware('customLogs')->group(function () {
 
     Route::withoutMiddleware('customLogs')->get('/products/{product}/reviews', [ApiProductReviewController::class, 'index']);
     Route::withoutMiddleware('customLogs')->post('/reviews', [ApiProductReviewController::class, 'store']);
+
+    Route::get('/freeGiftProducts', [ProductController::class, 'freeGiftProducts']);
+    Route::get('/bogoProducts', [ProductController::class, 'bogoProducts']);
 });

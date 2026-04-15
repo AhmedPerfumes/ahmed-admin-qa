@@ -71,7 +71,7 @@ class ProductCategoryController extends Controller
         // }
         $tax = Tax::select('percentage')->where('status', 'published')->first();
         $shipping_service_charges = ShippingRule::select('price')->get();
-        $currency = Currency::select('symbol')->where('is_default', 1)->first();
+        $currency = Currency::select('symbol', 'decimals')->where('is_default', 1)->first();
         $pop_up = Page::select('name','name_ar','content','description','content_ar','description_ar', 'image','mobile_image','link')->where('template', 'full-width')->where('status', 'published')->get();
         $home_sliders = SimpleSliderItem::select('title', 'image', 'link', 'order', 'sub_title', 'season', 'type', 'color')->where('type', 'desktop')->orderBy('order', 'asc')->get();
         $home_mobile_sliders = SimpleSliderItem::select('title', 'image', 'link', 'order', 'sub_title', 'season', 'type', 'color')->where('type', 'mobile')->orderBy('order', 'asc')->get();
