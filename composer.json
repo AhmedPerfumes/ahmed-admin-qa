@@ -27,7 +27,6 @@
         "botble/slug": "*@dev",
         "botble/theme": "*@dev",
         "botble/widget": "*@dev",
-        "cybersource/rest-client-php": "^0.0.65",
         "doctrine/dbal": "^3.8",
         "guzzlehttp/guzzle": "^7.7",
         "laravel/framework": "^10.24",
